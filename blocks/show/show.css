@@ -1,0 +1,14 @@
+.show {
+  pointer-events: auto;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  padding-top: 195px;
+}

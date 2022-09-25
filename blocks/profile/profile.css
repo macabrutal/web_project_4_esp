@@ -1,0 +1,24 @@
+.profile {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+/* TABLET */
+@media screen and (min-width: 321px) and (max-width: 768px) {
+  .profile {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* MOBILE*/
+@media screen and (min-width: 5px) and (max-width: 320px) {
+  .profile {
+    width: 100%;
+    height: auto;
+    justify-content: center;
+  }
+}

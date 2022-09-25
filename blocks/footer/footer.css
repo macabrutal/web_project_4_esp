@@ -1,0 +1,10 @@
+.footer {
+  padding-top: 68px;
+}
+
+/* MOBILE*/
+@media screen and (min-width: 5px) and (max-width: 320px) {
+  .footer {
+    padding-top: 50px;
+  }
+}

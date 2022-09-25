@@ -1,0 +1,6 @@
+.card__card-body {
+  background-color: #fff;
+  padding: 25px 21px 31px;
+  display: flex;
+  justify-content: space-around;
+}

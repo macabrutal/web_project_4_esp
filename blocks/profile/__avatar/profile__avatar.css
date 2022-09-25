@@ -1,0 +1,19 @@
+.profile__avatar {
+  width: 120px;
+  height: 120px;
+  margin-right: 30px;
+}
+
+/* TABLET */
+@media screen and (min-width: 321px) and (max-width: 768px) {
+  .profile__avatar {
+  }
+}
+
+/* MOBILE*/
+@media screen and (min-width: 5px) and (max-width: 320px) {
+  .profile__avatar {
+    margin-right: 0;
+    display: block;
+  }
+}

@@ -1,0 +1,8 @@
+.card__card-like {
+  width: 21px;
+  height: 19px;
+  background-image: url(../../../images/corazon.svg);
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+}

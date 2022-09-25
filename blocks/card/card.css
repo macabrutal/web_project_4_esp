@@ -1,0 +1,20 @@
+.card {
+  width: 282px;
+  height: 361px;
+}
+
+/* TABLET */
+/* @media screen and (min-width: 321px) and (max-width: 768px) {
+  .card {
+    width: 100%;
+    height: auto;
+  }
+} */
+
+/* MOBILE*/
+@media screen and (min-width: 5px) and (max-width: 320px) {
+  .card {
+    margin: 0 auto 20px;
+    height: auto;
+  }
+}
