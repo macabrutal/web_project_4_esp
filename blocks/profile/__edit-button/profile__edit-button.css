@@ -6,3 +6,7 @@
   border: none;
   cursor: pointer;
 }
+
+.profile__edit-button:hover {
+  background-image: url(../../../images/edit-button_hover.png);
+}

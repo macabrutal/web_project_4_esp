@@ -1,8 +1,18 @@
 .card__card-like {
-  width: 21px;
+  width: 24px;
   height: 19px;
   background-image: url(../../../images/corazon.svg);
   border: none;
   background-color: #fff;
   cursor: pointer;
+  padding-right: 2px;
+  background-repeat: no-repeat;
+}
+
+.card__card-like:hover {
+  background-image: url(../../../images/corazon_hover.svg);
+}
+
+.card__card-like:active {
+  background-image: url(../../../images/corazon_active.svg);
 }

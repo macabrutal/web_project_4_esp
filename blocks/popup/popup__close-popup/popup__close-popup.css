@@ -10,3 +10,7 @@
   background-size: 100%;
   cursor: pointer;
 }
+
+.popup__close-popup:hover {
+  background-image: url(../../../images/close_icon_hover.svg);
+}
