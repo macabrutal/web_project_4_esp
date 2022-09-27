@@ -1,7 +1,9 @@
+/* CLASE CON  display: block; PARA MOSTRAR LA MODAL: */
+
 .show {
+  /* opacity: 1; */
+  display: block;
   pointer-events: auto;
-  opacity: 1;
-  display: flex;
   justify-content: center;
   align-content: center;
   position: fixed;

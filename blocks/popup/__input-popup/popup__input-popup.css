@@ -19,3 +19,10 @@
 .popup__input-popup:focus {
   border-color: #00b894;
 }
+
+/* MOBILE*/
+@media screen and (min-width: 5px) and (max-width: 320px) {
+  .popup__input-popup {
+    width: 238px;
+  }
+}

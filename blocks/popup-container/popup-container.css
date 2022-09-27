@@ -1,9 +1,11 @@
+/* CLASE CON  display: block; PARA OCULTAR LA MODAL: */
+
 .popup-container {
-  display: flex;
+  /* opacity: 0; */
+  display: none;
   justify-content: center;
   align-content: center;
   position: fixed;
-  opacity: 0;
   background-color: rgba(0, 0, 0, 0.5);
   width: 100vw;
   height: 100vh;

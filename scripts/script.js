@@ -3,11 +3,14 @@
 // 3. Agregar 1 detector de eventos. element.addEventListener("click", showClick)
 
 //ABRIR la modal
-// let open = document.querySelector(".profile__edit-button");
-let open = document.getElementById("open"); //en botón edit
+// let open = document.querySelector(".profile__edit-button"); //en botón edit con CSS
+let open = document.getElementById("open"); //en botón edit con ID
 let popupContainer = document.getElementById("popupContainer");
 let show = document.querySelector(".show");
 let close = document.getElementById("close");
+
+let profileTitle = document.querySelector(".profile__title"); //Titulo
+let profileSubtitle = document.querySelector(".profile__subtitle"); //subtitulo
 
 function showClick() {
   console.log("clic en el elemento");
@@ -17,14 +20,50 @@ function showClick() {
 }
 
 open.addEventListener("click", showClick); //detector de evento open.addEventListener()
+close.addEventListener("click", closeClick);
+//** -------
 
 //CERRAR la modal
+
 function closeClick() {
   console.log("clic en la X");
 
   popupContainer.className = "popup-container";
   console.log(popupContainer.className); // CERRAR la  Modal
 }
-close.addEventListener("click", closeClick); //detector de evento close.addEventListener()
+//** -------
+
+//** MOSTRAR TITULO Y SUBTITULO DEL PERFIL DENTRO DE LOS INPUTS DE LA MODAL:
+
+let inputTitle = document.getElementById("profileTitle"); // buscar input de título
+let inputSubtitle = document.getElementById("profileSubtitle"); //buscar input de Subtítulo
+let textTitle = document.querySelector(".profile__title"); //buscar texto del título en profile
+let textSubTitle = document.querySelector(".profile__subtitle"); //buscar texto del Subtítulo en profile
+
+function editClick() {
+  console.log("clic en botón edit");
+  inputTitle.value = textTitle.textContent; //valor del título es= texto título
+  inputSubtitle.value = textSubTitle.textContent; //valor del subtítulo es= texto subtítulo
+}
+
+open.addEventListener("click", editClick); //detector de evento open.addEventListener()
+//** -------
+
+//** MOSTRAR NOMBRE DE INPUTS EN PERFIL
+
+let form = document.getElementById("form");
+
+function eventoForm(event) {
+  event.preventDefault();
+
+  console.log("evento");
+
+  textTitle.textContent = inputTitle.value; //texto título = valor del input título
+  textSubTitle.textContent = inputSubtitle.value; //texto subtítulo = el valor del input subtítulo
+}
+
+form.addEventListener("submit", eventoForm);
+
+//** -------
 
 // let save = document.getElementById("save");

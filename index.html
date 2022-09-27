@@ -11,18 +11,27 @@
   </head>
   <body class="root">
     <!-- popup -->
+
     <div id="popupContainer" class="popup-container">
       <button id="close" class="popup__close-popup"></button>
-      <div class="popup">
+      <form id="form" action="" class="popup" name="popup">
         <h4 class="popup__title-popup">Edit profile</h4>
-        <input class="popup__input-popup" type="text" placeholder="Nombre" />
         <input
+          id="profileTitle"
+          class="popup__input-popup"
+          type="text"
+          placeholder="Nombre"
+        />
+        <input
+          id="profileSubtitle"
           class="popup__input-popup"
           type="text"
           placeholder="Acerca de mí"
         />
-        <button id="save" class="popup__button-popup">Guardar</button>
-      </div>
+        <button id="save" type="submit" class="popup__button-popup">
+          Guardar
+        </button>
+      </form>
     </div>
 
     <!-- HEDER-->

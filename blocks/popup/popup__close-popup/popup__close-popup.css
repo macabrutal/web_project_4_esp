@@ -14,3 +14,13 @@
 .popup__close-popup:hover {
   background-image: url(../../../images/close_icon_hover.svg);
 }
+
+/* MOBILE*/
+@media screen and (min-width: 5px) and (max-width: 320px) {
+  .popup__close-popup {
+    top: 150px;
+    right: 25px;
+    width: 26px;
+    height: 26px;
+  }
+}

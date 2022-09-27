@@ -9,3 +9,12 @@
   padding: 34px 36px 37px;
   margin: 0 auto;
 }
+
+/* MOBILE*/
+@media screen and (min-width: 5px) and (max-width: 320px) {
+  .popup {
+    max-width: 282px;
+    height: 322px;
+    padding: 25px 22px;
+  }
+}
