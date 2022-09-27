@@ -2,7 +2,7 @@
 // 2. Función de controlador de eventos, ej: function showClick()
 // 3. Agregar 1 detector de eventos. element.addEventListener("click", showClick)
 
-//ABRIR la modal
+//ABRIR la MODAL
 // let open = document.querySelector(".profile__edit-button"); //en botón edit con CSS
 let open = document.getElementById("open"); //seleciono botón edit con ID
 let popupContainer = document.getElementById("popupContainer");
@@ -23,7 +23,7 @@ open.addEventListener("click", showClick); //detector de evento open.addEventLis
 close.addEventListener("click", closeClick);
 //** -------
 
-//CERRAR la modal
+//CERRAR la MODAL
 
 function closeClick() {
   console.log("clic en la X");
@@ -67,5 +67,3 @@ function eventoForm(event) {
 form.addEventListener("submit", eventoForm);
 
 //** -------
-
-// let save = document.getElementById("save");
