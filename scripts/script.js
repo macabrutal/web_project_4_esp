@@ -4,13 +4,13 @@
 
 //ABRIR la modal
 // let open = document.querySelector(".profile__edit-button"); //en botón edit con CSS
-let open = document.getElementById("open"); //en botón edit con ID
+let open = document.getElementById("open"); //seleciono botón edit con ID
 let popupContainer = document.getElementById("popupContainer");
 let show = document.querySelector(".show");
 let close = document.getElementById("close");
 
-let profileTitle = document.querySelector(".profile__title"); //Titulo
-let profileSubtitle = document.querySelector(".profile__subtitle"); //subtitulo
+let profileTitle = document.querySelector(".profile__title"); //buscar Titulo
+let profileSubtitle = document.querySelector(".profile__subtitle"); //buscar subtitulo
 
 function showClick() {
   console.log("clic en el elemento");
@@ -51,7 +51,7 @@ open.addEventListener("click", editClick); //detector de evento open.addEventLis
 
 //** MOSTRAR NOMBRE DE INPUTS EN PERFIL
 
-let form = document.getElementById("form");
+let form = document.getElementById("form"); // buscar el formulario (su ID)
 
 function eventoForm(event) {
   event.preventDefault();
@@ -60,6 +60,8 @@ function eventoForm(event) {
 
   textTitle.textContent = inputTitle.value; //texto título = valor del input título
   textSubTitle.textContent = inputSubtitle.value; //texto subtítulo = el valor del input subtítulo
+
+  popupContainer.className = "popup-container"; // Al guardar se CIERRA la modal
 }
 
 form.addEventListener("submit", eventoForm);
