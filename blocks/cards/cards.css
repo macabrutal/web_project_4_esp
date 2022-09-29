@@ -1,15 +1,24 @@
 .cards {
-  display: grid;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  column-gap: 17px;
+  row-gap: 20px;
+
+  /* display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto auto;
   column-gap: 17px;
   row-gap: 20px;
+  justify-content: center; */
 }
 
 /* TABLET */
 @media screen and (min-width: 321px) and (max-width: 768px) {
   .cards {
     width: auto;
+    justify-content: center;
   }
 }
 

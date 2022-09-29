@@ -1,18 +1,18 @@
 .profile__intro {
-  width: 415px;
+  /* width: 415px; */
+  width: 100%;
   height: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: #fff;
   flex-wrap: wrap;
-  margin-right: 165px;
 }
 
 /* TABLET */
 @media screen and (min-width: 321px) and (max-width: 768px) {
   .profile__intro {
-    margin-right: 53px;
+    width: auto;
   }
 }
 
@@ -21,6 +21,6 @@
   .profile__intro {
     width: 100%;
     height: auto;
-    margin: 26px 29px 36px;
+    margin: 26px 0 36px;
   }
 }

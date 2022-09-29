@@ -1,18 +1,23 @@
-.content {
-  max-width: 100%;
+.page {
+  padding: 45px 0 60px;
+  max-width: 880px;
+  /* max-width: 62%; */
+  margin: 0 auto;
 }
 
 /* TABLET */
 @media screen and (min-width: 321px) and (max-width: 768px) {
-  .content {
+  .page {
     max-width: 100%;
-    /* max-width: 768px; */
+    padding: 45px 0 60px;
+    box-sizing: border-box;
   }
 }
 
 /* MOBILE*/
 @media screen and (min-width: 5px) and (max-width: 320px) {
-  .content {
+  .page {
     max-width: 320px;
+    padding: 45px 19px 60px;
   }
 }
