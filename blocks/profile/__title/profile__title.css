@@ -9,7 +9,7 @@
 }
 
 /* MOBILE*/
-@media screen and (min-width: 5px) and (max-width: 320px) {
+@media screen and (min-width: 5px) and (max-width: 550px) {
   .profile__title {
     font-weight: 500;
     font-size: 22px;

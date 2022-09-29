@@ -17,7 +17,7 @@
 }
 
 /* MOBILE*/
-@media screen and (min-width: 5px) and (max-width: 320px) {
+@media screen and (min-width: 5px) and (max-width: 550px) {
   .profile__intro {
     width: 100%;
     height: auto;
