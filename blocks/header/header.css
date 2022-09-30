@@ -1,3 +1,12 @@
 .header {
-  margin-bottom: 36px;
+  /* margin-bottom: 36px; */
+  margin: 36px auto;
+  max-width: 880px;
+}
+
+/* MOBILE*/
+@media screen and (min-width: 5px) and (max-width: 550px) {
+  .header {
+    margin-bottom: 38px;
+  }
 }

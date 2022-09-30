@@ -3,3 +3,10 @@
   height: 33px;
   margin-bottom: 41px;
 }
+
+/* MOBILE*/
+@media screen and (min-width: 5px) and (max-width: 550px) {
+  .header__logo {
+    margin-bottom: 32px;
+  }
+}
