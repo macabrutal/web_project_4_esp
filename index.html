@@ -1,149 +1,101 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- LINK CSS -->
-    <link rel="stylesheet" href="./pages/index.css" />
 
-    <title>Alrededor de los EE.UU.</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- LINK CSS -->
+  <link rel="stylesheet" href="./pages/index.css" />
 
-  <body class="root">
-    <div class="page">
-      <!-- popup -->
+  <title>Alrededor de los EE.UU.</title>
+</head>
 
-      <div id="popupContainer" class="popup-container">
-        <button id="close" class="popup__close-popup"></button>
-        <form id="form" action="" class="popup" name="popup">
-          <h4 class="popup__title-popup">Edit profile</h4>
-          <input
-            id="profileTitle"
-            class="popup__input-popup"
-            type="text"
-            placeholder="Nombre"
-          />
-          <input
-            id="profileSubtitle"
-            class="popup__input-popup"
-            type="text"
-            placeholder="Acerca de mí"
-          />
-          <button id="save" type="submit" class="popup__button-popup">
-            Guardar
-          </button>
-        </form>
+<body class="root">
+  <div class="page">
+    <!-- popup edit-->
+    <div id="popupContainer" class="popup-container">
+      <button id="close" class="popup__close-popup"></button>
+      <form id="form" action="" class="popup" name="popup">
+        <h4 class="popup__title-popup">Edit profile</h4>
+        <input id="profileTitle" class="popup__input-popup" type="text" placeholder="Nombre" />
+        <input id="profileSubtitle" class="popup__input-popup" type="text" placeholder="Acerca de mí" />
+        <button id="save" type="submit" class="popup__button-popup">
+          Guardar
+        </button>
+      </form>
+    </div>
+    <!-- FIN popup edit-->
+
+    <!-- popup AGREGAR-->
+    <div id="popupAddContainer" class="popup-container">
+      <button id="closeAddPopup" class="popup__close-popup"></button>
+      <form id="formAdd" action="" class="popup" name="popup">
+        <h4 class="popup__title-popup">Nuevo lugar</h4>
+        <input id="addTitle" class="popup__input-popup" type="text" placeholder="Título" name="title" />
+        <input id="addImage" class="popup__input-popup" type="text" placeholder="Enlace a la imagen" name="image" />
+        <button id="createButton" type="submit" class="popup__button-popup">
+          Crear
+        </button>
+      </form>
+    </div>
+    <!-- FIN popup AGREGAR-->
+
+    <!-- popup IMAGEN-->
+    <div id="popupImage" class="popup-container">
+      <button id="closeImagePopup" class="popup__close-popup"></button>
+      <img src="" alt="" class="popup__image-popup">
+    </div>
+    <!-- FIN popup IMAGEN-->
+
+    <!-- HEDER-->
+    <header class="header">
+      <img class="header__logo" src="./images/logo.png" alt="logo" />
+      <hr class="header__line" />
+    </header>
+
+    <!-- MAIN-->
+    <main class="content">
+      <!-- profile -->
+      <div class="profile">
+        <div class="profile__info">
+          <img src="./images/avatar.png" alt="avatar" class="profile__avatar" />
+          <div class="profile__intro">
+            <h1 class="profile__title">Jacques Cousteau</h1>
+            <button id="open-edit-button" class="profile__edit-button"></button>
+            <h2 class="profile__subtitle">Explorador</h2>
+          </div>
+        </div>
+        <button id="open-add-button" class="profile__add-button"></button>
+      </div>
+      <!-- cards -->
+      <div class="cards">
+        <div class="card">
+        </div>
       </div>
 
-      <!-- HEDER-->
-      <header class="header">
-        <img class="header__logo" src="./images/logo.png" alt="logo" />
-        <hr class="header__line" />
-      </header>
+    </main>
+<!-- FIN MAIN-->
+    <footer class="footer">
+      <p class="footer__text-footer">© 2021 Alrededor de los EEUU</p>
+    </footer>
+  </div>
 
-      <!-- MAIN-->
-      <main class="content">
-        <!-- profile -->
-        <div class="profile">
-          <div class="profile__info">
-            <img
-              src="./images/avatar.png"
-              alt="avatar"
-              class="profile__avatar"
-            />
-            <div class="profile__intro">
-              <h1 class="profile__title">Jacques Cousteau</h1>
-              <button
-                id="open-edit-button"
-                class="profile__edit-button"
-              ></button>
-              <h2 class="profile__subtitle">Explorador</h2>
-            </div>
-          </div>
-          <button id="open-add-button" class="profile__add-button"></button>
+  <!-- template de cards -->
+  <template id="card-template">
+    <div class="card">
+        <!-- <button class="card__delete-button" src="./images/trash.png" alt="basurero"> </button> -->
+        <img class="card__img-card" src="" alt="" />
+        <div class="card__card-body">
+            <h3 class="card__card-title"></h3>
+            <button class="card__card-like"></button>
         </div>
-        <!-- cards -->
-        <div class="cards">
-          <div class="card">
-            <img
-              class="card__img-card"
-              src="./images/1.card.png"
-              alt="Valle de Yosemite"
-            />
-            <div class="card__card-body">
-              <h3 class="card__card-title">Valle de Yosemite</h3>
-              <button class="card__card-like"></button>
-            </div>
-          </div>
-
-          <div class="card">
-            <img
-              class="card__img-card"
-              src="./images/2.card.png"
-              alt="Lago Louise"
-            />
-            <div class="card__card-body">
-              <h3 class="card__card-title">Lago Louise</h3>
-              <button class="card__card-like"></button>
-            </div>
-          </div>
-
-          <div class="card">
-            <img
-              class="card__img-card"
-              src="./images/3.card.png"
-              alt="Montañas Calvas"
-            />
-            <div class="card__card-body">
-              <h3 class="card__card-title">Montañas Calvas</h3>
-              <button class="card__card-like"></button>
-            </div>
-          </div>
-
-          <div class="card">
-            <img
-              class="card__img-card"
-              src="./images/4.card.png"
-              alt="Latemar"
-            />
-            <div class="card__card-body">
-              <h3 class="card__card-title">Latemar</h3>
-              <button class="card__card-like"></button>
-            </div>
-          </div>
-
-          <div class="card">
-            <img
-              class="card__img-card"
-              src="./images/5.card.png"
-              alt="Vanoise National Park"
-            />
-            <div class="card__card-body">
-              <h3 class="card__card-title">Vanoise National Park</h3>
-              <button class="card__card-like"></button>
-            </div>
-          </div>
-
-          <div class="card">
-            <img
-              class="card__img-card"
-              src="./images/6.card.png"
-              alt="Lago di Braies"
-            />
-            <div class="card__card-body">
-              <h3 class="card__card-title">Lago di Braies</h3>
-              <button class="card__card-like"></button>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      <footer class="footer">
-        <p class="footer__text-footer">© 2021 Alrededor de los EEUU</p>
-      </footer>
     </div>
+    </div>
+  </template>
+   <!-- FIN template de cards -->
 
-    <script src="./scripts/script.js"></script>
-  </body>
+  <script src="./scripts/script.js"></script>
+</body>
+
 </html>

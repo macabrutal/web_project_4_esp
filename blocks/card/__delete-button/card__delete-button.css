@@ -1,0 +1,11 @@
+.card__delete-button {
+  background-image: url(../../../images/trash.png);
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.card__delete-button:hover {
+  background-image: url(../../../images/trash_hover.png);
+}
