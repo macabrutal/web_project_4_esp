@@ -8,6 +8,7 @@
 
 //VARIABLE: ABRIR la MODAL
 const openEditButton = document.getElementById("open-edit-button"); //seleciono botón edit con ID
+const openAddButton = document.getElementById("open-add-button"); //seleciono botón + con ID
 //VARIABLES: MODAL / CLASE QUE MUESTRA LA MODAL
 const popupContainer = document.getElementById("popupContainer"); //buscar modal
 const showPopup = document.querySelector(".show"); //variable con css que muestra modal
@@ -69,6 +70,7 @@ function eventoForm(event) {
 
 //EVENTO: ABRIR la MODAL
 openEditButton.addEventListener("click", showClick); //detector de evento open.addEventListener()
+openAddButton.addEventListener("click", showClick); //detector de evento open.addEventListener()
 
 //EVENTO: CERRAR la MODAL
 closePopup.addEventListener("click", closeClick);
@@ -78,3 +80,32 @@ openEditButton.addEventListener("click", editClick); //detector de evento open.a
 
 //** EVENTO: MOSTRAR NOMBRE DE INPUTS EN PERFIL
 formElement.addEventListener("submit", eventoForm);
+
+// Tarjetas:
+
+const initialCards = [
+  {
+    name: "Valle de Yosemite",
+    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
+  },
+  {
+    name: "Lago Louise",
+    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
+  },
+  {
+    name: "Montañas Calvas",
+    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
+  },
+  {
+    name: "Parque Nacional de la Vanoise",
+    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://code.s3.yandex.net/web-code/lago.jpg",
+  },
+];
