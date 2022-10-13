@@ -1,6 +1,6 @@
 .popup__close-popup_image {
   background-image: url(../../../../images/close_icon.svg);
-  position: absolute;
+  /* position: absolute; */
   right: 320px;
   width: 40px;
   height: 40px;
@@ -8,6 +8,8 @@
   border: none;
   background-size: 100%;
   cursor: pointer;
+  align-self: end;
+  padding: 20px;
 }
 
 .popup__close-popup_image:hover {
