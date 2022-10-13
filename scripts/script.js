@@ -15,9 +15,10 @@ const popupAddContainer = document.getElementById("popupAddContainer"); //buscar
 const popupImage = document.getElementById("popupImage"); //buscar modal popupImage por ID
 //VARIABLE : CLASE QUE MUESTRA LA MODAL
 const showPopup = document.querySelector(".show"); //variable con css que muestra modal
-//VARIABLE: CERRAR la MODAL
+//VARIABLE: CERRAR la MODAL EDIT/ MODAL ADD / MODAL IMAGEN
 const closePopup = document.getElementById("close");
 const closeAddPopup = document.getElementById("closeAddPopup");
+const closeImagePopup = document.getElementById("closeImagePopup");
 
 //** VARIABLES: MOSTRAR TITULO Y SUBTITULO DEL PERFIL DENTRO DE LOS INPUTS DE LA MODAL:
 const inputTitle = document.getElementById("profileTitle"); // buscar input de título
@@ -77,6 +78,27 @@ initialCards.forEach((elemento) => {
   //cardsContainer.append(nuevaCard);  //para dejarla al final de las cards
 });
 
+//FUNCIÓN con MANEJADOR DE EVENTO: PARA ABRIR MODAL DE IMAGEN
+//1.Creo 1 función handler que controle el evento al hacer clicken la imagen
+// target de event contendrá el elemento IMG sobre el que he pulsado
+function handleImgClick(evt) {
+  if (evt.target.tagName === "IMG"); //esta es la imagen
+  {
+    console.log("Click en imagen");
+
+    //2.Poner la imagen en la modal con id popupImage / agregarle su ruta con src = evt.target.src
+    //popupImage.getElementById("popupImage").src = evt.target.src;
+    popupImage.querySelector(".popup__image-popup").src = evt.target.src; // css image
+
+    //3.Mostrar modal de imagen (usar clase show )
+    //popupImage.classList.add("show"); //como es clase no es necesario el punto
+    popupImage.className = "show"; //cambiar CSS de MODAL con className "show"
+    console.log("handleImgClick");
+  }
+}
+
+cardsContainer.addEventListener("click", handleImgClick); //al click activa la función handle que controla el evento
+
 //FUNCIÓN: ABRIR la MODAL EDIT
 function showClick() {
   console.log("clic en el botón EDIR");
@@ -104,6 +126,9 @@ function closeClick() {
 
   popupAddContainer.className = "popup-container";
   console.log(popupAddContainer.className); // CERRAR la  Modal ADD
+
+  closeImagePopup.className = "popup__close-popup_image";
+  console.log(closeImagePopup.className); // CERRAR la  Modal IMAGE
 }
 //** -------
 

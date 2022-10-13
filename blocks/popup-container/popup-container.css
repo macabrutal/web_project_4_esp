@@ -1,7 +1,6 @@
 /* CLASE CON  display: block; PARA OCULTAR LA MODAL: */
 
 .popup-container {
-  /* opacity: 0; */
   display: none;
   justify-content: center;
   align-content: center;
@@ -11,7 +10,6 @@
   height: 100vh;
   top: 0;
   left: 0;
-  padding-top: 195px;
   /* pointer-events: para que deje ver los eventos javascript :*/
   pointer-events: none;
 }

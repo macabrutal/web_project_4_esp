@@ -12,4 +12,6 @@
 
 .card__delete-button:hover {
   background-image: url(../../../images/trash_hover.png);
+  height: 20px;
+  width: 18px;
 }

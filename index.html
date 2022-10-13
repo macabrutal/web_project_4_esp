@@ -32,8 +32,8 @@
       <button id="closeAddPopup" class="popup__close-popup"></button>
       <form id="formAdd" action="" class="popup" name="popup">
         <h4 class="popup__title-popup">Nuevo lugar</h4>
-        <input id="addTitle" class="popup__input-popup" type="text" placeholder="Título" name="title" />
-        <input id="addImage" class="popup__input-popup" type="text" placeholder="Enlace a la imagen" name="image" />
+        <input id="addTitle" name="title"  class="popup__input-popup" type="text" placeholder="Título" />
+        <input id="addImage" name="image" class="popup__input-popup" type="text" placeholder="Enlace a la imagen" />
         <button id="createButton" type="submit" class="popup__button-popup">
           Crear
         </button>
@@ -43,8 +43,11 @@
 
     <!-- popup IMAGEN-->
     <div id="popupImage" class="popup-container">
-      <button id="closeImagePopup" class="popup__close-popup"></button>
-      <img src="" alt="" class="popup__image-popup">
+      <div class="popup__image-container">
+        <button id="closeImagePopup" class=" popup popup__close-popup_image"></button>
+        <img src="" alt="" class="popup__image-popup">
+      </div>
+     
     </div>
     <!-- FIN popup IMAGEN-->
 
