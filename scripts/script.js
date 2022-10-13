@@ -127,8 +127,8 @@ function closeClick() {
   popupAddContainer.className = "popup-container";
   console.log(popupAddContainer.className); // CERRAR la  Modal ADD
 
-  closeImagePopup.className = "popup__close-popup_image";
-  console.log(closeImagePopup.className); // CERRAR la  Modal IMAGE
+  popupImage.className = "popup-container";
+  console.log(popupImage.className); // CERRAR la  Modal IMAGE
 }
 //** -------
 
@@ -173,6 +173,7 @@ openAddButton.addEventListener("click", showClickAdd); //detector de evento open
 //EVENTO: CERRAR la MODAL EDIT / ADD
 closePopup.addEventListener("click", closeClick);
 closeAddPopup.addEventListener("click", closeClick);
+closeImagePopup.addEventListener("click", closeClick);
 
 //** EVENTO: MOSTRAR TITULO Y SUBTITULO DEL PERFIL DENTRO DE LOS INPUTS DE LA MODAL:
 openEditButton.addEventListener("click", editClick); //detector de evento open.addEventListener()
