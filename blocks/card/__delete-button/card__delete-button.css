@@ -2,7 +2,7 @@
   background-image: url(../../../images/trash.png);
   height: 20px;
   width: 18px;
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -11,7 +11,5 @@
 }
 
 .card__delete-button:hover {
-  background-image: url(../../../images/trash_hover.png);
-  height: 20px;
-  width: 18px;
+  opacity: 60%;
 }
