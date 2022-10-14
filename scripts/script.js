@@ -99,6 +99,7 @@ formAdd.addEventListener("submit", function (evt) {
 
   //4.Agregar la info a la página
   cardsContainer.prepend(nuevaCard);
+
   //5.Cerrar la modal ADD > cambiando de clase
   popupAddContainer.className = "popup-container";
   console.log(popupAddContainer.className);
@@ -111,8 +112,8 @@ formAdd.addEventListener("submit", function (evt) {
 //1.Creo 1 función handler que controle el evento al hacer clicken la imagen
 // target de event contendrá el elemento IMG sobre el que he pulsado
 function handleImgClick(evt) {
-  if (evt.target.tagName === "IMG"); //esta es la imagen
-  {
+  //esta es la imagen
+  if (evt.target.tagName === "IMG") {
     console.log("Click en imagen");
 
     //2.Poner la imagen en la modal con id popupImage / agregarle su ruta con src = evt.target.src
@@ -126,7 +127,7 @@ function handleImgClick(evt) {
   }
   //BORRAR UNA CARD: target de event contendrá el elemento BUTTON sobre el que quiero hacer click:
   if (evt.target.tagName === "BUTTON") {
-    console.log("Click en botón eleiminar");
+    console.log("Click en botón eliminar");
 
     evt.target.parentNode.remove();
   }
