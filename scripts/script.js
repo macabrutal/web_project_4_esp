@@ -43,15 +43,6 @@ const templateCard = document
 //VARIABLE CARD
 const cardElement = templateCard.querySelector(".card");
 
-//Botón "ME GUSTA": controlador de eventos )
-//1.busco el botón "me gusta" con clase card__card-like / 2.lo escucho con addEventListener(evt)
-// cardElement
-//   .querySelector(".card__card-like")
-//   .addEventListener("click", function (evt) {
-//     // la variable target de event contendrá el elemento button sobre el que he pulsado
-//     evt.target.classList.toggle("card__card-like_active");
-//   });
-
 // Array de Tarjetas:
 
 const initialCards = [
@@ -89,8 +80,9 @@ const initialCards = [
 initialCards.forEach((elemento) => {
   //1.crear tarjeta
   const nuevaCard = templateCard.cloneNode(true);
-  //2.llenar información (imagen + texto)
+  //2.llenar información (url imagen + alt + texto)
   nuevaCard.querySelector(".card__img-card").src = elemento.link;
+  nuevaCard.querySelector(".card__img-card").alt = elemento.name;
   nuevaCard.querySelector(".card__card-title").textContent = elemento.name;
 
   //3. agregar esta info al contenedor de card
@@ -106,11 +98,16 @@ formAdd.addEventListener("submit", function (evt) {
 
   //2.obtengo la URL
   const addImage = document.getElementById("addImage").value;
+
   //4.clono la info de del array de initialCards  en el template
   const nuevaCard = templateCard.cloneNode(true);
-  //3.Crear una nueva CARD con la info: iURL + texto
+  //3.Crear una nueva CARD con la info: URL + ALT + texto
   nuevaCard.querySelector(".card__img-card").src = addImage;
+  console.log("creo imagen");
+  nuevaCard.querySelector(".card__img-card").alt = title;
+  console.log("creo el alt");
   nuevaCard.querySelector(".card__card-title").textContent = title;
+  console.log("creo TÍTULO");
 
   //4.Agregar la info a la página
   cardsContainer.prepend(nuevaCard);
@@ -132,8 +129,9 @@ function handleImgClick(evt) {
     console.log("Click en imagen");
 
     //2.Poner la imagen en la modal con id popupImage / agregarle su ruta con src = evt.target.src
-    //popupImage.getElementById("popupImage").src = evt.target.src;
     popupImage.querySelector(".popup__image-popup").src = evt.target.src; // css image
+    popupImage.querySelector(".popup__text-image").textContent = evt.target.alt;
+    evt.target.title; // css TITLE
 
     //3.Mostrar modal de imagen (usar clase show )
     //popupImage.classList.add("show"); //como es clase no es necesario el punto
@@ -143,9 +141,16 @@ function handleImgClick(evt) {
 
   //BORRAR UNA CARD: target de event contendrá el elemento BUTTON sobre el que quiero hacer click:
   if (evt.target.tagName === "BUTTON") {
-    console.log("Click en botón eliminar");
+    if (evt.target.classList.contains("card__delete-button")) {
+      console.log("Click en botón eliminar");
+      evt.target.parentNode.remove();
+    }
 
-    evt.target.parentNode.remove();
+    //BOTÓN LIKE
+    if (evt.target.classList.contains("card__card-like")) {
+      console.log("Click en botón LIKE");
+      evt.target.classList.toggle("card__card-like_active");
+    }
   }
 }
 

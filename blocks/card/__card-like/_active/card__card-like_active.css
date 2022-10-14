@@ -3,9 +3,13 @@
   width: 24px;
   height: 19px;
   border: none;
-  background-color: #fff;
+  background-color: transparent;
   cursor: pointer;
   padding-right: 16px;
   background-repeat: no-repeat;
   transition: 0.3s;
+}
+
+.card__card-like_active:hover {
+  opacity: 60%;
 }

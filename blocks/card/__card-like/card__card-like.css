@@ -13,7 +13,3 @@
 .card__card-like:hover {
   background-image: url(../../../images/corazon_hover.svg);
 }
-
-/* .card__card-like:active {
-  background-image: url(../../../images/corazon_active.svg);
-} */
