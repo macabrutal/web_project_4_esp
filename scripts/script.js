@@ -37,6 +37,9 @@ const templateCard = document
 //VARIABLE FORM DE AGREGAR CARDS formAdd
 formAdd = document.getElementById("formAdd"); //Busco el form de imágenes
 
+//VARIABLE BOTÓN ELIMINAR
+const deleteButton = document.getElementById("card-template");
+
 // Array de Tarjetas:
 
 const initialCards = [
@@ -125,13 +128,19 @@ function handleImgClick(evt) {
     popupImage.className = "show"; //cambiar CSS de MODAL con className "show"
     console.log("handleImgClick");
   }
-  //BORRAR UNA CARD: target de event contendrá el elemento BUTTON sobre el que quiero hacer click:
-  if (evt.target.tagName === "BUTTON") {
-    console.log("Click en botón eliminar");
 
-    evt.target.parentNode.remove();
-  }
+  //BORRAR UNA CARD: target de event contendrá el elemento BUTTON sobre el que quiero hacer click:
+  // if (evt.target.tagName === "BUTTON") {
+  //   console.log("Click en botón eliminar");
+
+  //   evt.target.parentNode.remove();
+  // }
 }
+
+//FUNCIÓN:BORRAR UNA CARD (La variable deleteButton es toda la CARD)
+deleteButton.addEventListener("click", function () {
+  deleteButton.remove();
+});
 
 cardsContainer.addEventListener("click", handleImgClick); //al click activa la función handle que controla el evento
 
