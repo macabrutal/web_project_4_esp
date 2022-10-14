@@ -6,7 +6,7 @@
 // const profileTitle = document.querySelector(".profile__title"); //buscar Titulo
 // const profileSubtitle = document.querySelector(".profile__subtitle"); //buscar subtitulo
 
-//VARIABLE: ABRIR la MODAL
+//VARIABLE: ABRIR la MODAL (SELECCIONO EL BOTÓN)
 const openEditButton = document.getElementById("open-edit-button"); //seleciono botón edit con ID
 const openAddButton = document.getElementById("open-add-button"); //seleciono botón + con ID
 //VARIABLES: MODAL EDIT/ MODAL ADD / MODAL IMAGEN
@@ -33,6 +33,9 @@ const cardsContainer = document.querySelector(".cards"); //busco contenedor de c
 const templateCard = document
   .getElementById("card-template")
   .content.querySelector(".card"); // <template>
+
+//VARIABLE FORM DE AGREGAR CARDS formAdd
+formAdd = document.getElementById("formAdd"); //Busco el form de imágenes
 
 // Array de Tarjetas:
 
@@ -64,6 +67,8 @@ const initialCards = [
 ];
 //** -------
 
+//FUNCIÓN AGREGAR CARDS
+
 //FUNCIÓN: CREAR CARDS cardsContainer
 // La info de cards está en el array: initialCards
 initialCards.forEach((elemento) => {
@@ -76,6 +81,30 @@ initialCards.forEach((elemento) => {
   //3. agregar esta info al contenedor de card
   cardsContainer.prepend(nuevaCard);
   //cardsContainer.append(nuevaCard);  //para dejarla al final de las cards
+});
+
+//FUNCIÓN CREAR CARDS
+formAdd.addEventListener("submit", function (evt) {
+  evt.preventDefault(); //para que no me mande a otra pág.
+  //1.obtengo el valor del TITULO con ID del input
+  const title = document.getElementById("addTitle").value;
+
+  //2.obtengo la URL
+  const addImage = document.getElementById("addImage").value;
+  //4.clono la info de del array de initialCards  en el template
+  const nuevaCard = templateCard.cloneNode(true);
+  //3.Crear una nueva CARD con la info: iURL + texto
+  nuevaCard.querySelector(".card__img-card").src = addImage;
+  nuevaCard.querySelector(".card__card-title").textContent = title;
+
+  //4.Agregar la info a la página
+  cardsContainer.prepend(nuevaCard);
+  //5.Cerrar la modal ADD > cambiando de clase
+  popupAddContainer.className = "popup-container";
+  console.log(popupAddContainer.className);
+
+  //limpiar los inputs pfel form ara que no quede nombres guardados
+  evt.target.reset();
 });
 
 //FUNCIÓN con MANEJADOR DE EVENTO: PARA ABRIR MODAL DE IMAGEN
@@ -94,6 +123,12 @@ function handleImgClick(evt) {
     //popupImage.classList.add("show"); //como es clase no es necesario el punto
     popupImage.className = "show"; //cambiar CSS de MODAL con className "show"
     console.log("handleImgClick");
+  }
+  //BORRAR UNA CARD: target de event contendrá el elemento BUTTON sobre el que quiero hacer click:
+  if (evt.target.tagName === "BUTTON");
+  {
+    console.log("Click en botón");
+    evt.target.parentNode.remove();
   }
 }
 
