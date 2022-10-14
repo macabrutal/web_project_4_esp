@@ -7,12 +7,13 @@
   cursor: pointer;
   padding-right: 16px;
   background-repeat: no-repeat;
+  transition: 0.3s;
 }
 
 .card__card-like:hover {
   background-image: url(../../../images/corazon_hover.svg);
 }
 
-.card__card-like:active {
+/* .card__card-like:active {
   background-image: url(../../../images/corazon_active.svg);
-}
+} */

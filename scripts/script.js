@@ -28,17 +28,29 @@ const textSubTitle = document.querySelector(".profile__subtitle"); //buscar text
 //VARIABLE: MOSTRAR NOMBRE DE INPUTS EN PERFIL
 const formElement = document.getElementById("form"); // buscar el formulario (su ID)
 
+//VARIABLE FORM DE AGREGAR CARDS formAdd
+formAdd = document.getElementById("formAdd"); //Busco el form de imágenes
+
+//VARIABLE BOTÓN ELIMINAR
+const deleteButton = document.querySelector("card");
+
 //VARIABLE CARDS
 const cardsContainer = document.querySelector(".cards"); //busco contenedor de cards
 const templateCard = document
   .getElementById("card-template")
   .content.querySelector(".card"); // <template>
 
-//VARIABLE FORM DE AGREGAR CARDS formAdd
-formAdd = document.getElementById("formAdd"); //Busco el form de imágenes
+//VARIABLE CARD
+const cardElement = templateCard.querySelector(".card").cloneNode(true);
 
-//VARIABLE BOTÓN ELIMINAR
-const deleteButton = document.getElementById("card-template");
+//Botón "ME GUSTA": controlador de eventos )
+//1.busco el botón "me gusta" con clase card__card-like / 2.lo escucho con addEventListener(evt)
+cardElement
+  .querySelector(".card__card-like")
+  .addEventListener("click", function (evt) {
+    // la variable target de event contendrá el elemento button sobre el que he pulsado
+    evt.target.classList.toggle("card__card-like_active");
+  });
 
 // Array de Tarjetas:
 
@@ -130,17 +142,12 @@ function handleImgClick(evt) {
   }
 
   //BORRAR UNA CARD: target de event contendrá el elemento BUTTON sobre el que quiero hacer click:
-  // if (evt.target.tagName === "BUTTON") {
-  //   console.log("Click en botón eliminar");
+  if (evt.target.tagName === "BUTTON") {
+    console.log("Click en botón eliminar");
 
-  //   evt.target.parentNode.remove();
-  // }
+    evt.target.parentNode.remove();
+  }
 }
-
-//FUNCIÓN:BORRAR UNA CARD (La variable deleteButton es toda la CARD)
-deleteButton.addEventListener("click", function () {
-  deleteButton.remove();
-});
 
 cardsContainer.addEventListener("click", handleImgClick); //al click activa la función handle que controla el evento
 
