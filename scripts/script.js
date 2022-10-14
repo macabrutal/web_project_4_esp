@@ -41,16 +41,16 @@ const templateCard = document
   .content.querySelector(".card"); // <template>
 
 //VARIABLE CARD
-const cardElement = templateCard.querySelector(".card").cloneNode(true);
+const cardElement = templateCard.querySelector(".card");
 
 //Botón "ME GUSTA": controlador de eventos )
 //1.busco el botón "me gusta" con clase card__card-like / 2.lo escucho con addEventListener(evt)
-cardElement
-  .querySelector(".card__card-like")
-  .addEventListener("click", function (evt) {
-    // la variable target de event contendrá el elemento button sobre el que he pulsado
-    evt.target.classList.toggle("card__card-like_active");
-  });
+// cardElement
+//   .querySelector(".card__card-like")
+//   .addEventListener("click", function (evt) {
+//     // la variable target de event contendrá el elemento button sobre el que he pulsado
+//     evt.target.classList.toggle("card__card-like_active");
+//   });
 
 // Array de Tarjetas:
 
