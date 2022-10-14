@@ -125,9 +125,9 @@ function handleImgClick(evt) {
     console.log("handleImgClick");
   }
   //BORRAR UNA CARD: target de event contendrá el elemento BUTTON sobre el que quiero hacer click:
-  if (evt.target.tagName === "BUTTON");
-  {
-    console.log("Click en botón");
+  if (evt.target.tagName === "BUTTON") {
+    console.log("Click en botón eleiminar");
+
     evt.target.parentNode.remove();
   }
 }
