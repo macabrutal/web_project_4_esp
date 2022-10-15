@@ -14,7 +14,7 @@
     <div class="page">
       <!-- popup edit-->
       <div id="popupContainer" class="popup-container">
-        <button id="close" class="popup__close-popup"></button>
+        <button id="close" class="popup-container__close-popup"></button>
         <form id="form" action="" class="popup" name="popup">
           <h4 class="popup__title-popup">Edit profile</h4>
           <input
@@ -38,7 +38,10 @@
 
       <!-- popup AGREGAR-->
       <div id="popupAddContainer" class="popup-container">
-        <button id="closeAddPopup" class="popup__close-popup"></button>
+        <button
+          id="closeAddPopup"
+          class="popup-container__close-popup"
+        ></button>
         <form id="formAdd" action="" class="popup" name="popup">
           <h4 class="popup__title-popup">Nuevo lugar</h4>
           <input
@@ -64,13 +67,13 @@
 
       <!-- popup IMAGEN-->
       <div id="popupImage" class="popup-container">
-        <div class="popup__image-container">
+        <div class="image-container">
           <button
             id="closeImagePopup"
-            class="popup__close popup__close-popup_image"
+            class="image-container__close-image"
           ></button>
-          <img src=" " alt="" class="popup__image-popup" />
-          <p class="popup__text-image"></p>
+          <img src=" " alt="" class="image-container__image-popup" />
+          <p class="image-container__text-image"></p>
         </div>
       </div>
       <!-- FIN popup IMAGEN-->

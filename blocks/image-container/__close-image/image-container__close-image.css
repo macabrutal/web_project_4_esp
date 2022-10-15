@@ -1,4 +1,4 @@
-.popup__close-popup_image {
+.image-container__close-image {
   background-image: url(../../../../images/close_icon.svg);
   /* position: absolute; */
   right: 320px;
@@ -12,13 +12,13 @@
   padding: 20px;
 }
 
-.popup__close-popup_image:hover {
+.image-container__close-image:hover {
   background-image: url(../../../../images/close_icon_hover.svg);
 }
 
 /* MOBILE*/
 @media screen and (min-width: 5px) and (max-width: 320px) {
-  .popup__close-popup_image {
+  .image-container__close-image {
     top: 150px;
     right: 25px;
     width: 30px;

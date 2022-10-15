@@ -1,4 +1,4 @@
-.popup__close-popup {
+.popup-container__close-popup {
   background-image: url(../../../images/close_icon.svg);
   position: absolute;
   top: 146px;
@@ -11,20 +11,20 @@
   cursor: pointer;
 }
 
-.popup__close-popup:hover {
+.popup-container__close-popup:hover {
   background-image: url(../../../images/close_icon_hover.svg);
 }
 
 /* TABLET */
 @media screen and (min-width: 321px) and (max-width: 768px) {
-  .popup__close-popup {
+  .popup-container__close-popup {
     right: 170px;
   }
 }
 
 /* MOBILE*/
 @media screen and (min-width: 5px) and (max-width: 320px) {
-  .popup__close-popup {
+  .popup-container__close-popup {
     top: 73px;
     right: 20px;
     width: 26px;

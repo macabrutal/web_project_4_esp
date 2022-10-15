@@ -33,16 +33,16 @@
 /* popup */
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup-container/popup-container.css);
-@import url(../blocks/popup/__close-popup/popup__close-popup.css);
-@import url(../blocks/popup/__close-popup/_image/popup__close-popup_image.css);
+@import url(../blocks/popup-container/__close-popup/popup-container__close-popup.css);
+
+@import url(../blocks/image-container/__close-image/image-container__close-image.css);
+
 @import url(../blocks/popup/__title-popup/popup__title-popup.css);
 @import url(../blocks/popup/__input-popup/popup__input-popup.css);
 @import url(../blocks/popup/__button-popup/popup__button-popup.css);
-
-@import url(../blocks/popup/__image-container/popup__image-container.css);
-@import url(../blocks/popup/__image-popup/popup__image-popup.css);
-@import url(../blocks/popup/__text-image/popup__text-image.css);
-
+@import url(../blocks/image-container/image-container.css);
+@import url(../blocks/image-container/__image-popup/image-container__image-popup.css);
+@import url(../blocks/image-container/__text-image/image-container__text-image.css);
 @import url(../blocks/show/show.css);
 
 /* FOOTER*/

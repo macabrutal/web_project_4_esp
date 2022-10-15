@@ -1,4 +1,4 @@
-.popup__image-container {
+.image-container {
   /* width: fit-content; */
   max-width: 816px;
   /* width: 64%; */
@@ -13,7 +13,7 @@
 
 /* MOBILE*/
 @media screen and (min-width: 5px) and (max-width: 320px) {
-  .popup__image-container {
+  .image-container {
     max-width: 282px;
     height: 322px;
     padding: 25px 22px;

@@ -1,4 +1,4 @@
-.popup__text-image {
+.image-container__text-image {
   font-style: normal;
   font-size: 12px;
   line-height: 1;
@@ -10,7 +10,7 @@
 
 /* MOBILE*/
 @media screen and (min-width: 5px) and (max-width: 320px) {
-  .popup__text-image {
+  .image-container__text-image {
     padding: 10px 0 0;
   }
 }

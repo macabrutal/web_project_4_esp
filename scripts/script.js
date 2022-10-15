@@ -129,8 +129,10 @@ function handleImgClick(evt) {
     console.log("Click en imagen");
 
     //2.Poner la imagen en la modal con id popupImage / agregarle su ruta con src = evt.target.src
-    popupImage.querySelector(".popup__image-popup").src = evt.target.src; // css image
-    popupImage.querySelector(".popup__text-image").textContent = evt.target.alt;
+    popupImage.querySelector(".image-container__image-popup").src =
+      evt.target.src; // css image
+    popupImage.querySelector(".image-container__text-image").textContent =
+      evt.target.alt;
     evt.target.title; // css TITLE
 
     //3.Mostrar modal de imagen (usar clase show )
