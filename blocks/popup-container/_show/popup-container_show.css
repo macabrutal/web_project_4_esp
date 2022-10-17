@@ -1,6 +1,6 @@
 /* CLASE CON  display: block; PARA MOSTRAR LA MODAL: */
 
-.show {
+.popup-container_show {
   display: flex;
   pointer-events: auto;
   justify-content: center;
@@ -12,5 +12,8 @@
   top: 0;
   left: 0;
   z-index: 2;
-  transition: visibility 0s, opacity 0.6s linear;
+  /* para que se abra lento */
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.5s linear;
 }

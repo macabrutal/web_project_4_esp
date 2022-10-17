@@ -13,9 +13,9 @@
   <body class="root">
     <div class="page">
       <!-- popup edit-->
-      <div id="popupContainer" class="popup-container">
+      <div id="profilePopup" class="popup-container">
         <button id="close" class="popup-container__close-popup"></button>
-        <form id="form" action="" class="popup" name="popup">
+        <form id="form" action="" class="popup" name="edit-profile">
           <h4 class="popup__title-popup">Edit profile</h4>
           <input
             id="profileTitle"
@@ -42,7 +42,7 @@
           id="closeAddPopup"
           class="popup-container__close-popup"
         ></button>
-        <form id="formAdd" action="" class="popup" name="popup">
+        <form id="formAdd" action="" class="popup" name="add-place">
           <h4 class="popup__title-popup">Nuevo lugar</h4>
           <input
             id="addTitle"
@@ -70,7 +70,7 @@
         <div class="image-container">
           <button
             id="closeImagePopup"
-            class="image-container__close-image"
+            class="popup-container__close-popup popup-container__close-popup_image"
           ></button>
           <img src=" " alt="" class="image-container__image-popup" />
           <p class="image-container__text-image"></p>

@@ -1,14 +1,19 @@
 .image-container__image-popup {
-  width: calc(100% - 80px);
+  /* width: calc(100% - 80px);
   max-height: 540px;
-  margin: 0 auto;
+  margin: 0 auto; */
+  padding-top: 90px;
+  max-width: 75vw;
+  max-height: 75vh;
+  width: 100%;
 }
 
 /* MOBILE*/
-@media screen and (min-width: 5px) and (max-width: 320px) {
+@media screen and (min-width: 5px) and (max-width: 580px) {
   .image-container__image-popup {
     width: 100%;
     max-height: 75vh;
     max-width: 75vw;
+    padding-top: 0;
   }
 }

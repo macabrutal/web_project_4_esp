@@ -1,4 +1,4 @@
-// 1. Selecciona el elemento en el DOM :  const element = document.getElementById("elementID"); / const element = document.querySelector(".my-element");
+// 1. Selecciona el element en el DOM :  const element = document.getElementById("elementID"); / const element = document.querySelector(".my-element");
 // 2. Función de controlador de eventos, ej: function showClick()
 // 3. Agregar 1 detector de eventos. element.addEventListener("click", showClick)
 
@@ -10,13 +10,13 @@
 const openEditButton = document.getElementById("open-edit-button"); //seleciono botón edit con ID
 const openAddButton = document.getElementById("open-add-button"); //seleciono botón + con ID
 //VARIABLES: MODAL EDIT/ MODAL ADD / MODAL IMAGEN
-const popupContainer = document.getElementById("popupContainer"); //buscar modal EDIT
+const profilePopup = document.getElementById("profilePopup"); //buscar modal EDIT
 const popupAddContainer = document.getElementById("popupAddContainer"); //buscar modal +
 const popupImage = document.getElementById("popupImage"); //buscar modal popupImage por ID
 //VARIABLE : CLASE QUE MUESTRA LA MODAL
-const showPopup = document.querySelector(".show"); //variable con css que muestra modal
+const showPopup = document.querySelector(".popup-container_show"); //variable con css que muestra modal
 //VARIABLE: CERRAR la MODAL EDIT/ MODAL ADD / MODAL IMAGEN
-const closePopup = document.getElementById("close");
+const profileCloseButton = document.getElementById("close");
 const closeAddPopup = document.getElementById("closeAddPopup");
 const closeImagePopup = document.getElementById("closeImagePopup");
 
@@ -25,13 +25,13 @@ const inputTitle = document.getElementById("profileTitle"); // buscar input de t
 const inputSubtitle = document.getElementById("profileSubtitle"); //buscar input de Subtítulo
 const textTitle = document.querySelector(".profile__title"); //buscar texto del título en profile
 const textSubTitle = document.querySelector(".profile__subtitle"); //buscar texto del Subtítulo en profile
-//VARIABLE: MOSTRAR NOMBRE DE INPUTS EN PERFIL
-const formElement = document.getElementById("form"); // buscar el formulario (su ID)
+//VARIABLE: MOSTRAR NOMBRE DE INPUTS EN PERFIL (a traves de su name)
+const profileForm = document.forms["edit-profile"]; // buscar el formulario (su ID)
 
-//VARIABLE FORM DE AGREGAR CARDS formAdd
-formAdd = document.getElementById("formAdd"); //Busco el form de imágenes
+//VARIABLE FORM DE AGREGAR CARDS (a traves de su name)
+const cardForm = document.forms["add-place"]; //Busco el form de imágenes
 
-//VARIABLE BOTÓN ELIMINAR
+//VARIABLE BOTÓN ELIMINARnuevaCard
 const deleteButton = document.querySelector("card");
 
 //VARIABLE CARDS
@@ -42,6 +42,10 @@ const templateCard = document
 
 //VARIABLE CARD
 const cardElement = templateCard.querySelector(".card");
+
+//VARIABLES TITULO y URL de IMAGEN
+const nombreLugarInput = document.getElementById("addTitle");
+const imgLugarInput = document.getElementById("addImage");
 
 // Array de Tarjetas:
 
@@ -74,41 +78,33 @@ const initialCards = [
 //** -------
 
 //FUNCIÓN AGREGAR CARDS
+function createCard(element) {
+  const createCard = templateCard.cloneNode(true); //clorar elementos de initialCards
+  const cardImage = createCard.querySelector(".card__img-card"); //elementos de la imagen
+  cardImage.src = element.link; //link
+  cardImage.alt = element.name; //alt
+  createCard.querySelector(".card__card-title").textContent = element.name;
+  return createCard;
+}
 
-//FUNCIÓN: CREAR CARDS cardsContainer
 // La info de cards está en el array: initialCards
-initialCards.forEach((elemento) => {
+initialCards.forEach((element) => {
   //1.crear tarjeta
-  const nuevaCard = templateCard.cloneNode(true);
-  //2.llenar información (url imagen + alt + texto)
-  nuevaCard.querySelector(".card__img-card").src = elemento.link;
-  nuevaCard.querySelector(".card__img-card").alt = elemento.name;
-  nuevaCard.querySelector(".card__card-title").textContent = elemento.name;
-
+  const nuevaCard = createCard(element);
   //3. agregar esta info al contenedor de card
   cardsContainer.prepend(nuevaCard);
-  //cardsContainer.append(nuevaCard);  //para dejarla al final de las cards
 });
 
 //FUNCIÓN CREAR CARDS
-formAdd.addEventListener("submit", function (evt) {
+cardForm.addEventListener("submit", function (evt) {
   evt.preventDefault(); //para que no me mande a otra pág.
-  //1.obtengo el valor del TITULO con ID del input
-  const title = document.getElementById("addTitle").value;
-
-  //2.obtengo la URL
-  const addImage = document.getElementById("addImage").value;
-
+  //1.TITULO del input : title
+  const title = nombreLugarInput.value;
+  //2. URL del input : addImage
+  const addImage = imgLugarInput.value;
   //4.clono la info de del array de initialCards  en el template
-  const nuevaCard = templateCard.cloneNode(true);
+  const nuevaCard = createCard({ link: addImage, name: title });
   //3.Crear una nueva CARD con la info: URL + ALT + texto
-  nuevaCard.querySelector(".card__img-card").src = addImage;
-  console.log("creo imagen");
-  nuevaCard.querySelector(".card__img-card").alt = title;
-  console.log("creo el alt");
-  nuevaCard.querySelector(".card__card-title").textContent = title;
-  console.log("creo TÍTULO");
-
   //4.Agregar la info a la página
   cardsContainer.prepend(nuevaCard);
 
@@ -122,7 +118,7 @@ formAdd.addEventListener("submit", function (evt) {
 
 //FUNCIÓN con MANEJADOR DE EVENTO: PARA ABRIR MODAL DE IMAGEN
 //1.Creo 1 función handler que controle el evento al hacer clicken la imagen
-// target de event contendrá el elemento IMG sobre el que he pulsado
+// target de event contendrá el element IMG sobre el que he pulsado
 function handleImgClick(evt) {
   //esta es la imagen
   if (evt.target.tagName === "IMG") {
@@ -131,21 +127,21 @@ function handleImgClick(evt) {
     //2.Poner la imagen en la modal con id popupImage / agregarle su ruta con src = evt.target.src
     popupImage.querySelector(".image-container__image-popup").src =
       evt.target.src; // css image
+    popupImage.querySelector(".image-container__image-popup").alt =
+      evt.target.alt; //ALT
     popupImage.querySelector(".image-container__text-image").textContent =
-      evt.target.alt;
-    evt.target.title; // css TITLE
+      evt.target.alt; // css TITLE
 
-    //3.Mostrar modal de imagen (usar clase show )
-    //popupImage.classList.add("show"); //como es clase no es necesario el punto
-    popupImage.className = "show"; //cambiar CSS de MODAL con className "show"
+    //3.Mostrar modal de imagen (usar clase popup-container_show )
+    popupImage.className = "popup-container_show"; //cambiar CSS de MODAL con className "popup-container_show"
     console.log("handleImgClick");
   }
 
-  //BORRAR UNA CARD: target de event contendrá el elemento BUTTON sobre el que quiero hacer click:
+  //BORRAR UNA CARD: target de event contendrá el element BUTTON sobre el que quiero hacer click:
   if (evt.target.tagName === "BUTTON") {
     if (evt.target.classList.contains("card__delete-button")) {
       console.log("Click en botón eliminar");
-      evt.target.parentNode.remove();
+      evt.target.closest(".card").remove();
     }
 
     //BOTÓN LIKE
@@ -162,15 +158,15 @@ cardsContainer.addEventListener("click", handleImgClick); //al click activa la f
 function showClick() {
   console.log("clic en el botón EDIR");
 
-  popupContainer.className = "show"; //cambiar CSS de MODAL con className "show"
-  console.log(popupContainer.className); //   MOSTRAR la Modal
+  profilePopup.className = "popup-container_show"; //cambiar CSS de MODAL con className "popup-container_show"
+  console.log(profilePopup.className); //   MOSTRAR la Modal
 }
 
 //FUNCIÓN: ABRIR la MODAL ADD
 function showClickAdd() {
   console.log("clic en el botón ADD");
 
-  popupAddContainer.className = "show"; //cambiar CSS de MODAL con className "show"
+  popupAddContainer.className = "popup-container_show"; //cambiar CSS de MODAL con className "popup-container_show"
   console.log(popupAddContainer.className); //   MOSTRAR la Modal ADD
 }
 //** -------
@@ -180,8 +176,8 @@ function showClickAdd() {
 function closeClick() {
   console.log("clic en la X");
 
-  popupContainer.className = "popup-container";
-  console.log(popupContainer.className); // CERRAR la  Modal EDIT
+  profilePopup.className = "popup-container";
+  console.log(profilePopup.className); // CERRAR la  Modal EDIT
 
   popupAddContainer.className = "popup-container";
   console.log(popupAddContainer.className); // CERRAR la  Modal ADD
@@ -211,13 +207,13 @@ function eventoForm(event) {
   textTitle.textContent = inputTitle.value; //texto título = valor del input título
   textSubTitle.textContent = inputSubtitle.value; //texto subtítulo = el valor del input subtítulo
 
-  popupContainer.className = "popup-container"; // Al guardar se CIERRA la modal
+  profilePopup.className = "popup-container"; // Al guardar se CIERRA la modal
 }
 
 //** -------
 
 //** FUNCIÓN: AGREGAR CARD
-// 1. Selecciona el elemento en el DOM :  const element = document.getElementById("elementID"); / const element = document.querySelector(".my-element");
+// 1. Selecciona el element en el DOM :  const element = document.getElementById("elementID"); / const element = document.querySelector(".my-element");
 // 2. Función de controlador de eventos, ej: function showClick()
 // 3. Agregar 1 detector de eventos. element.addEventListener("click", showClick)
 
@@ -230,7 +226,7 @@ openEditButton.addEventListener("click", showClick); //detector de evento open.a
 openAddButton.addEventListener("click", showClickAdd); //detector de evento open.addEventListener()
 
 //EVENTO: CERRAR la MODAL EDIT / ADD
-closePopup.addEventListener("click", closeClick);
+profileCloseButton.addEventListener("click", closeClick);
 closeAddPopup.addEventListener("click", closeClick);
 closeImagePopup.addEventListener("click", closeClick);
 
@@ -238,6 +234,6 @@ closeImagePopup.addEventListener("click", closeClick);
 openEditButton.addEventListener("click", editClick); //detector de evento open.addEventListener()
 
 //** EVENTO: MOSTRAR NOMBRE DE INPUTS EN PERFIL
-formElement.addEventListener("submit", eventoForm);
+profileForm.addEventListener("submit", eventoForm);
 
 //** -------

@@ -5,11 +5,11 @@
   vertical-align: top;
   text-align: left;
   color: #fff;
-  padding: 10px 40px 0;
+  padding-top: 10px;
 }
 
 /* MOBILE*/
-@media screen and (min-width: 5px) and (max-width: 320px) {
+@media screen and (min-width: 5px) and (max-width: 550px) {
   .image-container__text-image {
     padding: 10px 0 0;
   }
