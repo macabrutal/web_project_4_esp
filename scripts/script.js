@@ -10,8 +10,11 @@
 const openEditButton = document.getElementById("open-edit-button"); //seleciono botón edit con ID
 const openAddButton = document.getElementById("open-add-button"); //seleciono botón + con ID
 
+//VARIABLE: SELECCIONO TODOS LOS BOTONES DE CERRAR EN EL DOM)
+const closeButtons = document.querySelectorAll(".popup-container__close-popup");
+
 //VARIABLE SELECCIONA TODOS LOS POPUPS
-const popups = document.querySelectorAll(".popup-container");
+const popup = document.querySelectorAll(".popup-container");
 
 //VARIABLE : CLASE QUE MUESTRA LA MODAL
 const showPopup = document.querySelector(".popup-container_show"); //variable con css que muestra modal
@@ -31,13 +34,14 @@ const inputTitle = document.getElementById("profileTitle"); // buscar input de t
 const inputSubtitle = document.getElementById("profileSubtitle"); //buscar input de Subtítulo
 const textTitle = document.querySelector(".profile__title"); //buscar texto del título en profile
 const textSubTitle = document.querySelector(".profile__subtitle"); //buscar texto del Subtítulo en profile
+
 //VARIABLE: MOSTRAR NOMBRE DE INPUTS EN PERFIL (a traves de su name)
 const profileForm = document.forms["edit-profile"]; // buscar el formulario (su ID)
 
 //VARIABLE FORM DE AGREGAR CARDS (a traves de su name)
 const cardForm = document.forms["add-place"]; //Busco el form de imágenes
 
-//VARIABLE BOTÓN ELIMINARnuevaCard
+//VARIABLE BOTÓN ELIMINAR nuevaCard
 const deleteButton = document.querySelector("card");
 
 //VARIABLE CARDS
@@ -49,42 +53,52 @@ const templateCard = document
 //VARIABLE CARD
 const cardElement = templateCard.querySelector(".card");
 
+//VARIABLE IMAGEN DEL POPUP
+const imagePopupPicture = document.querySelector(
+  ".image-container__image-popup"
+);
+
+//VARIABLE TEXTO DE LA IMAGEN DEL POPUP
+const imagePopuptext = document.querySelector(".image-container__text-image");
+
 //VARIABLES TITULO y URL de IMAGEN
-const nombreLugarInput = document.getElementById("addTitle");
-const imgLugarInput = document.getElementById("addImage");
+const imagePopupTitle = document.getElementById("addTitle");
+const imagePopupImage = document.getElementById("addImage");
 
 //-------
 
 //* FUNCIÓN: ABRIR  MODAL
-function openPopup(popups) {
-  popups.classList.add("popup-container_show"); //cambiar CSS de MODAL con className "popup-container_show"
+function openPopup(popup) {
+  popup.classList.add("popup-container_show"); //cambiar CSS de MODAL con className "popup-container_show"
 }
+//-------
 
 //FUNCIÓN: CERRAR MODAL (LAS 3)
-function closePopup() {
-  console.log("clic en la X");
-
-  profilePopup.className = "popup-container";
-  console.log(profilePopup.className); // CERRAR la  Modal EDIT
-
-  popupAddContainer.className = "popup-container";
-  console.log(popupAddContainer.className); // CERRAR la  Modal ADD
-
-  popupImage.className = "popup-container";
-  console.log(popupImage.className); // CERRAR la  Modal IMAGE
+function closePopup(popup) {
+  popup.classList.remove("popup-container_show");
 }
+
+//controlador universal para cualquier botón de cierre
+closeButtons.forEach((button) => {
+  // encuentra la ventana emergente más cercana
+  const popup = button.closest(".popup-container");
+  // agregue el oyente
+  button.addEventListener("click", () => closePopup(popup));
+});
+//-------
 
 // EVENTO: CERRAR la MODAL
 profileCloseButton.addEventListener("click", closePopup);
 closeAddPopup.addEventListener("click", closePopup);
 closeImagePopup.addEventListener("click", closePopup);
 
-//*EVENTO: ABRIR la MODAL EDIT / ADD
+//*EVENTO: ABRIR la MODAL EDIT con 2 controladores en uno: editar título /subtítulo y abrir modal
 openEditButton.addEventListener("click", function () {
-  //detector de evento addEventListener() : profilePopup
+  editClick();
   openPopup(profilePopup);
 });
 
+//*EVENTO: ABRIR la MODAL  ADD
 openAddButton.addEventListener("click", function () {
   //detector de evento openAddButton.addEventListener()
   openPopup(popupAddContainer);
@@ -92,28 +106,6 @@ openAddButton.addEventListener("click", function () {
 
 //** -------
 
-//FUNCIÓN: ABRIR la MODAL EDIT
-// function openPopup() {
-//   console.log("clic en el botón EDIR");
-
-//   profilePopup.className = "popup-container_show"; //cambiar CSS de MODAL con className "popup-container_show"
-//   console.log(profilePopup.className); //   MOSTRAR la Modal
-
-//   popupAddContainer.className = "popup-container_show"; //cambiar CSS de MODAL con className "popup-container_show"
-//   console.log(popupAddContainer.className); //   MOSTRAR la Modal ADD
-
-// }
-
-//FUNCIÓN: ABRIR la MODAL ADD
-// function openPopupAdd() {
-//   console.log("clic en el botón ADD");
-
-//   popupAddContainer.className = "popup-container_show"; //cambiar CSS de MODAL con className "popup-container_show"
-//   console.log(popupAddContainer.className); //   MOSTRAR la Modal ADD
-// }
-//** -------
-
-//** -------
 // Array de Tarjetas:
 
 const initialCards = [
@@ -149,14 +141,34 @@ const initialCards = [
 // 2. Función de controlador de eventos, ej: function createCard()
 // 3. Agregar 1 detector de eventos. createCard.addEventListener("click", handleImgClick)
 function createCard(element) {
-  const createCard = templateCard.cloneNode(true); //clorar elementos de initialCards
-  const cardImage = createCard.querySelector(".card__img-card"); //elementos de la imagen
+  const newCard = templateCard.cloneNode(true); //clorar elementos de initialCards
+  const cardImage = newCard.querySelector(".card__img-card"); //elementos de la imagen
   cardImage.src = element.link; //link
   cardImage.alt = element.name; //alt
-  createCard.querySelector(".card__card-title").textContent = element.name;
-  createCard.addEventListener("click", handleImgClick); //al click activa la función handle que controla el evento
+  newCard.querySelector(".card__card-title").textContent = element.name;
 
-  return createCard;
+  cardImage.addEventListener("click", (evt) => {
+    /** estai llenando los inputs, no el modal */
+    imagePopupPicture.src = evt.target.src; //SRC
+    imagePopupPicture.alt = evt.target.alt; // ALT
+    imagePopuptext.textContent = evt.target.alt; // TEXTO
+    openPopup(popupImage);
+  });
+
+  const likeButton = newCard.querySelector(".card__card-like");
+
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__card-like_active"); // escucha al botón LIKE
+  });
+
+  const deleteButton = newCard.querySelector(".card__delete-button");
+
+  deleteButton.addEventListener("click", () => {
+    // escucha al botón ELIMINAR
+    deleteButton.closest(".card").remove();
+  });
+
+  return newCard;
 }
 
 // La info de cards está en el array: initialCards
@@ -171,9 +183,9 @@ initialCards.forEach((element) => {
 cardForm.addEventListener("submit", function (evt) {
   evt.preventDefault(); //para que no me mande a otra pág.
   //1.TITULO del input : title
-  const title = nombreLugarInput.value;
+  const title = imagePopupTitle.value;
   //2. URL del input : addImage
-  const addImage = imgLugarInput.value;
+  const addImage = imagePopupImage.value;
   //4.clono la info de del array de initialCards  en el template
   const nuevaCard = createCard({
     link: addImage,
@@ -184,8 +196,8 @@ cardForm.addEventListener("submit", function (evt) {
   cardsContainer.prepend(nuevaCard);
 
   //5.Cerrar la modal ADD > cambiando de clase
-  popupAddContainer.className = "popup-container";
-  console.log(popupAddContainer.className);
+  closePopup(popupAddContainer);
+  console.log(closePopup(popupAddContainer));
 
   //limpiar los inputs del form para que no quede nombres guardados
   evt.target.reset();
@@ -200,15 +212,12 @@ function handleImgClick(evt) {
     console.log("Click en imagen");
 
     //2.Poner la imagen en la modal con id popupImage / agregarle su ruta con src = evt.target.src
-    popupImage.querySelector(".image-container__image-popup").src =
-      evt.target.src; // css image
-    popupImage.querySelector(".image-container__image-popup").alt =
-      evt.target.alt; //ALT
-    popupImage.querySelector(".image-container__text-image").textContent =
-      evt.target.alt; // css TITLE
+    imagePopupPicture.src = evt.target.src; // css image
+    imagePopupPicture.alt = evt.target.alt; //ALT
+    imagePopupCaption.alt = evt.target.alt; // css TITLE
 
     //3.Mostrar modal de imagen (usar clase popup-container_show )
-    popupImage.className = "popup-container_show"; //cambiar CSS de MODAL con className "popup-container_show"
+    openPopup(popupImage); //cambiar CSS de MODAL con className "popup-container_show"
     console.log("handleImgClick");
   }
 
@@ -237,7 +246,7 @@ function editClick() {
 //** -------
 
 //** FUNCIÓN: MOSTRAR NOMBRE DE INPUTS EN PERFIL
-function eventoForm(event) {
+function handleProfileFormSubmit(event) {
   event.preventDefault();
 
   console.log("evento");
@@ -245,15 +254,10 @@ function eventoForm(event) {
   textTitle.textContent = inputTitle.value; //texto título = valor del input título
   textSubTitle.textContent = inputSubtitle.value; //texto subtítulo = el valor del input subtítulo
 
-  profilePopup.className = "popup-container"; // Al guardar se CIERRA la modal
+  closePopup(profilePopup); // Al guardar se CIERRA la modal
 }
 
 //** -------
 
-//** EVENTO: MOSTRAR TITULO Y SUBTITULO DEL PERFIL DENTRO DE LOS INPUTS DE LA MODAL:
-openEditButton.addEventListener("click", editClick); //detector de evento open.addEventListener()
-
 //** EVENTO: MOSTRAR NOMBRE DE INPUTS EN PERFIL
-profileForm.addEventListener("submit", eventoForm);
-
-//** -------
+profileForm.addEventListener("submit", handleProfileFormSubmit);
