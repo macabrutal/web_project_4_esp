@@ -13,9 +13,6 @@ const openAddButton = document.getElementById("open-add-button"); //seleciono bo
 //VARIABLE: SELECCIONO TODOS LOS BOTONES DE CERRAR EN EL DOM)
 const closeButtons = document.querySelectorAll(".popup-container__close-popup");
 
-//VARIABLE SELECCIONA TODOS LOS POPUPS
-const popup = document.querySelectorAll(".popup-container");
-
 //VARIABLE : CLASE QUE MUESTRA LA MODAL
 const showPopup = document.querySelector(".popup-container_show"); //variable con css que muestra modal
 
