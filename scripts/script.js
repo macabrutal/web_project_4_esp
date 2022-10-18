@@ -75,7 +75,7 @@ function closePopup(popup) {
   popup.classList.remove("popup-container_show");
 }
 
-//controlador universal para cualquier botón de cierre
+//CONTROLADOR UNIVERSAL para cualquier BOTÓN de CIERRE
 closeButtons.forEach((button) => {
   // encuentra la ventana emergente más cercana
   const popup = button.closest(".popup-container");
@@ -85,9 +85,9 @@ closeButtons.forEach((button) => {
 //-------
 
 // EVENTO: CERRAR la MODAL
-profileCloseButton.addEventListener("click", closePopup);
-closeAddPopup.addEventListener("click", closePopup);
-closeImagePopup.addEventListener("click", closePopup);
+// profileCloseButton.addEventListener("click", closePopup);
+// closeAddPopup.addEventListener("click", closePopup);
+// closeImagePopup.addEventListener("click", closePopup);
 
 //*EVENTO: ABRIR la MODAL EDIT con 2 controladores en uno: editar título /subtítulo y abrir modal
 openEditButton.addEventListener("click", function () {
@@ -203,35 +203,35 @@ cardForm.addEventListener("submit", function (evt) {
 //FUNCIÓN con MANEJADOR DE EVENTO: PARA ABRIR MODAL DE IMAGEN
 //1.Creo 1 función handler que controle el evento al hacer clicken la imagen
 // target de event contendrá el element IMG sobre el que he pulsado
-function handleImgClick(evt) {
-  //esta es la imagen
-  if (evt.target.tagName === "IMG") {
-    console.log("Click en imagen");
+// function handleImgClick(evt) {
+//   //esta es la imagen
+//   if (evt.target.tagName === "IMG") {
+//     console.log("Click en imagen");
 
-    //2.Poner la imagen en la modal con id popupImage / agregarle su ruta con src = evt.target.src
-    imagePopupPicture.src = evt.target.src; // css image
-    imagePopupPicture.alt = evt.target.alt; //ALT
-    imagePopupCaption.alt = evt.target.alt; // css TITLE
+//     //2.Poner la imagen en la modal con id popupImage / agregarle su ruta con src = evt.target.src
+//     imagePopupPicture.src = evt.target.src; // css image
+//     imagePopupPicture.alt = evt.target.alt; //ALT
+//     imagePopupCaption.alt = evt.target.alt; // css TITLE
 
-    //3.Mostrar modal de imagen (usar clase popup-container_show )
-    openPopup(popupImage); //cambiar CSS de MODAL con className "popup-container_show"
-    console.log("handleImgClick");
-  }
+//     //3.Mostrar modal de imagen (usar clase popup-container_show )
+//     openPopup(popupImage); //cambiar CSS de MODAL con className "popup-container_show"
+//     console.log("handleImgClick");
+//   }
 
-  //BORRAR UNA CARD: target de event contendrá el element BUTTON sobre el que quiero hacer click:
-  if (evt.target.tagName === "BUTTON") {
-    if (evt.target.classList.contains("card__delete-button")) {
-      console.log("Click en botón eliminar");
-      evt.target.closest(".card").remove();
-    }
+//   //BORRAR UNA CARD: target de event contendrá el element BUTTON sobre el que quiero hacer click:
+//   if (evt.target.tagName === "BUTTON") {
+//     if (evt.target.classList.contains("card__delete-button")) {
+//       console.log("Click en botón eliminar");
+//       evt.target.closest(".card").remove();
+//     }
 
-    //BOTÓN LIKE
-    if (evt.target.classList.contains("card__card-like")) {
-      console.log("Click en botón LIKE");
-      evt.target.classList.toggle("card__card-like_active");
-    }
-  }
-}
+//     //BOTÓN LIKE
+//     if (evt.target.classList.contains("card__card-like")) {
+//       console.log("Click en botón LIKE");
+//       evt.target.classList.toggle("card__card-like_active");
+//     }
+//   }
+// }
 
 //** FUNCIÓN: MOSTRAR TITULO Y SUBTITULO DEL PERFIL DENTRO DE LOS INPUTS DE LA MODAL:
 function editClick() {
