@@ -15,23 +15,42 @@
       <!-- popup edit-->
       <div id="profilePopup" class="popup-container">
         <button id="close" class="popup-container__close-popup"></button>
-        <form id="form" action="" class="popup" name="edit-profile">
+        <form id="form" action="" class="popup" name="edit-profile" novalidate>
           <h4 class="popup__title-popup">Edit profile</h4>
-          <input
-            id="profileTitle"
-            class="popup__input-popup"
-            type="text"
-            placeholder="Nombre"
-          />
-          <input
-            id="profileSubtitle"
-            class="popup__input-popup"
-            type="text"
-            placeholder="Acerca de mí"
-          />
-          <button id="save" type="submit" class="popup__button-popup">
-            Guardar
-          </button>
+          <fieldset class="popup__fieldset">
+            <div class="popup__field">
+              <input
+                id="profileTitle"
+                class="popup__input-popup"
+                type="text"
+                placeholder="Nombre"
+                name="name"
+                required
+                minlength="2"
+                maxlength="40"
+              />
+              <!-- span del mensaje de error con su name -->
+              <span class="popup__error popup__error_name"></span>
+            </div>
+
+            <div class="popup__field">
+              <input
+                id="profileSubtitle"
+                class="popup__input-popup"
+                type="text"
+                placeholder="Acerca de mí"
+                name="about"
+                required
+                minlength="2"
+                maxlength="200"
+              />
+              <!-- span del mensaje de error con su name -->
+              <span class="popup__error popup__error_about"></span>
+            </div>
+            <button id="save" type="submit" class="popup__button-popup">
+              Guardar
+            </button>
+          </fieldset>
         </form>
       </div>
       <!-- FIN popup edit-->
@@ -42,25 +61,39 @@
           id="closeAddPopup"
           class="popup-container__close-popup"
         ></button>
-        <form id="formAdd" action="" class="popup" name="add-place">
+        <form id="formAdd" action="" class="popup" name="add-place" novalidate>
           <h4 class="popup__title-popup">Nuevo lugar</h4>
-          <input
-            id="addTitle"
-            name="title"
-            class="popup__input-popup"
-            type="text"
-            placeholder="Título"
-          />
-          <input
-            id="addImage"
-            name="image"
-            class="popup__input-popup"
-            type="text"
-            placeholder="Enlace a la imagen"
-          />
-          <button id="createButton" type="submit" class="popup__button-popup">
-            Crear
-          </button>
+          <fieldset class="popup__fieldset">
+            <div class="popup__field">
+              <input
+                id="addTitle"
+                name="title"
+                class="popup__input-popup"
+                type="text"
+                placeholder="Título"
+                required
+                minlength="2"
+                maxlength="30"
+              />
+              <!-- span del mensaje de error con su name -->
+              <span class="popup__error popup__error_title"></span>
+            </div>
+            <div class="popup__field">
+              <input
+                id="addImage"
+                name="image"
+                class="popup__input-popup"
+                type="url"
+                placeholder="Enlace a la imagen"
+                required
+              />
+              <!-- span del mensaje de error con su name -->
+              <span class="popup__error popup__error_image"></span>
+            </div>
+            <button id="createButton" type="submit" class="popup__button-popup">
+              Crear
+            </button>
+          </fieldset>
         </form>
       </div>
       <!-- FIN popup AGREGAR-->

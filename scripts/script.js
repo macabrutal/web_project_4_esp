@@ -2,10 +2,6 @@
 // 2. Función de controlador de eventos, ej: function openPopup()
 // 3. Agregar 1 detector de eventos. element.addEventListener("click", openPopup)
 
-//VARIABLES: TÍTULO / SUBTÍTULO (con ID)
-// const profileTitle = document.querySelector(".profile__title"); //buscar Titulo
-// const profileSubtitle = document.querySelector(".profile__subtitle"); //buscar subtitulo
-
 //VARIABLE: ABRIR la MODAL (SELECCIONO EL BOTÓN)
 const openEditButton = document.getElementById("open-edit-button"); //seleciono botón edit con ID
 const openAddButton = document.getElementById("open-add-button"); //seleciono botón + con ID
@@ -64,16 +60,80 @@ const imagePopupImage = document.getElementById("addImage");
 
 //-------
 
+// VALIDACIONES FORM
+
+const forms = document.querySelectorAll(".popup");
+forms.forEach((form) => setEventListener(form));
+
+function setEventListener(form) {
+  form.addEventListener("input", (event) => {
+    const target = event.target;
+    const name = target.name;
+    const texto = form.querySelector(".popup__error_" + name);
+
+    if (!target.validity.valid) {
+      texto.textContent = target.validationMessage;
+      target.classList.add("popup__input-popup_error");
+    } else {
+      texto.textContent = "";
+      target.classList.remove("popup__input-popup_error");
+    }
+
+    enableButton(form);
+  });
+}
+
+function enableButton(form) {
+  const formsubmit = form.querySelector(".popup__button-popup");
+
+  //si aún no están validados los inputs desabilita el botón enviar
+  if (!formValid(form)) {
+    // formsubmit.disabled = true;
+    formsubmit.classList.add("popup__button-popup_inactive");
+  } else {
+    // formsubmit.disabled = false;
+    // buttonElement.classList.remove("popup__button-popup_inactive");
+    formsubmit.classList.remove("popup__button-popup_inactive");
+  }
+}
+
+//función que valida si todos los inputs están correctos
+function formValid(form) {
+  const formInputs = Array.from(form.querySelectorAll(".popup__input-popup")); //todos los inputs
+  return formInputs.every(function (item) {
+    return item.validity.valid;
+  });
+}
+
+//--FIN VALIDACIONES FORM --------
+
+//-------
+
 //* FUNCIÓN: ABRIR  MODAL
 function openPopup(popup) {
   popup.classList.add("popup-container_show"); //cambiar CSS de MODAL con className "popup-container_show"
 }
 //-------
 
-//FUNCIÓN: CERRAR MODAL (LAS 3)
+// FUNCIÓN: CERRAR MODAL (LAS 3)
 function closePopup(popup) {
   popup.classList.remove("popup-container_show");
 }
+
+//****** Controlador para CERRAR modal con ESC
+const handleKeyPress = function (event) {
+  //console.log(event.key);
+  if (event.key === "esc") {
+    popup.classList.remove("popup-container_show");
+  }
+};
+document.addEventListener("keypress", handleKeyPress);
+
+// popup.addEventListener("click", function (event) {
+//   if (event.target.classList.contains("popup")) {
+//     popup.classList.remove("popup-container_show");
+//   }
+// });
 
 //CONTROLADOR UNIVERSAL para cualquier BOTÓN de CIERRE
 closeButtons.forEach((button) => {
@@ -84,20 +144,17 @@ closeButtons.forEach((button) => {
 });
 //-------
 
-// EVENTO: CERRAR la MODAL
-// profileCloseButton.addEventListener("click", closePopup);
-// closeAddPopup.addEventListener("click", closePopup);
-// closeImagePopup.addEventListener("click", closePopup);
-
 //*EVENTO: ABRIR la MODAL EDIT con 2 controladores en uno: editar título /subtítulo y abrir modal
 openEditButton.addEventListener("click", function () {
   editClick();
+  enableButton(document.getElementById("form"));
   openPopup(profilePopup);
 });
 
 //*EVENTO: ABRIR la MODAL  ADD
 openAddButton.addEventListener("click", function () {
   //detector de evento openAddButton.addEventListener()
+  enableButton(document.getElementById("formAdd"));
   openPopup(popupAddContainer);
 });
 
@@ -145,7 +202,6 @@ function createCard(element) {
   newCard.querySelector(".card__card-title").textContent = element.name;
 
   cardImage.addEventListener("click", (evt) => {
-    /** estai llenando los inputs, no el modal */
     imagePopupPicture.src = evt.target.src; //SRC
     imagePopupPicture.alt = evt.target.alt; // ALT
     imagePopuptext.textContent = evt.target.alt; // TEXTO
@@ -200,38 +256,7 @@ cardForm.addEventListener("submit", function (evt) {
   evt.target.reset();
 });
 
-//FUNCIÓN con MANEJADOR DE EVENTO: PARA ABRIR MODAL DE IMAGEN
-//1.Creo 1 función handler que controle el evento al hacer clicken la imagen
-// target de event contendrá el element IMG sobre el que he pulsado
-// function handleImgClick(evt) {
-//   //esta es la imagen
-//   if (evt.target.tagName === "IMG") {
-//     console.log("Click en imagen");
-
-//     //2.Poner la imagen en la modal con id popupImage / agregarle su ruta con src = evt.target.src
-//     imagePopupPicture.src = evt.target.src; // css image
-//     imagePopupPicture.alt = evt.target.alt; //ALT
-//     imagePopupCaption.alt = evt.target.alt; // css TITLE
-
-//     //3.Mostrar modal de imagen (usar clase popup-container_show )
-//     openPopup(popupImage); //cambiar CSS de MODAL con className "popup-container_show"
-//     console.log("handleImgClick");
-//   }
-
-//   //BORRAR UNA CARD: target de event contendrá el element BUTTON sobre el que quiero hacer click:
-//   if (evt.target.tagName === "BUTTON") {
-//     if (evt.target.classList.contains("card__delete-button")) {
-//       console.log("Click en botón eliminar");
-//       evt.target.closest(".card").remove();
-//     }
-
-//     //BOTÓN LIKE
-//     if (evt.target.classList.contains("card__card-like")) {
-//       console.log("Click en botón LIKE");
-//       evt.target.classList.toggle("card__card-like_active");
-//     }
-//   }
-// }
+//** -------
 
 //** FUNCIÓN: MOSTRAR TITULO Y SUBTITULO DEL PERFIL DENTRO DE LOS INPUTS DE LA MODAL:
 function editClick() {
@@ -244,7 +269,7 @@ function editClick() {
 
 //** FUNCIÓN: MOSTRAR NOMBRE DE INPUTS EN PERFIL
 function handleProfileFormSubmit(event) {
-  event.preventDefault();
+  event.preventDefault(); //Cancela el comportamiento por defecto de cada form
 
   console.log("evento");
 
