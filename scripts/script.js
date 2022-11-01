@@ -120,20 +120,24 @@ function closePopup(popup) {
   popup.classList.remove("popup-container_show");
 }
 
-//****** Controlador para CERRAR modal con ESC
-const handleKeyPress = function (event) {
-  //console.log(event.key);
+//**Controlador para CERRAR modal con ESC
+function handleKeyPress(event) {
   if (event.key === "esc") {
-    popup.classList.remove("popup-container_show");
+    console.log(event.key);
+    const popups = Array.from(document.querySelectorAll(".popup-container"));
+    popups.forEach(function (popup) {
+      popup.classList.remove("popup-container_show");
+    });
   }
-};
+}
 document.addEventListener("keypress", handleKeyPress);
 
-// popup.addEventListener("click", function (event) {
-//   if (event.target.classList.contains("popup")) {
-//     popup.classList.remove("popup-container_show");
-//   }
-// });
+//****** SE CIERRA LA MODAL: al Clic fuera de la modal
+document.addEventListener("click", function (event) {
+  if (event.target.classList.contains("popup")) {
+    popup.classList.remove("popup-container_show");
+  }
+});
 
 //CONTROLADOR UNIVERSAL para cualquier BOTÓN de CIERRE
 closeButtons.forEach((button) => {
