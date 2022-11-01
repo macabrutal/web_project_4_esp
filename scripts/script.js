@@ -60,55 +60,6 @@ const imagePopupImage = document.getElementById("addImage");
 
 //-------
 
-// VALIDACIONES FORM
-
-const forms = document.querySelectorAll(".popup");
-forms.forEach((form) => setEventListener(form));
-
-function setEventListener(form) {
-  form.addEventListener("input", (event) => {
-    const target = event.target;
-    const name = target.name;
-    const texto = form.querySelector(".popup__error_" + name);
-
-    if (!target.validity.valid) {
-      texto.textContent = target.validationMessage;
-      target.classList.add("popup__input-popup_error");
-    } else {
-      texto.textContent = "";
-      target.classList.remove("popup__input-popup_error");
-    }
-
-    enableButton(form);
-  });
-}
-
-function enableButton(form) {
-  const formsubmit = form.querySelector(".popup__button-popup");
-
-  //si aún no están validados los inputs desabilita el botón enviar
-  if (!formValid(form)) {
-    // formsubmit.disabled = true;
-    formsubmit.classList.add("popup__button-popup_inactive");
-  } else {
-    // formsubmit.disabled = false;
-    // buttonElement.classList.remove("popup__button-popup_inactive");
-    formsubmit.classList.remove("popup__button-popup_inactive");
-  }
-}
-
-//función que valida si todos los inputs están correctos
-function formValid(form) {
-  const formInputs = Array.from(form.querySelectorAll(".popup__input-popup")); //todos los inputs
-  return formInputs.every(function (item) {
-    return item.validity.valid;
-  });
-}
-
-//--FIN VALIDACIONES FORM --------
-
-//-------
-
 //* FUNCIÓN: ABRIR  MODAL
 function openPopup(popup) {
   popup.classList.add("popup-container_show"); //cambiar CSS de MODAL con className "popup-container_show"
@@ -120,24 +71,26 @@ function closePopup(popup) {
   popup.classList.remove("popup-container_show");
 }
 
-//**Controlador para CERRAR modal con ESC
+// Controlador para CERRAR modal con ESC
 function handleKeyPress(event) {
-  if (event.key === "esc") {
-    console.log(event.key);
+  console.log(event.key);
+  if (event.key === "esc" || event.key === "Escape") {
     const popups = Array.from(document.querySelectorAll(".popup-container"));
     popups.forEach(function (popup) {
       popup.classList.remove("popup-container_show");
     });
   }
 }
-document.addEventListener("keypress", handleKeyPress);
+document.addEventListener("keydown", handleKeyPress);
 
 //****** SE CIERRA LA MODAL: al Clic fuera de la modal
 document.addEventListener("click", function (event) {
-  if (event.target.classList.contains("popup")) {
-    popup.classList.remove("popup-container_show");
+  if (event.target.classList.contains("popup-container_show")) {
+    event.target.classList.remove("popup-container_show");
   }
 });
+
+//--
 
 //CONTROLADOR UNIVERSAL para cualquier BOTÓN de CIERRE
 closeButtons.forEach((button) => {
@@ -287,3 +240,5 @@ function handleProfileFormSubmit(event) {
 
 //** EVENTO: MOSTRAR NOMBRE DE INPUTS EN PERFIL
 profileForm.addEventListener("submit", handleProfileFormSubmit);
+
+//--
