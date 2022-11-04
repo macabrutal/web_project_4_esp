@@ -87,7 +87,7 @@ function handleKeyPress(event) {
     });
   }
 }
-document.addEventListener("keydown", handleKeyPress);
+//document.addEventListener("keydown", handleKeyPress);
 
 //****** SE CIERRA LA MODAL: al Clic fuera de la modal
 document.addEventListener("click", function (event) {
@@ -111,14 +111,14 @@ closeButtons.forEach((button) => {
 //*EVENTO: ABRIR la MODAL EDIT con 2 controladores en uno: editar título /subtítulo y abrir modal
 openEditButton.addEventListener("click", function () {
   editClick();
-  toggleButtonState(document.getElementById("form"));
+  //toggleButtonState(document.getElementById("form"));
   openPopup(profilePopup);
 });
 
 //*EVENTO: ABRIR la MODAL  ADD
 openAddButton.addEventListener("click", function () {
   //detector de evento openAddButton.addEventListener()
-  toggleButtonState(document.getElementById("formAdd"));
+  //toggleButtonState(document.getElementById("formAdd"));
   openPopup(popupAddContainer);
 });
 

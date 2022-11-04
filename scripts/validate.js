@@ -8,7 +8,9 @@ const showInputError = (
   inputErrorClass,
   errorClass
 ) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  const errorElement = formElement.querySelector(
+    `.popup__error_${inputElement.name}`
+  );
   inputElement.classList.add(inputErrorClass); //input con error > ROJO
   errorElement.textContent = errorMessage;
   errorElement.classList.add(errorClass); //mensaje de error activo
@@ -21,7 +23,9 @@ const hideInputError = (
   inputErrorClass,
   errorClass
 ) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  const errorElement = formElement.querySelector(
+    `.popup__error_${inputElement.name}`
+  );
   inputElement.classList.remove(inputErrorClass); //A.Eliminar input con error > ROJO
   errorElement.classList.remove(errorClass); // B.Eliminar la clase de error activa de formError.
   errorElement.textContent = "";
@@ -120,7 +124,7 @@ enableValidation({
   formSelector: ".popup",
   inputSelector: ".popup__input-popup",
   submitButtonSelector: ".popup__button-popup",
-  inactiveButtonClass: ".popup__button-popup_inactive",
+  inactiveButtonClass: "popup__button-popup_inactive",
   inputErrorClass: ".popup__input-popup_error",
   errorClass: ".popup__error", //mensaje de errror
 });
