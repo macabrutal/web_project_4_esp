@@ -58,17 +58,23 @@ const imagePopuptext = document.querySelector(".image-container__text-image");
 const imagePopupTitle = document.getElementById("addTitle");
 const imagePopupImage = document.getElementById("addImage");
 
+//VARIABLE DE TODOS LOS POPUPS
+const popups = Array.from(document.querySelectorAll(".popup-container"));
+
 //-------
 
 //* FUNCIÓN: ABRIR  MODAL
 function openPopup(popup) {
   popup.classList.add("popup-container_show"); //cambiar CSS de MODAL con className "popup-container_show"
+  document.addEventListener("keydown", handleKeyPress);
 }
+
 //-------
 
 // FUNCIÓN: CERRAR MODAL (LAS 3)
 function closePopup(popup) {
   popup.classList.remove("popup-container_show");
+  popup.removeEventListener("keypress", handleKeyPress);
 }
 
 // Controlador para CERRAR modal con ESC
@@ -77,7 +83,7 @@ function handleKeyPress(event) {
   if (event.key === "esc" || event.key === "Escape") {
     const popups = Array.from(document.querySelectorAll(".popup-container"));
     popups.forEach(function (popup) {
-      popup.classList.remove("popup-container_show");
+      closePopup(popup);
     });
   }
 }
@@ -86,7 +92,8 @@ document.addEventListener("keydown", handleKeyPress);
 //****** SE CIERRA LA MODAL: al Clic fuera de la modal
 document.addEventListener("click", function (event) {
   if (event.target.classList.contains("popup-container_show")) {
-    event.target.classList.remove("popup-container_show");
+    // event.target.classList.remove("popup-container_show");
+    closePopup(popup);
   }
 });
 
@@ -104,14 +111,14 @@ closeButtons.forEach((button) => {
 //*EVENTO: ABRIR la MODAL EDIT con 2 controladores en uno: editar título /subtítulo y abrir modal
 openEditButton.addEventListener("click", function () {
   editClick();
-  enableButton(document.getElementById("form"));
+  toggleButtonState(document.getElementById("form"));
   openPopup(profilePopup);
 });
 
 //*EVENTO: ABRIR la MODAL  ADD
 openAddButton.addEventListener("click", function () {
   //detector de evento openAddButton.addEventListener()
-  enableButton(document.getElementById("formAdd"));
+  toggleButtonState(document.getElementById("formAdd"));
   openPopup(popupAddContainer);
 });
 

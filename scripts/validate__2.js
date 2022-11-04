@@ -1,71 +1,47 @@
-// VALIDACIONES FORM
+//VALIDACIONES FORM
 
-//.1.Mostrar mensaje de el error
-const showInputError = (
-  formElement,
-  inputElement,
-  errorMessage,
-  inputErrorClass,
-  errorClass
-) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add(inputErrorClass); //input con error > ROJO
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add(errorClass); //mensaje de error activo
-};
+const forms = document.querySelectorAll(formSelector);
+forms.forEach((form) => setEventListener(form));
 
-//2. Ocultar mensaje de error si los datos introducidos son válidos:
-const hideInputError = (
-  formElement,
-  inputElement,
-  inputErrorClass,
-  errorClass
-) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove(inputErrorClass); //A.Eliminar input con error > ROJO
-  errorElement.classList.remove(errorClass); // B.Eliminar la clase de error activa de formError.
-  errorElement.textContent = "";
-};
+function setEventListener(form) {
+  form.addEventListener("input", (event) => {
+    const target = event.target;
+    const name = target.name;
+    const texto = form.querySelector(".popup__error_" + name);
 
-//Validar si no está correcto muestra mensaje de error
-const checkInputValidity = (
-  formElement,
-  inputElement,
-  inputErrorClass,
-  errorClass
-) => {
-  if (!inputElement.validity.valid) {
-    showInputError(
-      formElement,
-      inputElement,
-      inputElement.validationMessage,
-      inputErrorClass,
-      errorClass
-    );
-  } else {
-    hideInputError(formElement, inputElement, inputErrorClass, errorClass);
-  }
-};
+    if (!target.validity.valid) {
+      texto.textContent = target.validationMessage;
+      target.classList.add("selector.inputErrorClass");
+    } else {
+      texto.textContent = "";
+      target.classList.remove("popup__input-popup_error");
+    }
 
-//la función hasInvalidInput comprueba la validez de los campos y devuelve true o false
-//some() : hasta que encuentre 1 elemento donde callback retorna true
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
+    toggleButtonState(form);
   });
-};
+}
 
-//toggleButtonState() cambia el estado del botón (a partir de la función hasInvalidInput)
-const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
-  console.log(hasInvalidInput(inputList));
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(inactiveButtonClass);
-    buttonElement.disabled = true;
+function toggleButtonState(form) {
+  const formsubmit = form.querySelector(".popup__button-popup");
+
+  //si aún no están validados los inputs desabilita el botón enviar
+  if (!formValid(form)) {
+    formsubmit.disabled = true;
+    formsubmit.classList.add(inactiveButtonClass);
   } else {
-    buttonElement.classList.remove(inactiveButtonClass);
-    buttonElement.disabled = false;
+    formsubmit.disabled = false;
+    formsubmit.classList.remove(inactiveButtonClass);
   }
-};
+}
+
+//función que valida si todos los inputs están correctos
+function formValid(form) {
+  const formInputs = Array.from(form.querySelectorAll(".popup__input-popup")); //todos los inputs
+  return formInputs.every(function (item) {
+    return item.validity.valid;
+  });
+}
+//--FIN VALIDACIONES FORM --------
 
 //Escuchar todos los eventos del form
 function setEventListeners(
@@ -92,7 +68,6 @@ function setEventListeners(
     });
   });
 }
-
 //La función enableValidation Procesa todo el form con la clase .popup
 //Luego forEach itera sobre el array obtenido
 // Declara la constante fieldsetList: es 1 array de todos los elementos con la clase popup__fieldset
@@ -124,5 +99,3 @@ enableValidation({
   inputErrorClass: ".popup__input-popup_error",
   errorClass: ".popup__error", //mensaje de errror
 });
-
-//--FIN VALIDACIONES FORM --------
