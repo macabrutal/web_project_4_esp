@@ -81,34 +81,30 @@ function closePopup(popup) {
 function handleKeyPress(event) {
   console.log(event.key);
   if (event.key === "esc" || event.key === "Escape") {
-    const popups = Array.from(document.querySelectorAll(".popup-container"));
-    popups.forEach(function (popup) {
-      closePopup(popup);
-    });
+    popups.forEach(closePopup);
   }
 }
-//document.addEventListener("keydown", handleKeyPress);
 
-//****** SE CIERRA LA MODAL: al Clic fuera de la modal
-document.addEventListener("click", function (event) {
-  if (event.target.classList.contains("popup-container_show")) {
-    // event.target.classList.remove("popup-container_show");
-    closePopup(popup);
-  }
+//SE CIERRA LA MODAL: al Clic FUERA de la MODAL y con BOTÓN CERRAR
+
+// const popups = document.querySelectorAll(".popup");
+
+popups.forEach((popup) => {
+  popup.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains("popup-container_show")) {
+      console.log("mousedown fuera de modal"); //Click fuera de modal
+      closePopup(evt.target);
+    }
+    if (evt.target.classList.contains("popup-container__close-popup")) {
+      console.log("mousedown botón X"); //Click en botón X
+      closePopup(popup);
+    }
+  });
 });
 
 //--
 
-//CONTROLADOR UNIVERSAL para cualquier BOTÓN de CIERRE
-closeButtons.forEach((button) => {
-  // encuentra la ventana emergente más cercana
-  const popup = button.closest(".popup-container");
-  // agregue el oyente
-  button.addEventListener("click", () => closePopup(popup));
-});
-//-------
-
-//*EVENTO: ABRIR la MODAL EDIT con 2 controladores en uno: editar título /subtítulo y abrir modal
+//EVENTO: ABRIR la MODAL EDIT con 2 controladores en uno: editar título /subtítulo y abrir modal
 openEditButton.addEventListener("click", function () {
   editClick();
   //toggleButtonState(document.getElementById("form"));
@@ -218,6 +214,13 @@ cardForm.addEventListener("submit", function (evt) {
 
   //limpiar los inputs del form para que no quede nombres guardados
   evt.target.reset();
+
+  //Deshabilitar el BOTÓN si los inputs están VACÍOS cuando ABRES LA MODAL
+  toggleButtonState(
+    Array.from(evt.target.querySelectorAll(configForm.inputSelector)),
+    evt.target.querySelector(configForm.submitButtonSelector),
+    configForm.inactiveButtonClass
+  );
 });
 
 //** -------

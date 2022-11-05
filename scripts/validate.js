@@ -120,13 +120,15 @@ function enableValidation(selector) {
 }
 
 // habilitar la validación llamando a enableValidation(), pasar todas las configuraciones en la llamada
-enableValidation({
+const configForm = {
   formSelector: ".popup",
   inputSelector: ".popup__input-popup",
   submitButtonSelector: ".popup__button-popup",
   inactiveButtonClass: "popup__button-popup_inactive",
   inputErrorClass: ".popup__input-popup_error",
   errorClass: ".popup__error", //mensaje de errror
-});
+};
+
+enableValidation(configForm);
 
 //--FIN VALIDACIONES FORM --------
