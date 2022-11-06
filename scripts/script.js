@@ -74,7 +74,7 @@ function openPopup(popup) {
 // FUNCIÓN: CERRAR MODAL (LAS 3)
 function closePopup(popup) {
   popup.classList.remove("popup-container_show");
-  popup.removeEventListener("keydown", handleKeyPress);
+  document.removeEventListener("keydown", handleKeyPress);
 }
 
 // Controlador para CERRAR modal con ESC
