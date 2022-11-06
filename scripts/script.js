@@ -74,7 +74,7 @@ function openPopup(popup) {
 // FUNCIÓN: CERRAR MODAL (LAS 3)
 function closePopup(popup) {
   popup.classList.remove("popup-container_show");
-  popup.removeEventListener("keypress", handleKeyPress);
+  popup.removeEventListener("keydown", handleKeyPress);
 }
 
 // Controlador para CERRAR modal con ESC
@@ -86,8 +86,6 @@ function handleKeyPress(event) {
 }
 
 //SE CIERRA LA MODAL: al Clic FUERA de la MODAL y con BOTÓN CERRAR
-
-// const popups = document.querySelectorAll(".popup");
 
 popups.forEach((popup) => {
   popup.addEventListener("mousedown", (evt) => {
@@ -113,8 +111,6 @@ openEditButton.addEventListener("click", function () {
 
 //*EVENTO: ABRIR la MODAL  ADD
 openAddButton.addEventListener("click", function () {
-  //detector de evento openAddButton.addEventListener()
-  //toggleButtonState(document.getElementById("formAdd"));
   openPopup(popupAddContainer);
 });
 
