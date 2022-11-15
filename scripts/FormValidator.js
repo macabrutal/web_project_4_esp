@@ -1,8 +1,8 @@
 // VALIDACIONES FORM
 
 export default class FormValidator {
-    constructor(cardSelector) {
-        this._cardSelector = cardSelector;
+    constructor(inputSelector) {
+        this._inputSelector = inputSelector;
       }
 
 //1.Mostrar mensaje de el error
