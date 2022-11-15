@@ -78,15 +78,15 @@ export default class Card {
     return cardElement;
   }
 
-  _handleOpenPopup() {
-    imagePopupPicture.src = this._link;
-    popups.classList.add("popup-container_show");
-  }
+//   _handleOpenPopup() {
+//     imagePopupPicture.src = this._link;
+//     popups.classList.add("popup-container_show");
+//   }
 
-  _handleClosePopup() {
-    imagePopupPicture.src = this._link;
-    popups.classList.remove("popup-container_show");
-  }
+//   _handleClosePopup() {
+//     imagePopupPicture.src = this._link;
+//     popups.classList.remove("popup-container_show");
+//   }
 
   _setEventListeners() {
     this._element.addEventListener("click", () => {
