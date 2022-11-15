@@ -1,10 +1,9 @@
-import Card from "./Card";
-import DefaultCard from "./Card";
-import FormValidator from "./FormValidator";
+import Card from "./Card.js";
+//import FormValidator from "./FormValidator";
 
-Card();
-DefaultCard();
-FormValidator();
+// Card();
+// DefaultCard();
+// FormValidator();
 
 // 1. Selecciona el element en el DOM :  const element = document.getElementById("elementID"); / const element = document.querySelector(".my-element");
 // 2. Función de controlador de eventos, ej: function openPopup()
@@ -162,42 +161,13 @@ const initialCards = [
 // 1. Selecciona el element en el DOM :  const element = document.getElementById("elementID"); / const element = document.querySelector(".my-element");
 // 2. Función de controlador de eventos, ej: function createCard()
 // 3. Agregar 1 detector de eventos. createCard.addEventListener("click", handleImgClick)
-function createCard(element) {
-  const newCard = templateCard.cloneNode(true); //clorar elementos de initialCards
-  const cardImage = newCard.querySelector(".card__img-card"); //elementos de la imagen
-  cardImage.src = element.link; //link
-  cardImage.alt = element.name; //alt
-  newCard.querySelector(".card__card-title").textContent = element.name;
-
-  cardImage.addEventListener("click", (evt) => {
-    imagePopupPicture.src = evt.target.src; //SRC
-    imagePopupPicture.alt = evt.target.alt; // ALT
-    imagePopuptext.textContent = evt.target.alt; // TEXTO
-    openPopup(popupImage);
-  });
-
-  const likeButton = newCard.querySelector(".card__card-like");
-
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__card-like_active"); // escucha al botón LIKE
-  });
-
-  const deleteButton = newCard.querySelector(".card__delete-button");
-
-  deleteButton.addEventListener("click", () => {
-    // escucha al botón ELIMINAR
-    deleteButton.closest(".card").remove();
-  });
-
-  return newCard;
-}
 
 // La info de cards está en el array: initialCards
 initialCards.forEach((element) => {
   //1.crear tarjeta
-  const nuevaCard = createCard(element);
+  const nuevaCard = new Card(element);
   //3. agregar esta info al contenedor de card
-  cardsContainer.prepend(nuevaCard);
+  cardsContainer.prepend(nuevaCard._cardContent);
 });
 
 //FUNCIÓN CREAR CARDS
