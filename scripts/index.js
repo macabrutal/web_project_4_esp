@@ -2,6 +2,10 @@ import Card from "./Card";
 import DefaultCard from "./Card";
 import FormValidator from "./FormValidator";
 
+Card();
+DefaultCard();
+FormValidator();
+
 // 1. Selecciona el element en el DOM :  const element = document.getElementById("elementID"); / const element = document.querySelector(".my-element");
 // 2. Función de controlador de eventos, ej: function openPopup()
 // 3. Agregar 1 detector de eventos. element.addEventListener("click", openPopup)
