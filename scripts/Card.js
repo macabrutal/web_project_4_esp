@@ -37,12 +37,44 @@ const closeButtons = document.querySelectorAll(".popup-container__close-popup");
 //** -------
 
 export default class Card {
-  constructor(element) {
-    const newCard = templateCard.cloneNode(true); //clorar elementos de initialCards
-    const cardImage = newCard.querySelector(".card__img-card"); //elementos de la imagen
-    cardImage.src = element.link; //link
-    cardImage.alt = element.name; //alt
-    newCard.querySelector(".card__card-title").textContent = element.name;
+  constructor(cardSelector, name, link) {
+    this._cardSelector = cardSelector;
+    this._name = name;
+    this._link = link;
+  }
+
+     _getTemplate() {
+      const cardElement = document
+        .querySelector(this._cardSelector)
+        .content.querySelector(".card")
+        .cloneNode(true);
+
+      return cardElement;
+    }
+
+    generateCard() {
+        this._element = this._getTemplate();
+        this._setEventListeners(); // añade los controladores de eventos
+    
+        this._element.querySelector(".card__card-title").textContent = this._name;
+        this._element.querySelector(".card__img-card").style.backgroundImage = `url(${this._link})`;
+    
+        return this._element;
+      }
+
+      items.forEach((item) => {
+        const card = new Card(item, ".card");
+        const cardElement = card.generateCard();
+      
+        // Agrega al DOM
+        document.querySelector(".card-list__items").append(cardElement);
+      });
+
+    // const newCard = templateCard.cloneNode(true); //clorar elementos de initialCards
+    // const cardImage = newCard.querySelector(".card__img-card"); //elementos de la imagen
+    // cardImage.src = element.link; //link
+    // cardImage.alt = element.name; //alt
+    // newCard.querySelector(".card__card-title").textContent = element.name;
 
     cardImage.addEventListener("click", (evt) => {
       imagePopupPicture.src = evt.target.src; //SRC
@@ -99,7 +131,7 @@ export default class Card {
   //       this._handleClosePopup();
   //     });
   //   }
-}
+// }
 
 // export default class DefaultCard extends Card {
 //   constructor(data, cardSelector) {
@@ -120,3 +152,36 @@ export default class Card {
 //     return this._element;
 //   }
 // }
+
+
+//-- código crear card
+
+// constructor(element) {
+//     const newCard = templateCard.cloneNode(true); //clorar elementos de initialCards
+//     const cardImage = newCard.querySelector(".card__img-card"); //elementos de la imagen
+//     cardImage.src = element.link; //link
+//     cardImage.alt = element.name; //alt
+//     newCard.querySelector(".card__card-title").textContent = element.name;
+
+//     cardImage.addEventListener("click", (evt) => {
+//       imagePopupPicture.src = evt.target.src; //SRC
+//       imagePopupPicture.alt = evt.target.alt; // ALT
+//       imagePopuptext.textContent = evt.target.alt; // TEXTO
+//       openPopup(popupImage);
+//     });
+
+//     const likeButton = newCard.querySelector(".card__card-like");
+
+//     likeButton.addEventListener("click", () => {
+//       likeButton.classList.toggle("card__card-like_active"); // escucha al botón LIKE
+//     });
+
+//     const deleteButton = newCard.querySelector(".card__delete-button");
+
+//     deleteButton.addEventListener("click", () => {
+//       // escucha al botón ELIMINAR
+//       deleteButton.closest(".card").remove();
+//     });
+
+//     this._cardContent = newCard;
+//   }
