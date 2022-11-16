@@ -3,7 +3,7 @@
 import { handleOpenPopup, handleClosePopup } from "./utils.js";
 
 //VARIABLE BOTÓN ELIMINAR nuevaCard
-const deleteButton = document.querySelector("card");
+// const deleteButton = document.querySelector("card");
 
 //VARIABLE CARDS
 const cardsContainer = document.querySelector(".cards"); //busco contenedor de cards

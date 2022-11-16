@@ -1,6 +1,9 @@
 import Card from "./Card.js";
-import Utils from "./utils";
+import Utils from "./utils.js";
 import FormValidator from "./FormValidator.js";
+
+// form = new FormValidator(configForm);
+// form.enableValidation(configForm());
 
 // 1. Selecciona el element en el DOM :  const element = document.getElementById("elementID"); / const element = document.querySelector(".my-element");
 // 2. Función de controlador de eventos, ej: function openPopup()
