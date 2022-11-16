@@ -2,9 +2,6 @@
 
 import { handleOpenPopup, handleClosePopup } from "./utils";
 
-//VARIABLE FORM DE AGREGAR CARDS (a traves de su name)
-const cardForm = document.forms["add-place"]; //Busco el form de imágenes
-
 //VARIABLE BOTÓN ELIMINAR nuevaCard
 const deleteButton = document.querySelector("card");
 
@@ -16,24 +13,6 @@ const templateCard = document
 
 //VARIABLE CARD
 // const cardElement = templateCard.querySelector(".card");
-
-//VARIABLE DE TODOS LOS POPUPS
-const popups = Array.from(document.querySelectorAll(".popup-container"));
-
-//VARIABLE : CLASE QUE MUESTRA LA MODAL
-// const showPopup = document.querySelector(".popup-container_show");
-
-//VARIABLE IMAGEN DEL POPUP
-const imagePopupPicture = document.querySelector(
-  ".image-container__image-popup"
-);
-
-//VARIABLE TEXTO DE LA IMAGEN DEL POPUP
-const imagePopuptext = document.querySelector(".image-container__text-image");
-
-//VARIABLES TITULO y URL de IMAGEN
-const imagePopupTitle = document.getElementById("addTitle");
-const imagePopupImage = document.getElementById("addImage");
 
 //VARIABLE: SELECCIONO TODOS LOS BOTONES DE CERRAR EN EL DOM)
 const closeButtons = document.querySelectorAll(".popup-container__close-popup");
