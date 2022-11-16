@@ -1,6 +1,6 @@
 import Card from "./Card.js";
 import Utils from "./utils";
-import FormValidator from "./FormValidator";
+import FormValidator from "./FormValidator.js";
 
 // 1. Selecciona el element en el DOM :  const element = document.getElementById("elementID"); / const element = document.querySelector(".my-element");
 // 2. Función de controlador de eventos, ej: function openPopup()
@@ -41,7 +41,7 @@ const profileForm = document.forms["edit-profile"]; // buscar el formulario (su 
 const cardForm = document.forms["add-place"]; //Busco el form de imágenes
 
 //VARIABLE BOTÓN ELIMINAR nuevaCard
-const deleteButton = document.querySelector("card");
+// const deleteButton = document.querySelector("card");
 
 //VARIABLE CARDS
 const cardsContainer = document.querySelector(".cards"); //busco contenedor de cards

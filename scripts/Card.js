@@ -1,6 +1,6 @@
 //CARD : crea 1 tarjeta con texto y un enlace de imagen
 
-import { handleOpenPopup, handleClosePopup } from "./utils";
+import { handleOpenPopup, handleClosePopup } from "./utils.js";
 
 //VARIABLE BOTÓN ELIMINAR nuevaCard
 const deleteButton = document.querySelector("card");
