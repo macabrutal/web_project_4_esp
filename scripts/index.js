@@ -1,6 +1,6 @@
 import Card from "./Card.js";
 import Utils from "./utils.js";
-import FormValidator from "./FormValidator.js";
+//import FormValidator from "./FormValidator.js";
 
 // form = new FormValidator(configForm);
 // form.enableValidation(configForm());
@@ -163,11 +163,10 @@ const initialCards = [
 // 3. Agregar 1 detector de eventos. createCard.addEventListener("click", handleImgClick)
 
 // La info de cards está en el array: initialCards
-initialCards.forEach((element) => {
-  //1.crear tarjeta
-  const nuevaCard = new Card(element);
-  //3. agregar esta info al contenedor de card
-  cardsContainer.prepend(nuevaCard._cardContent);
+initialCards.forEach((card) => {
+  const nuevaCard = new Card(card, "#template__cards"); //1.crear nueva card
+  const cardElement = nuevaCard.createCard(); //2.cardElement crea la card a partir de newCard
+  cardsContainer.prepend(cardElement); //3. agregar esta info al contenedor de card
 });
 
 //FUNCIÓN CREAR CARDS
