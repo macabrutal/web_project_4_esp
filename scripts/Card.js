@@ -5,23 +5,17 @@ import { handleOpenPopup, handleClosePopup } from "./utils.js";
 //VARIABLE BOTÓN ELIMINAR nuevaCard
 // const deleteButton = document.querySelector("card");
 
-//VARIABLE CARDS
-const cardsContainer = document.querySelector(".cards"); //busco contenedor de cards
-const templateCard = document
-  .getElementById("card-template")
-  .content.querySelector(".card"); // <template>
-
 //VARIABLE CARD
 // const cardElement = templateCard.querySelector(".card");
-
-//VARIABLE: SELECCIONO TODOS LOS BOTONES DE CERRAR EN EL DOM)
-const closeButtons = document.querySelectorAll(".popup-container__close-popup");
 
 //LIKE BUTTON
 const likeButton = newCard.querySelector(".card__card-like");
 
 //DELETE BUTTON
 const deleteButton = newCard.querySelector(".card__delete-button");
+
+//VARIABLE: SELECCIONO TODOS LOS BOTONES DE CERRAR EN EL DOM)
+const closeButtons = document.querySelectorAll(".popup-container__close-popup");
 
 //** -------
 

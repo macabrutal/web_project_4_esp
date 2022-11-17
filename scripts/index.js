@@ -14,7 +14,7 @@ const openEditButton = document.getElementById("open-edit-button"); //seleciono 
 const openAddButton = document.getElementById("open-add-button"); //seleciono botón + con ID
 
 //VARIABLE: SELECCIONO TODOS LOS BOTONES DE CERRAR EN EL DOM)
-const closeButtons = document.querySelectorAll(".popup-container__close-popup");
+// const closeButtons = document.querySelectorAll(".popup-container__close-popup");
 
 //VARIABLE : CLASE QUE MUESTRA LA MODAL
 const showPopup = document.querySelector(".popup-container_show"); //variable con css que muestra modal
