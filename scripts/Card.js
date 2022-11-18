@@ -1,21 +1,8 @@
 //CARD : crea 1 tarjeta con texto y un enlace de imagen
 
 import { handleOpenPopup, handleClosePopup } from "./utils.js";
-
-//VARIABLE BOTÓN ELIMINAR nuevaCard
-// const deleteButton = document.querySelector("card");
-
-//VARIABLE CARD
-// const cardElement = templateCard.querySelector(".card");
-
-//LIKE BUTTON
-const likeButton = newCard.querySelector(".card__card-like");
-
-//DELETE BUTTON
-const deleteButton = newCard.querySelector(".card__delete-button");
-
-//VARIABLE: SELECCIONO TODOS LOS BOTONES DE CERRAR EN EL DOM)
-const closeButtons = document.querySelectorAll(".popup-container__close-popup");
+import { popupImage } from "./utils.js";
+import { imagePopupPicture } from "./utils.js";
 
 //** -------
 
@@ -52,14 +39,11 @@ export default class Card {
     this._element.addEventListener("click", () => {
       this._handleOpenPopup();
     });
-
-    closeButtons.addEventListener("click", () => {
-      this._handleClosePopup();
-    });
   }
 
   _handleOpenPopup() {
-    handleOpenPopup(this._link);
+    handleOpenPopup(popupImage);
+    imagePopupPicture.src = this._link;
   }
 
   _handleClosePopup() {
@@ -67,12 +51,20 @@ export default class Card {
   }
 
   _likeButton() {
+    //VARIABLE: LIKE BUTTON
+    const likeButton = this._element.querySelector(".card__card-like");
+
+    console.log(likeButton);
+
     likeButton.addEventListener("click", () => {
       likeButton.classList.toggle("card__card-like_active"); // escucha al botón LIKE
     });
   }
 
   _deleteButton() {
+    ///VARIABLE: DELETE BUTTON
+    const deleteButton = this._element.querySelector(".card__delete-button");
+
     deleteButton.addEventListener("click", () => {
       // escucha al botón ELIMINAR
       deleteButton.closest(".card").remove();

@@ -53,14 +53,14 @@ const templateCard = document
   .content.querySelector(".card"); // <template>
 
 //VARIABLE CARD
-const cardElement = templateCard.querySelector(".card");
+// const cardElement = templateCard.querySelector(".card");
 
 // -- FIN CARDS
 
 //VARIABLE IMAGEN DEL POPUP
-const imagePopupPicture = document.querySelector(
-  ".image-container__image-popup"
-);
+// const imagePopupPicture = document.querySelector(
+//   ".image-container__image-popup"
+// );
 
 //VARIABLE TEXTO DE LA IMAGEN DEL POPUP
 const imagePopuptext = document.querySelector(".image-container__text-image");
@@ -159,13 +159,13 @@ const initialCards = [
 
 //FUNCIÓN AGREGAR CARDS
 // 1. Selecciona el element en el DOM :  const element = document.getElementById("elementID"); / const element = document.querySelector(".my-element");
-// 2. Función de controlador de eventos, ej: function createCard()
-// 3. Agregar 1 detector de eventos. createCard.addEventListener("click", handleImgClick)
+// 2. Función de controlador de eventos, ej: generateCard()
+// 3. Mostrar la card
 
 // La info de cards está en el array: initialCards
 initialCards.forEach((card) => {
   const nuevaCard = new Card(card, "#card-template"); //1.crear nueva card
-  const cardElement = nuevaCard.generateCard(); //2.cardElement crea la card a partir de newCard
+  const cardElement = nuevaCard.generateCard(); //2.cardElement crea la card a partir de generateCard
   cardsContainer.prepend(cardElement); //3. agregar esta info al contenedor de card
 });
 
