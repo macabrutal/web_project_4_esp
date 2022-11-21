@@ -7,6 +7,7 @@ import {
   configCardSelectors,
   imagePopupTitle,
   imagePopupImage,
+  cardsContainer,
 } from "./constants.js";
 
 //VARIABLE DE TODOS LOS POPUPS

@@ -13,9 +13,7 @@ export default class FormValidator {
   }
 
   enableValidation() {
-    const formList = this._formElement.querySelectorAll(
-      this._configForm.inputSelector
-    );
+    const formList = this._formElement.querySelectorAll(this._inputSelector);
 
     formList.forEach(() => {
       this._formElement.addEventListener("submit", (evt) => {
@@ -51,7 +49,7 @@ export default class FormValidator {
       `.popup__error_${inputElement.name}`
     );
     inputElement.classList.add(this._inputErrorClass); //input con error > ROJO
-    errorElement.textContent = errorMessage;
+    errorElement.textContent = inputElement.validationMessage;
     errorElement.classList.add(this._errorClass); //mensaje de error activo
   }
 
@@ -96,9 +94,11 @@ export default class FormValidator {
   //Escuchar todos los eventos del form
   _setEventListeners() {
     this._inputList = Array.from(
-      formElement.querySelectorAll(this._inputSelector)
+      this._formElement.querySelectorAll(this._inputSelector)
     );
-    this._buttonElement = formElement.querySelector(this._submitButtonSelector);
+    this._buttonElement = this._formElement.querySelector(
+      this._submitButtonSelector
+    );
     this._toggleButtonState(); //comprueba el estado del botón cada vez que haya cambios en algún input
 
     this._inputList.forEach((inputElement) => {
