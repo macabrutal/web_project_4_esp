@@ -1,6 +1,7 @@
 //UTILS: controladores de eventos y la función que abre/cierra las ventanas modales.
 
-//import Card from "./Card.js";
+import Card from "./Card.js";
+
 import {
   popupAddContainer,
   configCardSelectors,
@@ -81,13 +82,12 @@ export function handleClickAddCard() {
 
 export function handleFormAdd(event) {
   event.preventDefault();
-  const title = imagePopupTitle.value; //1.TITULO del input : title
-  const addImage = imagePopupImage.value; //2. URL del input : addImage
-  const nuevaCard = new Card(title, addImage, configCardSelectors);
+  const name = imagePopupTitle.value; //1.TITULO del input : title
+  const link = imagePopupImage.value; //2. URL del input : addImage
+  const nuevaCard = new Card({ name, link }, configCardSelectors.template);
   cardsContainer.prepend(nuevaCard.generateCard());
   event.target.reset();
   closePopup(popupAddContainer); //5.Cerrar la modal ADD > cambiando de clase
-  console.log(closePopup(popupAddContainer));
 
   //Deshabilitar el BOTÓN si los inputs están VACÍOS cuando ABRES LA MODAL
   // toggleButtonState(

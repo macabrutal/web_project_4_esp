@@ -127,7 +127,7 @@ export const newFormValidator = function (configForm, formElement) {
 //ch
 
 //escucha al evento que crear cards
-forms[0].addEventListener("submit", handleFormAdd);
+forms[1].addEventListener("submit", handleFormAdd);
 
 // closeButtons.forEach((item) => {
 //   item.addEventListener("click", handleCloseButton);

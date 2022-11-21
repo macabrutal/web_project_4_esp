@@ -25,6 +25,26 @@ export default class FormValidator {
     });
   }
 
+  //ch
+  // enableValidation() {
+  //   const formInputs = this._form.querySelectorAll(
+  //     this._configForm.inputSelector
+  //   );
+
+  //   formInputs.forEach((item) => {
+  //     item.addEventListener("input", (event) => {
+  //       if (!event.target.validity.valid) {
+  //         this._showErrorMessage(event.target, event.target.validationMessage);
+  //       } else {
+  //         this._showErrorMessage(event.target, "");
+  //       }
+  //       this._toggleStateButton(formInputs);
+  //     });
+  //   });
+  //   this._toggleStateButton(formInputs);
+  // }
+  //
+
   //1.Mostrar mensaje de el error
   _showInputError(inputElement) {
     const errorElement = this._formElement.querySelector(
