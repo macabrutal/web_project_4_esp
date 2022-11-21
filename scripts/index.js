@@ -1,6 +1,16 @@
 import Card from "./Card.js";
+import {
+  cardsContainer,
+  configCardSelectors,
+  initialCards,
+  openAddButton,
+  forms,
+  //configFormSelector,
+} from "./constants.js";
 
-//import FormValidator from "./FormValidator.js";
+import { handleKeyPress, handleClickAddCard, handleFormAdd } from "./utils.js";
+
+import FormValidator from "./FormValidator.js";
 
 // form = new FormValidator(configForm);
 // form.enableValidation(configForm());
@@ -11,7 +21,7 @@ import Card from "./Card.js";
 
 //VARIABLE: ABRIR la MODAL (SELECCIONO EL BOTÓN)
 const openEditButton = document.getElementById("open-edit-button"); //seleciono botón edit con ID
-const openAddButton = document.getElementById("open-add-button"); //seleciono botón + con ID
+// const openAddButton = document.getElementById("open-add-button"); //seleciono botón + con ID
 
 //VARIABLE: SELECCIONO TODOS LOS BOTONES DE CERRAR EN EL DOM)
 // const closeButtons = document.querySelectorAll(".popup-container__close-popup");
@@ -47,10 +57,12 @@ const cardForm = document.forms["add-place"]; //Busco el form de imágenes
 // const deleteButton = document.querySelector("card");
 
 //VARIABLE CARDS
-const cardsContainer = document.querySelector(".cards"); //busco contenedor de cards
-const templateCard = document
-  .getElementById("card-template")
-  .content.querySelector(".card"); // <template>
+// const cardsContainer = document.querySelector(".cards"); //busco contenedor de cards
+
+// <template> cards
+// const templateCard = document
+//   .getElementById("card-template")
+//   .content.querySelector(".card");
 
 //VARIABLE CARD
 // const cardElement = templateCard.querySelector(".card");
@@ -63,14 +75,14 @@ const templateCard = document
 // );
 
 //VARIABLE TEXTO DE LA IMAGEN DEL POPUP
-const imagePopuptext = document.querySelector(".image-container__text-image");
+// const imagePopuptext = document.querySelector(".image-container__text-image");
 
 //VARIABLES TITULO y URL de IMAGEN
-const imagePopupTitle = document.getElementById("addTitle");
-const imagePopupImage = document.getElementById("addImage");
+// const imagePopupTitle = document.getElementById("addTitle");
+// const imagePopupImage = document.getElementById("addImage");
 
 //VARIABLE DE TODOS LOS POPUPS
-const popups = Array.from(document.querySelectorAll(".popup-container"));
+// const popups = Array.from(document.querySelectorAll(".popup-container"));
 
 //-------
 
@@ -82,37 +94,6 @@ function openPopup(popup) {
 
 //-------
 
-// FUNCIÓN: CERRAR MODAL (LAS 3)
-function closePopup(popup) {
-  popup.classList.remove("popup-container_show");
-  document.removeEventListener("keydown", handleKeyPress);
-}
-
-// Controlador para CERRAR modal con ESC
-function handleKeyPress(event) {
-  console.log(event.key);
-  if (event.key === "esc" || event.key === "Escape") {
-    popups.forEach(closePopup);
-  }
-}
-
-//SE CIERRA LA MODAL: al Clic FUERA de la MODAL y con BOTÓN CERRAR
-
-popups.forEach((popup) => {
-  popup.addEventListener("mousedown", (evt) => {
-    if (evt.target.classList.contains("popup-container_show")) {
-      console.log("mousedown fuera de modal"); //Click fuera de modal
-      closePopup(evt.target);
-    }
-    if (evt.target.classList.contains("popup-container__close-popup")) {
-      console.log("mousedown botón X"); //Click en botón X
-      closePopup(popup);
-    }
-  });
-});
-
-//--
-
 //EVENTO: ABRIR la MODAL EDIT con 2 controladores en uno: editar título /subtítulo y abrir modal
 openEditButton.addEventListener("click", function () {
   editClick();
@@ -120,86 +101,37 @@ openEditButton.addEventListener("click", function () {
   openPopup(profilePopup);
 });
 
-//*EVENTO: ABRIR la MODAL  ADD
-openAddButton.addEventListener("click", function () {
-  openPopup(popupAddContainer);
-});
-
 //** -------
 
-// Array de Tarjetas:
+//FUNCIÓN CARGAR CARDS DEL [] initialCards
+// 1.Recorrer la info de cards que está en el []:initialCards
+// 2. Instanciar la class Card (Selecciona el template)
+// 3.crea la card a partir de generateCard
 
-const initialCards = [
-  {
-    name: "Valle de Yosemite",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-  },
-  {
-    name: "Montañas Calvas",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-  },
-  {
-    name: "Parque Nacional de la Vanoise",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg",
-  },
-];
-//** -------
-
-//FUNCIÓN AGREGAR CARDS
-// 1. Selecciona el element en el DOM :  const element = document.getElementById("elementID"); / const element = document.querySelector(".my-element");
-// 2. Función de controlador de eventos, ej: generateCard()
-// 3. Mostrar la card
-
-// La info de cards está en el array: initialCards
 initialCards.forEach((card) => {
-  const nuevaCard = new Card(card, "#card-template"); //1.crear nueva card
-  const cardElement = nuevaCard.generateCard(); //2.cardElement crea la card a partir de generateCard
-  cardsContainer.prepend(cardElement); //3. agregar esta info al contenedor de card
+  const nuevaCard = new Card(card, configCardSelectors.template); //Instanciar la class Card
+  cardsContainer.prepend(nuevaCard.generateCard()); //crea la card a partir de generateCard
 });
 
-//FUNCIÓN CREAR CARDS
+openAddButton.addEventListener("click", handleClickAddCard);
 
-cardForm.addEventListener("submit", function (evt) {
-  evt.preventDefault(); //para que no me mande a otra pág.
-  //1.TITULO del input : title
-  const title = imagePopupTitle.value;
-  //2. URL del input : addImage
-  const addImage = imagePopupImage.value;
-  //4.clono la info de del array de initialCards  en el template
-  const nuevaCard = createCard({
-    link: addImage,
-    name: title,
-  });
-  //3.Crear una nueva CARD con la info: URL + ALT + texto
-  //4.Agregar la info a la página
-  cardsContainer.prepend(nuevaCard);
+// forms.forEach((item) => {
+//   const newFormValidation = new FormValidator(item, configFormSelector);
+//   newFormValidation.enableValidation();
+// });
 
-  //5.Cerrar la modal ADD > cambiando de clase
-  closePopup(popupAddContainer);
-  console.log(closePopup(popupAddContainer));
+//ch
+export const newFormValidator = function (configForm, formElement) {
+  return new FormValidator(configForm, formElement);
+};
+//ch
 
-  //limpiar los inputs del form para que no quede nombres guardados
-  evt.target.reset();
+//escucha al evento que crear cards
+forms[0].addEventListener("submit", handleFormAdd);
 
-  //Deshabilitar el BOTÓN si los inputs están VACÍOS cuando ABRES LA MODAL
-  toggleButtonState(
-    Array.from(evt.target.querySelectorAll(configForm.inputSelector)),
-    evt.target.querySelector(configForm.submitButtonSelector),
-    configForm.inactiveButtonClass
-  );
-});
+// closeButtons.forEach((item) => {
+//   item.addEventListener("click", handleCloseButton);
+// });
 
 //** -------
 

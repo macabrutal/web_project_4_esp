@@ -104,6 +104,7 @@ function setEventListeners(
 //llama a la función setEventListeners() y pásale el argumento fieldset
 function enableValidation(selector) {
   const formList = Array.from(document.querySelectorAll(selector.formSelector));
+
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", (evt) => {
       evt.preventDefault(); //Cancela el comportamiento por defecto de cada formulario
