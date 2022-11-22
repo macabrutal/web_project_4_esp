@@ -6,6 +6,7 @@
 - Funcionalidad
 - Tecnologías utilizadas
 - Figma
+- Versión
 
 **Introducción**
 
@@ -53,3 +54,7 @@ El proyecto contiene:
 **Netlify**
 
 - [Link del sitio en Netlify](https://eeuu-places.netlify.app/)
+
+## Versión:
+
+- 7
