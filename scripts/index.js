@@ -5,15 +5,17 @@ import {
   initialCards,
   openAddButton,
   forms,
-  //configFormSelector,
+  configFormSelector,
 } from "./constants.js";
 
-import { handleKeyPress, handleClickAddCard, handleFormAdd } from "./utils.js";
+import {
+  handleKeyPress,
+  handleClickAddCard,
+  handleFormAdd,
+  closePopup,
+} from "./utils.js";
 
 import FormValidator from "./FormValidator.js";
-
-// form = new FormValidator(configForm);
-// form.enableValidation(configForm());
 
 // 1. Selecciona el element en el DOM :  const element = document.getElementById("elementID"); / const element = document.querySelector(".my-element");
 // 2. Función de controlador de eventos, ej: function openPopup()
@@ -23,21 +25,10 @@ import FormValidator from "./FormValidator.js";
 const openEditButton = document.getElementById("open-edit-button"); //seleciono botón edit con ID
 // const openAddButton = document.getElementById("open-add-button"); //seleciono botón + con ID
 
-//VARIABLE: SELECCIONO TODOS LOS BOTONES DE CERRAR EN EL DOM)
-// const closeButtons = document.querySelectorAll(".popup-container__close-popup");
-
-//VARIABLE : CLASE QUE MUESTRA LA MODAL
-const showPopup = document.querySelector(".popup-container_show"); //variable con css que muestra modal
-
 //VARIABLES: MODAL EDIT/ MODAL ADD / MODAL IMAGEN
 const profilePopup = document.getElementById("profilePopup"); //buscar modal EDIT
-const popupAddContainer = document.getElementById("popupAddContainer"); //buscar modal +
-const popupImage = document.getElementById("popupImage"); //buscar modal popupImage por ID
-
-//BORRAR: VARIABLE: CERRAR la MODAL EDIT/ MODAL ADD / MODAL IMAGEN
-const profileCloseButton = document.getElementById("close");
-const closeAddPopup = document.getElementById("closeAddPopup");
-const closeImagePopup = document.getElementById("closeImagePopup");
+// const popupAddContainer = document.getElementById("popupAddContainer"); //buscar modal +
+// const popupImage = document.getElementById("popupImage"); //buscar modal popupImage por ID
 
 //** VARIABLES: MOSTRAR TITULO Y SUBTITULO DEL PERFIL DENTRO DE LOS INPUTS DE LA MODAL:
 const inputTitle = document.getElementById("profileTitle"); // buscar input de título
@@ -47,42 +38,6 @@ const textSubTitle = document.querySelector(".profile__subtitle"); //buscar text
 
 //VARIABLE: MOSTRAR NOMBRE DE INPUTS EN PERFIL (a traves de su name)
 const profileForm = document.forms["edit-profile"]; // buscar el formulario (su ID)
-
-// -- CARDS
-
-//VARIABLE FORM DE AGREGAR CARDS (a traves de su name)
-const cardForm = document.forms["add-place"]; //Busco el form de imágenes
-
-//VARIABLE BOTÓN ELIMINAR nuevaCard
-// const deleteButton = document.querySelector("card");
-
-//VARIABLE CARDS
-// const cardsContainer = document.querySelector(".cards"); //busco contenedor de cards
-
-// <template> cards
-// const templateCard = document
-//   .getElementById("card-template")
-//   .content.querySelector(".card");
-
-//VARIABLE CARD
-// const cardElement = templateCard.querySelector(".card");
-
-// -- FIN CARDS
-
-//VARIABLE IMAGEN DEL POPUP
-// const imagePopupPicture = document.querySelector(
-//   ".image-container__image-popup"
-// );
-
-//VARIABLE TEXTO DE LA IMAGEN DEL POPUP
-// const imagePopuptext = document.querySelector(".image-container__text-image");
-
-//VARIABLES TITULO y URL de IMAGEN
-// const imagePopupTitle = document.getElementById("addTitle");
-// const imagePopupImage = document.getElementById("addImage");
-
-//VARIABLE DE TODOS LOS POPUPS
-// const popups = Array.from(document.querySelectorAll(".popup-container"));
 
 //-------
 
@@ -115,10 +70,11 @@ initialCards.forEach((card) => {
 
 openAddButton.addEventListener("click", handleClickAddCard);
 
-// forms.forEach((item) => {
-//   const newFormValidation = new FormValidator(item, configFormSelector);
-//   newFormValidation.enableValidation();
-// });
+//HACE OPERATIVO EL FormValidator
+forms.forEach((item) => {
+  const newFormValidation = new FormValidator(item, configFormSelector);
+  newFormValidation.enableValidation();
+});
 
 //ch
 export const newFormValidator = function (configForm, formElement) {
@@ -128,10 +84,6 @@ export const newFormValidator = function (configForm, formElement) {
 
 //escucha al evento que crear cards
 forms[1].addEventListener("submit", handleFormAdd);
-
-// closeButtons.forEach((item) => {
-//   item.addEventListener("click", handleCloseButton);
-// });
 
 //** -------
 

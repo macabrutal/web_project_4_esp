@@ -69,28 +69,3 @@ export const initialCards = [
     link: "https://code.s3.yandex.net/web-code/lago.jpg",
   },
 ];
-
-//-- TODO LO DEL TEMPLATE CARD
-// // VARIABLE: <template> cards
-// export const templateCard = document
-//   .getElementById("card-template")
-//   .content.querySelector(".card");
-
-// //VARIABLE: CARD
-// export const cardElement = templateCard.querySelector(".card");
-
-// //VARIABLE: IMAGEN DE CARD
-// export const imageSelector = templateCard.querySelector(".card__img-card");
-
-// //VARIABLE: IMAGEN DEL POPUP
-// export const imagePopupPicture = document.querySelector(
-//   ".image-container__image-popup"
-// );
-
-// // VARIABLE: LIKE BUTTON
-// export const likeButton = this._element.querySelector(".card__card-like");
-
-// ///VARIABLE: DELETE BUTTON
-// export const deleteButton = this._element.querySelector(".card__delete-button");
-
-//--

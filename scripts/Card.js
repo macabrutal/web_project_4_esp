@@ -1,7 +1,5 @@
 //CARD : crea 1 tarjeta con texto y un enlace de imagen
 
-//import { handleOpenPopup, handleClosePopup } from "./utils.js";
-
 import { popupImage } from "./constants.js";
 import { openPopup } from "./utils.js";
 
@@ -32,10 +30,6 @@ export default class Card {
 
     this._element.querySelector(".card__card-title").textContent = this._name;
     this._element.querySelector(".card__img-card").src = this._link;
-    // this._element.querySelector(
-    //   ".card__img-card"
-    // ).style.backgroundImage = `url(${this._link})`;
-
     return this._element;
   }
 
@@ -68,6 +62,8 @@ export default class Card {
   openPopup() {
     openPopup(popupImage);
     popupImage.querySelector(".image-container__image-popup").src = this._link;
+    popupImage.querySelector(".image-container__text-image").textContent =
+      this._name;
   }
 
   // _handleOpenPopup() {
@@ -84,10 +80,6 @@ export default class Card {
     const likeButton = this._element.querySelector(".card__card-like");
 
     likeButton.classList.toggle("card__card-like_active"); // escucha al botón LIKE
-
-    // likeButton.addEventListener("click", () => {
-    //   likeButton.classList.toggle("card__card-like_active"); // escucha al botón LIKE
-    // });
   }
 
   _deleteButton() {
@@ -95,42 +87,5 @@ export default class Card {
     const deleteButton = this._element.querySelector(".card__delete-button");
 
     deleteButton.closest(".card").remove();
-
-    // deleteButton.addEventListener("click", () => {
-    //   // escucha al botón ELIMINAR
-    //   deleteButton.closest(".card").remove();
-    // });
   }
 }
-
-//-- código crear card ANTIGUO
-
-// constructor(element) {
-//     const newCard = templateCard.cloneNode(true); //clorar elementos de initialCards
-//     const cardImage = newCard.querySelector(".card__img-card"); //elementos de la imagen
-//     cardImage.src = element.link; //link
-//     cardImage.alt = element.name; //alt
-//     newCard.querySelector(".card__card-title").textContent = element.name;
-
-//     cardImage.addEventListener("click", (evt) => {
-//       imagePopupPicture.src = evt.target.src; //SRC
-//       imagePopupPicture.alt = evt.target.alt; // ALT
-//       imagePopuptext.textContent = evt.target.alt; // TEXTO
-//       openPopup(popupImage);
-//     });
-
-//     const likeButton = newCard.querySelector(".card__card-like");
-
-//     likeButton.addEventListener("click", () => {
-//       likeButton.classList.toggle("card__card-like_active"); // escucha al botón LIKE
-//     });
-
-//     const deleteButton = newCard.querySelector(".card__delete-button");
-
-//     deleteButton.addEventListener("click", () => {
-//       // escucha al botón ELIMINAR
-//       deleteButton.closest(".card").remove();
-//     });
-
-//     this._cardContent = newCard;
-//   }

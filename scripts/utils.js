@@ -13,18 +13,6 @@ import {
 //VARIABLE DE TODOS LOS POPUPS
 const popups = Array.from(document.querySelectorAll(".popup-container"));
 
-//VARIABLE MODAL IMAGEN
-// export const popupImage = document.getElementById("popupImage"); //buscar modal popupImage por ID
-
-//VARIABLE: SELECCIONO TODOS LOS BOTONES DE CERRAR EN EL DOM)
-// const closeButtons = document.querySelectorAll(".popup-container__close-popup");
-
-//VARIABLE IMAGEN DEL POPUP
-// export const imagePopupPicture = document.querySelector(
-//   ".image-container__image-popup"
-// );
-//---
-
 //* FUNCIÓN: ABRIR  MODAL
 export function openPopup(popup) {
   popup.classList.add("popup-container_show"); //cambiar CSS de MODAL con className "popup-container_show"
@@ -52,35 +40,12 @@ export function handleKeyPress(event) {
   }
 }
 
-//*EVENTO: ABRIR la MODAL  ADD
-// openAddButton.addEventListener("click", function () {
-//   openPopup(popupAddContainer);
-// });
-
+//EVENTO: ABRIR la MODAL ADD
 export function handleClickAddCard() {
   openPopup(popupAddContainer);
 }
 
-//FUNCIÓN CREAR CARDS (el ttítulo se saca de name)
-// export function handleFormAdd(evt) {
-//   evt.preventDefault(); //para que no me mande a otra pág.
-//   const title = imagePopupTitle.value; //1.TITULO del input : title
-//   const addImage = imagePopupImage.value; //2. URL del input : addImage
-//   //3.Crear una nueva CARD con la info: URL + ALT + texto
-//   const nuevaCard = new Card({ link: addImage, name: title });
-//   cardsContainer.prepend(nuevaCard.generateCard()); //4.Agregar la info a la página
-//   closePopup(popupAddContainer); //5.Cerrar la modal ADD > cambiando de clase
-//   console.log(closePopup(popupAddContainer));
-//   evt.target.reset(); //limpiar los inputs del form para que no quede nombres guardados
-
-//   //Deshabilitar el BOTÓN si los inputs están VACÍOS cuando ABRES LA MODAL
-//   toggleButtonState(
-//     Array.from(evt.target.querySelectorAll(configForm.inputSelector)),
-//     evt.target.querySelector(configForm.submitButtonSelector),
-//     configForm.inactiveButtonClass
-//   );
-// }
-
+//EVENTO: CREAR NUEVA CARD
 export function handleFormAdd(event) {
   event.preventDefault();
   const name = imagePopupTitle.value; //1.TITULO del input : title
