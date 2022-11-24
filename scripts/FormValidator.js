@@ -3,7 +3,6 @@
 export default class FormValidator {
   constructor(formElement, configForm) {
     this._formElement = formElement;
-    //this._configForm = configForm;
     this._formSelector = configForm.formSelector;
     this._inputSelector = configForm.inputSelector;
     this._submitButtonSelector = configForm.submitButtonSelector;
@@ -12,6 +11,8 @@ export default class FormValidator {
     this._errorClass = configForm.errorClass; //mensaje de error
   }
 
+  //Función enableValidation: Procesa todo el form
+  //Luego forEach itera sobre el array obtenido
   enableValidation() {
     const formList = this._formElement.querySelectorAll(this._inputSelector);
 
@@ -55,9 +56,7 @@ export default class FormValidator {
   //la función hasInvalidInput comprueba la validez de los campos y devuelve true o false
   //some() : hasta que encuentre 1 elemento donde callback retorna true
   _hasInvalidInput() {
-    return this._inputList.some((inputElement) => {
-      return !inputElement.validity.valid;
-    });
+    return this._inputList.some((inputElement) => !inputElement.validity.valid);
   }
 
   //toggleButtonState() cambia el estado del botón (a partir de la función hasInvalidInput)
@@ -88,10 +87,4 @@ export default class FormValidator {
       });
     });
   }
-
-  //La función enableValidation Procesa todo el form con la clase .popup
-  //Luego forEach itera sobre el array obtenido
-  // Declara la constante fieldsetList: es 1 array de todos los elementos con la clase popup__fieldset
-  //Recorre con  forEach() sobre el array de fieldsetList
-  //llama a la función setEventListeners() y pásale el argumento fieldset
 }

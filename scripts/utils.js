@@ -16,7 +16,7 @@ const popups = Array.from(document.querySelectorAll(".popup-container"));
 //* FUNCIÓN: ABRIR  MODAL
 export function openPopup(popup) {
   popup.classList.add("popup-container_show"); //cambiar CSS de MODAL con className "popup-container_show"
-  document.addEventListener("keydown", handleKeyPress); //escuche a CERRAR MODAL (LAS 3)
+  document.addEventListener("keydown", isEscapeKey); //escuche a CERRAR MODAL (LAS 3)
   console.log("abro popup al clik en img");
 }
 
@@ -33,7 +33,7 @@ export function handleCloseButton(event) {
 }
 
 // Controlador para CERRAR modal con ESC
-export function handleKeyPress(event) {
+export function isEscapeKey(event) {
   console.log(event.key);
   if (event.key === "esc" || event.key === "Escape") {
     popups.forEach(closePopup);
@@ -50,7 +50,13 @@ export function handleFormAdd(event) {
   event.preventDefault();
   const name = imagePopupTitle.value; //1.TITULO del input : title
   const link = imagePopupImage.value; //2. URL del input : addImage
-  const nuevaCard = new Card({ name, link }, configCardSelectors.template);
+  const nuevaCard = new Card(
+    {
+      name,
+      link,
+    },
+    configCardSelectors.template
+  );
   cardsContainer.prepend(nuevaCard.generateCard());
   event.target.reset();
   closePopup(popupAddContainer); //5.Cerrar la modal ADD > cambiando de clase
@@ -64,15 +70,18 @@ export function handleFormAdd(event) {
 }
 
 //SE CIERRA LA MODAL: al Clic FUERA de la MODAL y con BOTÓN CERRAR
-popups.forEach((popup) => {
-  popup.addEventListener("mousedown", (evt) => {
-    if (evt.target.classList.contains("popup-container_show")) {
-      console.log("mousedown fuera de modal"); //Click fuera de modal
-      closePopup(evt.target);
-    }
-    if (evt.target.classList.contains("popup-container__close-popup")) {
-      console.log("cierro mousedown botón X"); //Click en botón X
-      closePopup(popup);
-    }
+export function setPopupListeners() {
+  popups.forEach((popup) => {
+    popup.addEventListener("mousedown", (evt) => {
+      if (evt.target.classList.contains("popup-container_show")) {
+        console.log("mousedown fuera de modal"); //Click fuera de modal
+        closePopup(evt.target);
+      }
+      if (evt.target.classList.contains("popup-container__close-popup")) {
+        console.log("cierro mousedown botón X"); //Click en botón X
+        closePopup(popup);
+      }
+    });
   });
-});
+}
+

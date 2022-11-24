@@ -9,10 +9,11 @@ import {
 } from "./constants.js";
 
 import {
-  handleKeyPress,
   handleClickAddCard,
   handleFormAdd,
   closePopup,
+  openPopup,
+  setPopupListeners,
 } from "./utils.js";
 
 import FormValidator from "./FormValidator.js";
@@ -39,53 +40,48 @@ const textSubTitle = document.querySelector(".profile__subtitle"); //buscar text
 //VARIABLE: MOSTRAR NOMBRE DE INPUTS EN PERFIL (a traves de su name)
 const profileForm = document.forms["edit-profile"]; // buscar el formulario (su ID)
 
-//-------
-
-//* FUNCIÓN: ABRIR  MODAL
-function openPopup(popup) {
-  popup.classList.add("popup-container_show"); //cambiar CSS de MODAL con className "popup-container_show"
-  document.addEventListener("keydown", handleKeyPress);
-}
-
-//-------
-
 //EVENTO: ABRIR la MODAL EDIT con 2 controladores en uno: editar título /subtítulo y abrir modal
-openEditButton.addEventListener("click", function () {
+openEditButton.addEventListener("click", () => {
   editClick();
   //toggleButtonState(document.getElementById("form"));
   openPopup(profilePopup);
 });
-
-//** -------
 
 //FUNCIÓN CARGAR CARDS DEL [] initialCards
 // 1.Recorrer la info de cards que está en el []:initialCards
 // 2. Instanciar la class Card (Selecciona el template)
 // 3.crea la card a partir de generateCard
 
-initialCards.forEach((card) => {
-  const nuevaCard = new Card(card, configCardSelectors.template); //Instanciar la class Card
-  cardsContainer.prepend(nuevaCard.generateCard()); //crea la card a partir de generateCard
-});
+export function renderCards() {
+  initialCards.forEach((card) => {
+    const nuevaCard = new Card(card, configCardSelectors.template); //Instanciar la class Card
+    cardsContainer.prepend(nuevaCard.generateCard()); //crea la card a partir de generateCard
+  });
+}
+renderCards(); //invoco la función
 
+//Eveneto que abre el botón de agregar cards
 openAddButton.addEventListener("click", handleClickAddCard);
 
-//HACE OPERATIVO EL FormValidator
-forms.forEach((item) => {
-  const newFormValidation = new FormValidator(item, configFormSelector);
-  newFormValidation.enableValidation();
-});
+//HABILITAR EL FormValidator
+export function enableAllValidations() {
+  forms.forEach((item) => {
+    const newFormValidation = new FormValidator(item, configFormSelector);
+    newFormValidation.enableValidation();
+  });
+}
+enableAllValidations(); //invoco la función
 
-//ch
-export const newFormValidator = function (configForm, formElement) {
+
+export function newFormValidation (configForm, formElement) {
   return new FormValidator(configForm, formElement);
 };
-//ch
 
 //escucha al evento que crear cards
 forms[1].addEventListener("submit", handleFormAdd);
 
-//** -------
+//invoca función QUE CIERRA LAS MODALES: al Clic FUERA de la MODAL y con BOTÓN CERRAR
+setPopupListeners();
 
 //** FUNCIÓN: MOSTRAR TITULO Y SUBTITULO DEL PERFIL DENTRO DE LOS INPUTS DE LA MODAL:
 function editClick() {
@@ -93,8 +89,6 @@ function editClick() {
   inputTitle.value = textTitle.textContent; //valor del título es= texto título
   inputSubtitle.value = textSubTitle.textContent; //valor del subtítulo es= texto subtítulo
 }
-
-//** -------
 
 //** FUNCIÓN: MOSTRAR NOMBRE DE INPUTS EN PERFIL
 function handleProfileFormSubmit(event) {
@@ -108,9 +102,5 @@ function handleProfileFormSubmit(event) {
   closePopup(profilePopup); // Al guardar se CIERRA la modal
 }
 
-//** -------
-
 //** EVENTO: MOSTRAR NOMBRE DE INPUTS EN PERFIL
 profileForm.addEventListener("submit", handleProfileFormSubmit);
-
-//--
