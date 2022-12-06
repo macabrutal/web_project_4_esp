@@ -5,7 +5,7 @@
 //Modifica el método padre close() para reiniciar el formulario cuando se ha cerrado el popup.
 
 import Popup from "./Popup.js"
-import {inputSelector} from "../utils/constants.js"
+// import {inputSelector} from "../utils/constants.js"
 
 export default class PopupWithForm extends Popup {
     constructor(popupSelector, handleFormSubmit) {
