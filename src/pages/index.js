@@ -132,13 +132,14 @@ sectionCard.renderItems();
 // }
 
 const popupForm = new PopupWithForm(
-  popupSelector : configCardSelectors.template,
-  handleFormSubmit : (name, link) => {
+  configCardSelectors.template,
+  (name, link) => {
     const nuevaCard = new Card({
       name,
       link
     }, configCardSelectors.template);
   });
+  
 cardsContainer.prepend(nuevaCard.generateCard());
 
 popupForm.close()
