@@ -32,15 +32,17 @@ export default class PopupWithForm extends Popup {
     //el detector de eventos click para el icono cerrar.
     setEventListeners() {
         super.setEventListeners();
-        this._handleFormSubmit(this._getInputValues());
-        // this._handleFormSubmit(this._formSelector);
-        
+        this._popupSelector.querySelector('form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            this._handleFormSubmit(this._getInputValues())
+        })
+
     }
 
     //reiniciar el formulario cuando se ha cerrado el popup.
     close() {
         super.close();
-        this._popupSelector.reset();
+        this._popupSelector.querySelector('form').reset();
     }
 
 }

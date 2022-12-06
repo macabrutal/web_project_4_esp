@@ -1,3 +1,5 @@
+import "./index.css";
+
 import Card from "../components/Card.js";
 import {
   cardsContainer,
@@ -134,12 +136,12 @@ sectionCard.renderItems();
 const popupForm = new PopupWithForm(
   configCardSelectors.template,
   (name, link) => {
-    const nuevaCard = new Card({
+    return new Card({
       name,
       link
     }, configCardSelectors.template);
   });
-  
+
 cardsContainer.prepend(nuevaCard.generateCard());
 
 popupForm.close()

@@ -10,7 +10,7 @@ export default class Popup {
     }
 
     open() {
-        this._popupSelector.add("popup-container_show"); //cambiar CSS de MODAL con class "popup-container_show"
+        this._popupSelector.classList.add("popup-container_show");  //cambiar CSS de MODAL con class "popup-container_show"
         document.addEventListener("keydown", this._handleEscClose); //escuche a CERRAR MODAL (LAS 3)
         console.log("class popup: ABRO modal")
     }
