@@ -1,4 +1,3 @@
-
 import Card from "../components/Card.js";
 import {
   cardsContainer,
@@ -22,7 +21,7 @@ import FormValidator from "../components/FormValidator.js";
 
 import Section from "../components/Section.js";
 
-import PopupWithForm from "../components/PopupWithForm.js" 
+import PopupWithForm from "../components/PopupWithForm.js"
 import PopupWithImage from "../components/PopupWithImage.js"
 
 // 1. Selecciona el element en el DOM :  const element = document.getElementById("elementID"); / const element = document.querySelector(".my-element");
@@ -80,7 +79,7 @@ export function enableAllValidations() {
 enableAllValidations(); //invoco la función
 
 
-export function newFormValidation (configForm, formElement) {
+export function newFormValidation(configForm, formElement) {
   return new FormValidator(configForm, formElement);
 };
 
@@ -114,34 +113,39 @@ profileForm.addEventListener("submit", handleProfileFormSubmit);
 
 
 //llamada a Section
-const sectionCard = new Section ({
-  data: initialCards, 
-  renderer: (item)=> {
-    const nuevaCard = new Card(item, configCardSelectors.template);  
+const sectionCard = new Section({
+  data: initialCards,
+  renderer: (item) => {
+    const nuevaCard = new Card(item, configCardSelectors.template);
     cardsContainer.prepend(nuevaCard.generateCard());
 
-}}, cardsContainer);
+  }
+}, cardsContainer);
 
 sectionCard.renderItems();
 
 //llamada a PopupWithForm:
 
-// const submitCallback = (formSelector) => {
+// const handleFormSubmit = (formSelector) => {
 //   const name = imagePopupTitle.value; //1.TITULO del input : title
 //   const link = imagePopupImage.value; //2. URL del input : addImage
 // }
 
-const popupForm = new PopupWithForm(popupSelector, submitCallback);
+const popupForm = new PopupWithForm(
+  popupSelector : configCardSelectors.template,
+  handleFormSubmit : (name, link) => {
+    const nuevaCard = new Card({
+      name,
+      link
+    }, configCardSelectors.template);
+  });
+cardsContainer.prepend(nuevaCard.generateCard());
 
 popupForm.close()
+
 
 
 //llamada a Popup de imagen y de formulario de cards
 const popupImage = new PopupWithImage(popupSelector);
 
 popupImage.open();
-
-
-
-
-
