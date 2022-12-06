@@ -27,8 +27,6 @@ export default class Popup {
         if (event.key === "esc" || event.key === "Escape") {
             this.close();
         }
-
-
     }
 
     //detector de eventos de clic en X / clic AFUERA 

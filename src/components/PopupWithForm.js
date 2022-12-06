@@ -13,12 +13,15 @@ export default class PopupWithForm extends Popup {
         this._submitCallback = submitCallback;
         this._formSelector = formSelector;  //".popup" (los forms)
         this._inputSelector = inputSelector; //".popup__input-popup" (los inputs)
+
+        this._inputList = Array.from(this._formSelector.querySelectorAll(inputSelector));	//Array.from() devuelve 1 [] completo 
         
     }
 
     //recopila datos de todos los campos de entrada
     _getInputValues() {
-
+        this._inputList .forEach((input) => {
+            //........
     }
 
     //agregar al formulario un controlador de eventos submit
