@@ -152,3 +152,5 @@ popupForm.close()
 const popupImage = new PopupWithImage(popupSelector);
 
 popupImage.open();
+
+popupImage.setEventListeners();
