@@ -8,6 +8,10 @@ import {
   openAddButton,
   forms,
   configFormSelector,
+  textTitle,
+  textSubTitle,
+  inputTitle,
+  inputSubtitle 
 } from "../utils/constants.js";
 
 import {
@@ -24,7 +28,9 @@ import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 
 import PopupWithForm from "../components/PopupWithForm.js"
-import PopupWithImage from "../components/PopupWithImage.js"
+//import PopupWithImage from "../components/PopupWithImage.js"
+import UserInfo from "../components/UserInfo.js"
+
 
 // 1. Selecciona el element en el DOM :  const element = document.getElementById("elementID"); / const element = document.querySelector(".my-element");
 // 2. Función de controlador de eventos, ej: function openPopup()
@@ -40,10 +46,10 @@ const profilePopup = document.getElementById("profilePopup"); //buscar modal EDI
 // const popupImage = document.getElementById("popupImage"); //buscar modal popupImage por ID
 
 //** VARIABLES: MOSTRAR TITULO Y SUBTITULO DEL PERFIL DENTRO DE LOS INPUTS DE LA MODAL:
-const inputTitle = document.getElementById("profileTitle"); // buscar input de título
-const inputSubtitle = document.getElementById("profileSubtitle"); //buscar input de Subtítulo
-const textTitle = document.querySelector(".profile__title"); //buscar texto del título en profile
-const textSubTitle = document.querySelector(".profile__subtitle"); //buscar texto del Subtítulo en profile
+// const inputTitle = document.getElementById("profileTitle"); // buscar input de título
+// const inputSubtitle = document.getElementById("profileSubtitle"); //buscar input de Subtítulo
+// const textTitle = document.querySelector(".profile__title"); //buscar texto del título en profile
+// const textSubTitle = document.querySelector(".profile__subtitle"); //buscar texto del Subtítulo en profile
 
 //VARIABLE: MOSTRAR NOMBRE DE INPUTS EN PERFIL (a traves de su name)
 const profileForm = document.forms["edit-profile"]; // buscar el formulario (su ID)
@@ -149,8 +155,14 @@ popupForm.close()
 
 
 //llamada a Popup de imagen y de formulario de cards
-const popupImage = new PopupWithImage(popupSelector);
+// const popupImage = new PopupWithImage(popupSelector);
 
-popupImage.open();
+// popupImage.open();
 
-popupImage.setEventListeners();
+//llamada a UserInfo
+const userInfo = new UserInfo({
+  nameUser: textTitle,
+  jobUser: textSubTitle
+})
+userInfo.setUserInfo(nameUser, jobUser);
+

@@ -3,6 +3,9 @@
 import { popupImage } from "../utils/constants.js";
 import { openPopup } from "../utils/utils.js";
 
+
+import PopupWithImage from "../components/PopupWithImage.js"
+
 export default class Card {
   constructor(data, cardSelector) {
     this._cardSelector = cardSelector;
@@ -49,10 +52,17 @@ export default class Card {
 
   //abrir modal
   openPopup() {
-    openPopup(popupImage);
-    popupImage.querySelector(".image-container__image-popup").src = this._link;
-    popupImage.querySelector(".image-container__text-image").textContent = this._name;
+    console.log(this._link)
+    const popup = new PopupWithImage(popupImage);
+    popup.open(this._name, this._link);
   }
+
+  //openPopup() ANTIGUO
+  // openPopup() {
+  //   openPopup(popupImage);
+  //   popupImage.querySelector(".image-container__image-popup").src = this._link;
+  //   popupImage.querySelector(".image-container__text-image").textContent = this._name;
+  // }
 
   _toggleLikeButton() {
     // VARIABLE: LIKE BUTTON
