@@ -5,14 +5,14 @@
 
 
 export default class Section{
-    constructor({data, renderer }, containerSelector){
+    constructor({data, renderer }, cardsContainer){
         this._data = data;
         this._renderer = renderer;
-        this._container = document.querySelector(containerSelector);
+        this._cardsContainer= cardsContainer;
     }
 
     clear() {
-        this._container.innerHTML = "";
+        this._cardsContainer.innerHTML = "";
       }
 
     renderItems(){
@@ -24,7 +24,7 @@ export default class Section{
     }
 
     addItem(element){
-        this._container.append(element);
+        this._cardsContainer.append(element);
     }
 
    

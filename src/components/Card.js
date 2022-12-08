@@ -1,17 +1,20 @@
 //CARD : crea 1 tarjeta con texto y un enlace de imagen
 
-import { popupImage } from "../utils/constants.js";
-import { openPopup } from "../utils/utils.js";
+import {
+  popupImage
+} from "../utils/constants.js";
+//import { openPopup } from "../utils/utils.js";
 
-
-import PopupWithImage from "../components/PopupWithImage.js"
+import PopupWithImage from "./PopupWithImage.js";
 
 export default class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._cardSelector = cardSelector;
     this._name = data.name;
     this._link = data.link;
-    this._openPopup = this.openPopup.bind(this);
+    this._handleCardClick = handleCardClick;
+
+     // this._openPopup = this.openPopup.bind(this);
   }
 
   _getTemplate() {
@@ -35,7 +38,8 @@ export default class Card {
   _setEventListeners() {
     this._element
       .querySelector(".card__img-card")
-      .addEventListener("click", this._openPopup);
+      .addEventListener("click", this._handleCardClick);
+
 
     this._element
       .querySelector(".card__card-like")
@@ -52,10 +56,10 @@ export default class Card {
 
   //abrir modal
   openPopup() {
-    console.log(this._link)
     const popup = new PopupWithImage(popupImage);
     popup.open(this._name, this._link);
   }
+
 
   //openPopup() ANTIGUO
   // openPopup() {

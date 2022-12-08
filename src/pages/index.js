@@ -11,15 +11,15 @@ import {
   textTitle,
   textSubTitle,
   inputTitle,
-  inputSubtitle 
+  inputSubtitle,
+  popupAddContainer
 } from "../utils/constants.js";
 
 import {
-  handleClickAddCard,
   handleFormAdd,
   closePopup,
   openPopup,
-  setPopupListeners,
+  // setPopupListeners,
 } from "../utils/utils.js";
 
 
@@ -28,7 +28,8 @@ import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 
 import PopupWithForm from "../components/PopupWithForm.js"
-//import PopupWithImage from "../components/PopupWithImage.js"
+import PopupWithImage from "../components/PopupWithImage.js"
+
 import UserInfo from "../components/UserInfo.js"
 
 
@@ -66,16 +67,23 @@ openEditButton.addEventListener("click", () => {
 // 2. Instanciar la class Card (Selecciona el template)
 // 3.crea la card a partir de generateCard
 
+
+
+function handleCardClick(popupImage) {
+  const popup = new PopupWithImage(popupImage);
+  // popup.open(this._name, this._link);
+}
+
 export function renderCards() {
   initialCards.forEach((card) => {
-    const nuevaCard = new Card(card, configCardSelectors.template); //Instanciar la class Card
+    const nuevaCard = new Card(card, configCardSelectors.template, handleCardClick); //Instanciar la class Card
     cardsContainer.prepend(nuevaCard.generateCard()); //crea la card a partir de generateCard
   });
 }
 renderCards(); //invoco la función
 
-//Eveneto que abre el botón de agregar cards
-openAddButton.addEventListener("click", handleClickAddCard);
+
+
 
 //HABILITAR EL FormValidator
 export function enableAllValidations() {
@@ -92,10 +100,10 @@ export function newFormValidation(configForm, formElement) {
 };
 
 //escucha al evento que crear cards
-forms[1].addEventListener("submit", handleFormAdd);
+// forms[1].addEventListener("submit", handleFormAdd);
 
 //invoca función QUE CIERRA LAS MODALES: al Clic FUERA de la MODAL y con BOTÓN CERRAR
-setPopupListeners();
+// setPopupListeners();
 
 //** FUNCIÓN: MOSTRAR TITULO Y SUBTITULO DEL PERFIL DENTRO DE LOS INPUTS DE LA MODAL:
 function editClick() {
@@ -132,32 +140,41 @@ const sectionCard = new Section({
 
 sectionCard.renderItems();
 
-//llamada a PopupWithForm:
+//
+//this._container.append(element);
 
-// const handleFormSubmit = (formSelector) => {
-//   const name = imagePopupTitle.value; //1.TITULO del input : title
-//   const link = imagePopupImage.value; //2. URL del input : addImage
-// }
 
-const popupForm = new PopupWithForm(
-  configCardSelectors.template,
-  (name, link) => {
-    return new Card({
-      name,
-      link
-    }, configCardSelectors.template);
-  });
+//Evento que abre el botón de agregar cards
+openAddButton.addEventListener("click", handleClickAddCard);
 
-cardsContainer.prepend(nuevaCard.generateCard());
+// handler que instancia el modal de creacion de cards
+function handleClickAddCard() {
+  const popupWithForm = new PopupWithForm(
+    popupAddContainer,
+    (formValues) => {
+      const nuevaCard = new Card({
+          name: formValues.title,
+          link: formValues.image
+        },
+        configCardSelectors.template,
+        handleCardClick
+      );
 
-popupForm.close()
+      cardsContainer.prepend(nuevaCard.generateCard())
+    });
 
+  popupWithForm.setEventListeners();
+}
 
 
 //llamada a Popup de imagen y de formulario de cards
-// const popupImage = new PopupWithImage(popupSelector);
+ popupImage.setEventListeners();
 
+// const popupImage = new PopupWithImage(popupSelector);
 // popupImage.open();
+
+
+
 
 //llamada a UserInfo
 const userInfo = new UserInfo({
@@ -165,4 +182,3 @@ const userInfo = new UserInfo({
   jobUser: textSubTitle
 })
 userInfo.setUserInfo(nameUser, jobUser);
-

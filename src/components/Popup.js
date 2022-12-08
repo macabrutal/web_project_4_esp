@@ -13,7 +13,10 @@ export default class Popup {
         this._popupSelector.classList.add("popup-container_show");  //cambiar CSS de MODAL con class "popup-container_show"
         document.addEventListener("keydown", this._handleEscClose); //escuche a CERRAR MODAL (LAS 3)
         console.log("class popup: ABRO modal")
+        this.setEventListeners();
     }
+
+   
 
     close() {
         this._popupSelector.classList.remove("popup-container_show");
@@ -31,6 +34,7 @@ export default class Popup {
 
     //detector de eventos de clic en X / clic AFUERA 
     setEventListeners() {
+        console.log("POPUP:llamo a setEventListeners");
         this._popupSelector.forEach((popup) => {
             popup.addEventListener("mousedown", (evt) => {
                 if (evt.target.classList.contains("popup-container_show")) {
@@ -45,3 +49,4 @@ export default class Popup {
         });
     }
 }
+
