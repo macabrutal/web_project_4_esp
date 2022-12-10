@@ -12,15 +12,9 @@ import {
   textSubTitle,
   inputTitle,
   inputSubtitle,
-  popupAddContainer
+  popupAddContainer,
+  popupImage
 } from "../utils/constants.js";
-
-import {
-  handleFormAdd,
-  closePopup,
-  openPopup,
-  // setPopupListeners,
-} from "../utils/utils.js";
 
 
 import FormValidator from "../components/FormValidator.js";
@@ -33,56 +27,36 @@ import PopupWithImage from "../components/PopupWithImage.js"
 import UserInfo from "../components/UserInfo.js"
 
 
-// 1. Selecciona el element en el DOM :  const element = document.getElementById("elementID"); / const element = document.querySelector(".my-element");
-// 2. Función de controlador de eventos, ej: function openPopup()
-// 3. Agregar 1 detector de eventos. element.addEventListener("click", openPopup)
-
 //VARIABLE: ABRIR la MODAL (SELECCIONO EL BOTÓN)
 const openEditButton = document.getElementById("open-edit-button"); //seleciono botón edit con ID
 // const openAddButton = document.getElementById("open-add-button"); //seleciono botón + con ID
 
 //VARIABLES: MODAL EDIT/ MODAL ADD / MODAL IMAGEN
 const profilePopup = document.getElementById("profilePopup"); //buscar modal EDIT
-// const popupAddContainer = document.getElementById("popupAddContainer"); //buscar modal +
-// const popupImage = document.getElementById("popupImage"); //buscar modal popupImage por ID
 
-//** VARIABLES: MOSTRAR TITULO Y SUBTITULO DEL PERFIL DENTRO DE LOS INPUTS DE LA MODAL:
-// const inputTitle = document.getElementById("profileTitle"); // buscar input de título
-// const inputSubtitle = document.getElementById("profileSubtitle"); //buscar input de Subtítulo
-// const textTitle = document.querySelector(".profile__title"); //buscar texto del título en profile
-// const textSubTitle = document.querySelector(".profile__subtitle"); //buscar texto del Subtítulo en profile
 
 //VARIABLE: MOSTRAR NOMBRE DE INPUTS EN PERFIL (a traves de su name)
-const profileForm = document.forms["edit-profile"]; // buscar el formulario (su ID)
+//const profileForm = document.forms["edit-profile"]; // buscar el formulario (su ID)
+const popuProfileForm = new PopupWithForm(profilePopup, handleProfileFormSubmit);
 
-//EVENTO: ABRIR la MODAL EDIT con 2 controladores en uno: editar título /subtítulo y abrir modal
+//llamada a UserInfo
+const userInfo = new UserInfo(textTitle, textSubTitle)
+userInfo.setUserInfo('Jacques Cousteau', 'Explorador');
+console.log("nuevo nombre y Job");
+
+
+//EVENTO: ABRIR la MODAL EDIT 
 openEditButton.addEventListener("click", () => {
-  editClick();
-  //toggleButtonState(document.getElementById("form"));
-  openPopup(profilePopup);
+  popuProfileForm.open()
 });
 
-//FUNCIÓN CARGAR CARDS DEL [] initialCards
-// 1.Recorrer la info de cards que está en el []:initialCards
-// 2. Instanciar la class Card (Selecciona el template)
-// 3.crea la card a partir de generateCard
 
+const popupImageObject = new PopupWithImage(popupImage);
 
-
-function handleCardClick(popupImage) {
-  const popup = new PopupWithImage(popupImage);
-  // popup.open(this._name, this._link);
+function handleCardClick(event) {
+  //const popup = new PopupWithImage(popupImage);
+  popupImageObject.open(this._name, this._link);
 }
-
-export function renderCards() {
-  initialCards.forEach((card) => {
-    const nuevaCard = new Card(card, configCardSelectors.template, handleCardClick); //Instanciar la class Card
-    cardsContainer.prepend(nuevaCard.generateCard()); //crea la card a partir de generateCard
-  });
-}
-renderCards(); //invoco la función
-
-
 
 
 //HABILITAR EL FormValidator
@@ -99,40 +73,29 @@ export function newFormValidation(configForm, formElement) {
   return new FormValidator(configForm, formElement);
 };
 
-//escucha al evento que crear cards
-// forms[1].addEventListener("submit", handleFormAdd);
 
-//invoca función QUE CIERRA LAS MODALES: al Clic FUERA de la MODAL y con BOTÓN CERRAR
-// setPopupListeners();
-
-//** FUNCIÓN: MOSTRAR TITULO Y SUBTITULO DEL PERFIL DENTRO DE LOS INPUTS DE LA MODAL:
+// FUNCIÓN: MOSTRAR TITULO Y SUBTITULO DEL PERFIL DENTRO DE LOS INPUTS DE LA MODAL:
 function editClick() {
   console.log("clic en botón edit");
   inputTitle.value = textTitle.textContent; //valor del título es= texto título
   inputSubtitle.value = textSubTitle.textContent; //valor del subtítulo es= texto subtítulo
 }
 
-//** FUNCIÓN: MOSTRAR NOMBRE DE INPUTS EN PERFIL
-function handleProfileFormSubmit(event) {
-  event.preventDefault(); //Cancela el comportamiento por defecto de cada form
 
-  console.log("evento");
+// FUNCIÓN: MOSTRAR NOMBRE DE INPUTS EN PERFIL
+function handleProfileFormSubmit(data) {
+  console.log("agrego texto a form edit");
+  userInfo.setUserInfo(data.name, data.about);
 
-  textTitle.textContent = inputTitle.value; //texto título = valor del input título
-  textSubTitle.textContent = inputSubtitle.value; //texto subtítulo = el valor del input subtítulo
-
-  closePopup(profilePopup); // Al guardar se CIERRA la modal
+  popuProfileForm.close(); // Al guardar se CIERRA la modal
 }
-
-//** EVENTO: MOSTRAR NOMBRE DE INPUTS EN PERFIL
-profileForm.addEventListener("submit", handleProfileFormSubmit);
 
 
 //llamada a Section
 const sectionCard = new Section({
   data: initialCards,
   renderer: (item) => {
-    const nuevaCard = new Card(item, configCardSelectors.template);
+    const nuevaCard = new Card(item, configCardSelectors.template, handleCardClick);
     cardsContainer.prepend(nuevaCard.generateCard());
 
   }
@@ -140,45 +103,23 @@ const sectionCard = new Section({
 
 sectionCard.renderItems();
 
-//
-//this._container.append(element);
 
-
-//Evento que abre el botón de agregar cards
+//Evento: ABRE el BOTÓN de AGREHAR CARDS
 openAddButton.addEventListener("click", handleClickAddCard);
+const popupAddCardObject = new PopupWithForm(
+  popupAddContainer,
+  (formValues) => {
+    const nuevaCard = new Card({
+        name: formValues.title,
+        link: formValues.image
+      },
+      configCardSelectors.template,
+      handleCardClick
+    );
+    cardsContainer.prepend(nuevaCard.generateCard())
+  });
 
-// handler que instancia el modal de creacion de cards
+// handler que instancia el modal de CREAR CARDS
 function handleClickAddCard() {
-  const popupWithForm = new PopupWithForm(
-    popupAddContainer,
-    (formValues) => {
-      const nuevaCard = new Card({
-          name: formValues.title,
-          link: formValues.image
-        },
-        configCardSelectors.template,
-        handleCardClick
-      );
-
-      cardsContainer.prepend(nuevaCard.generateCard())
-    });
-
-  popupWithForm.setEventListeners();
+  popupAddCardObject.open();
 }
-
-
-//llamada a Popup de imagen y de formulario de cards
- popupImage.setEventListeners();
-
-// const popupImage = new PopupWithImage(popupSelector);
-// popupImage.open();
-
-
-
-
-//llamada a UserInfo
-const userInfo = new UserInfo({
-  nameUser: textTitle,
-  jobUser: textSubTitle
-})
-userInfo.setUserInfo(nameUser, jobUser);

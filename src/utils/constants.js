@@ -49,8 +49,7 @@ export const textTitle = document.querySelector(".profile__title"); //buscar tex
 export const textSubTitle = document.querySelector(".profile__subtitle"); //buscar texto del Subtítulo en profile
 
 //VARIABLE: TEXTO Y LINK DE LAS CARDS
-export const initialCards = [
-  {
+export const initialCards = [{
     name: "Valle de Yosemite",
     link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
   },

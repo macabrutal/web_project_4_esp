@@ -7,20 +7,21 @@
 export default class Popup {
     constructor(popupSelector) {
         this._popupSelector = popupSelector;
+        this._handleEscCloseBind = this._handleEscClose.bind(this);
+        this.setEventListeners();
     }
 
     open() {
         this._popupSelector.classList.add("popup-container_show");  //cambiar CSS de MODAL con class "popup-container_show"
-        document.addEventListener("keydown", this._handleEscClose); //escuche a CERRAR MODAL (LAS 3)
-        console.log("class popup: ABRO modal")
-        this.setEventListeners();
+        document.addEventListener("keydown", this._handleEscCloseBind); //escuche a CERRAR MODAL (LAS 3)
+        console.log("class popup: ABRO modal");
     }
 
-   
+
 
     close() {
         this._popupSelector.classList.remove("popup-container_show");
-        document.removeEventListener("keydown", this.close);
+        document.removeEventListener("keydown", this._handleEscCloseBind);
         console.log("class popup: CIERRO modal")
     }
 
@@ -32,20 +33,19 @@ export default class Popup {
         }
     }
 
-    //detector de eventos de clic en X / clic AFUERA 
+    //detector de eventos de clic en X / clic AFUERA
     setEventListeners() {
         console.log("POPUP:llamo a setEventListeners");
-        this._popupSelector.forEach((popup) => {
-            popup.addEventListener("mousedown", (evt) => {
+
+        this._popupSelector.addEventListener("mousedown", (evt) => {
                 if (evt.target.classList.contains("popup-container_show")) {
                     console.log("class popup: mousedown fuera de modal"); //Click fuera de modal
-                    this.close(evt.target);
+                    this.close();
                 }
                 if (evt.target.classList.contains("popup-container__close-popup")) {
                     console.log("class popup: cierro mousedown botón X"); //Click en botón X
-                    this.close(popup);
+                    this.close();
                 }
-            });
         });
     }
 }

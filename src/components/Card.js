@@ -12,9 +12,7 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._name = data.name;
     this._link = data.link;
-    this._handleCardClick = handleCardClick;
-
-     // this._openPopup = this.openPopup.bind(this);
+    this._handleCardClick = handleCardClick.bind(this);
   }
 
   _getTemplate() {
@@ -60,13 +58,6 @@ export default class Card {
     popup.open(this._name, this._link);
   }
 
-
-  //openPopup() ANTIGUO
-  // openPopup() {
-  //   openPopup(popupImage);
-  //   popupImage.querySelector(".image-container__image-popup").src = this._link;
-  //   popupImage.querySelector(".image-container__text-image").textContent = this._name;
-  // }
 
   _toggleLikeButton() {
     // VARIABLE: LIKE BUTTON
