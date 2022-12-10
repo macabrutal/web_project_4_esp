@@ -53,7 +53,7 @@ El proyecto contiene:
 
 **Netlify**
 
-- [Link del sitio en Netlify](https://eeuu-places.netlify.app/)
+- [Link del sitio en Netlify](https://eeuu-places-2.netlify.app/)
 
 ## Versión:
 
