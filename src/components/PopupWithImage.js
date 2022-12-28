@@ -1,9 +1,7 @@
 //Crea la clase PopupWithImage como una clase hija de Popup
 //cambiar el método padre open() : añadir 1 imagen al popup y el correspondiente atributo de imagen src junto con una leyenda para la imagen.
 
-
 import Popup from "./Popup.js"
-
 
 
 export default class PopupWithImage extends Popup {

@@ -42,11 +42,16 @@ export const configFormSelector = {
   errorClass: ".popup__error", //mensaje de error
 };
 
-//** VARIABLES: MOSTRAR TITULO Y SUBTITULO DEL PERFIL DENTRO DE LOS INPUTS DE LA MODAL:
+//** VARIABLES: INPUTS del TITULO Y SUBTITULO DEL PERFIL en LA MODAL:
 export const inputTitle = document.getElementById("profileTitle"); // buscar input de título
 export const inputSubtitle = document.getElementById("profileSubtitle"); //buscar input de Subtítulo
+
+//** VARIABLES: TITULO Y SUBTITULO DEL PERFIL
 export const textTitle = document.querySelector(".profile__title"); //buscar texto del título en profile
 export const textSubTitle = document.querySelector(".profile__subtitle"); //buscar texto del Subtítulo en profile
+
+//VARIABLE AVATAR DEL PERFIL
+export const profileAvatar = document.querySelector(".profile__avatar");
 
 //VARIABLE: TEXTO Y LINK DE LAS CARDS
 export const initialCards = [{

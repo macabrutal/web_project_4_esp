@@ -8,12 +8,13 @@ import {
   openAddButton,
   forms,
   configFormSelector,
-  textTitle,
-  textSubTitle,
   inputTitle,
   inputSubtitle,
   popupAddContainer,
-  popupImage
+  popupImage,
+  textTitle,
+  textSubTitle,
+  profileAvatar
 } from "../utils/constants.js";
 
 
@@ -25,6 +26,8 @@ import PopupWithForm from "../components/PopupWithForm.js"
 import PopupWithImage from "../components/PopupWithImage.js"
 
 import UserInfo from "../components/UserInfo.js"
+
+import Api from "../components/Api.js"
 
 
 //VARIABLE: ABRIR la MODAL (SELECCIONO EL BOTÓN)
@@ -104,7 +107,7 @@ const sectionCard = new Section({
 sectionCard.renderItems();
 
 
-//Evento: ABRE el BOTÓN de AGREHAR CARDS
+//Evento: ABRE el BOTÓN de AGREGAR CARDS
 openAddButton.addEventListener("click", handleClickAddCard);
 const popupAddCardObject = new PopupWithForm(
   popupAddContainer,
@@ -123,3 +126,16 @@ const popupAddCardObject = new PopupWithForm(
 function handleClickAddCard() {
   popupAddCardObject.open();
 }
+
+//API
+// ID: web_es_cohort_03
+// 8b2ceff6-74bf-49b9-905f-d5ac7225877b
+
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/web_es_cohort_03",
+  headers: {
+    authorization: "8b2ceff6-74bf-49b9-905f-d5ac7225877b",
+    "Content-Type": "application/json"
+  }
+});
+
