@@ -1,13 +1,13 @@
-// ID: web_es_cohort_03
+// ID: web_es_cohort_02
 // 8b2ceff6-74bf-49b9-905f-d5ac7225877b
+
 
 
 export default class Api {
   constructor({
-    baseUrl,
-    headers
+    baseUrl,headers
   }) {
-    this.baseUrl = baseUrl;
+    this._baseUrl = baseUrl;
     this.headers = headers;
     this._authorization = headers.authorization;
   }
@@ -22,6 +22,13 @@ export default class Api {
         authorization: this._authorization,
       },
     })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      // si el servidor devuelve un error, rechaza el promise
+      return Promise.reject(`Error: ${res.status}`);
+    });
   }
 
   //2.CARGAR CARDS

@@ -42,10 +42,7 @@ const profilePopup = document.getElementById("profilePopup"); //buscar modal EDI
 //const profileForm = document.forms["edit-profile"]; // buscar el formulario (su ID)
 const popuProfileForm = new PopupWithForm(profilePopup, handleProfileFormSubmit);
 
-//llamada a UserInfo
-const userInfo = new UserInfo(textTitle, textSubTitle)
-userInfo.setUserInfo('Jacques Cousteau', 'Explorador');
-console.log("nuevo nombre y Job");
+
 
 
 //EVENTO: ABRIR la MODAL EDIT 
@@ -88,7 +85,7 @@ function editClick() {
 // FUNCIÓN: MOSTRAR NOMBRE DE INPUTS EN PERFIL
 function handleProfileFormSubmit(data) {
   console.log("agrego texto a form edit");
-  userInfo.setUserInfo(data.name, data.about);
+  userInfo.setUserInfo(data.name, data.about, data.id, data.avatar);
 
   popuProfileForm.close(); // Al guardar se CIERRA la modal
 }
@@ -127,15 +124,53 @@ function handleClickAddCard() {
   popupAddCardObject.open();
 }
 
+
 //API
 // ID: web_es_cohort_03
 // 8b2ceff6-74bf-49b9-905f-d5ac7225877b
+//https://around.nomoreparties.co/v1/web_es_cohort_02
 
 const api = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/web_es_cohort_03",
+  baseUrl: "https://around.nomoreparties.co/v1/web_es_cohort_02",
   headers: {
     authorization: "8b2ceff6-74bf-49b9-905f-d5ac7225877b",
     "Content-Type": "application/json"
   }
 });
+
+//leer las cards de api y ponerlas en la pagina
+api.getInitialCards().then(json => {
+  sectionCard.clear();
+  sectionCard.setItems(json);
+  sectionCard.renderItems();
+  console.log('API JSON', json);
+})
+
+//Info del usuario (name, about, avatar, _id) ??
+api.getProfileInfo().then(json => {
+  const userInfo = new UserInfo(textTitle, textSubTitle)
+  userInfo.setUserInfo(json.name, json.about, json.avatar);
+})
+
+//ANTERIOR: llamada a UserInfo (name, about, avatar _id)
+// const userInfo = new UserInfo(textTitle, textSubTitle)
+// userInfo.setUserInfo('Jacques Cousteau', 'Explorador');
+// console.log("nuevo nombre y Job");
+
+
+
+
+// api.getProfileInfo()
+// .then(json => {
+//   userInfo.setUserInfo(json);
+//   userInfo.setAvatar(json);
+//   console.log('API JSON', json);
+// })
+// .catch((err) => {
+//   console.log(err);
+// });
+
+
+
+
 

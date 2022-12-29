@@ -4,30 +4,35 @@
 //Almacena un método público llamado addItem() que toma un elemento del DOM y lo agrega al contenedor.
 
 
-export default class Section{
-    constructor({data, renderer }, cardsContainer){
+export default class Section {
+    constructor({
+        data,
+        renderer
+    }, cardsContainer) {
         this._data = data;
         this._renderer = renderer;
-        this._cardsContainer= cardsContainer;
+        this._cardsContainer = cardsContainer;
     }
 
     clear() {
         this._cardsContainer.innerHTML = "";
-      }
+    }
 
-    renderItems(){
+    renderItems() {
         this.clear();
 
         this._data.forEach(item => {
-            this._renderer(item); 
+            this._renderer(item);
         });
     }
 
-    addItem(element){
+    addItem(element) {
         this._cardsContainer.append(element);
     }
 
-   
+    //para colocar 1 nuevo arreglo de datos
+    setItems(data) {
+        this._data = data;
+    }
 
 }
-
