@@ -4,7 +4,7 @@
 //método público setUserInfo():toma los datos del nuevo usuario y los agrega en la página.
 
 export default class UserInfo {
-    constructor(nameUser, jobUser, idUser, avatarUser) {
+    constructor(nameUser, jobUser, idUser, avatar) {
         this._nameUser = nameUser; //nombre del usuario
         this._jobUser = jobUser; //trabajo del usuario
         this._idUser = idUser; //id 
