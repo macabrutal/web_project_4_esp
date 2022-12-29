@@ -150,6 +150,7 @@ api.getInitialCards().then(json => {
 api.getProfileInfo().then(json => {
   const userInfo = new UserInfo(textTitle, textSubTitle)
   userInfo.setUserInfo(json.name, json.about, json.avatar);
+  console.log('API JSON', json);
 })
 
 //ANTERIOR: llamada a UserInfo (name, about, avatar _id)
