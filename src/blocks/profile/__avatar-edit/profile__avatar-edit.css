@@ -1,0 +1,12 @@
+.profile__avatar-edit {
+    Width: 26px;
+    height: 26px;
+    background-image: url(../../../images/editAvatar.png);
+    object-fit: contain;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+
+
+}

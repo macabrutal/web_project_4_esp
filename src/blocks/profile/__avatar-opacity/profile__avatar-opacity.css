@@ -1,0 +1,18 @@
+.profile__avatar-opacity {
+    width: 120px;
+    height: 120px;
+    transition: 0.8s ease-out;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+}
+
+
+.profile__avatar-opacity:hover {
+    opacity: 1;
+    transition: 0.8s ease-out;
+}

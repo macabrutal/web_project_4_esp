@@ -22,6 +22,10 @@
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 
+@import url(../blocks/profile/__avatar-container/profile__avatar-container.css);
+@import url(../blocks/profile/__avatar-opacity/profile__avatar-opacity.css);
+@import url(../blocks/profile/__avatar-edit/profile__avatar-edit.css);
+
 /* cards */
 @import url(../blocks/cards/cards.css);
 @import url(../blocks/card/card.css);

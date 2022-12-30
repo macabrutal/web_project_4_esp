@@ -1,12 +1,13 @@
 .profile__intro {
   /* width: 415px; */
-  width: 100%;
+  width: 70%;
   height: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: #fff;
   flex-wrap: wrap;
+  
 }
 
 /* TABLET */
