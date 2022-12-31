@@ -5,6 +5,7 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+    position: relative;
 }
 
 .profile__avatar-container:hover {

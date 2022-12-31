@@ -53,6 +53,9 @@ export const textSubTitle = document.querySelector(".profile__subtitle"); //busc
 //VARIABLE AVATAR DEL PERFIL
 export const profileAvatar = document.querySelector(".profile__avatar");
 
+//VARIABLES: MODAL AVATAR (por ID)
+export const popupAvatar = document.getElementById("popupAvatar"); 
+
 //VARIABLE: TEXTO Y LINK DE LAS CARDS
 export const initialCards = [{
     name: "Valle de Yosemite",

@@ -14,7 +14,8 @@ import {
   popupImage,
   textTitle,
   textSubTitle,
-  profileAvatar
+  profileAvatar,
+  popupAvatar
 } from "../utils/constants.js";
 
 
@@ -34,14 +35,15 @@ import Api from "../components/Api.js"
 const openEditButton = document.getElementById("open-edit-button"); //seleciono botón edit con ID
 // const openAddButton = document.getElementById("open-add-button"); //seleciono botón + con ID
 
-//VARIABLES: MODAL EDIT/ MODAL ADD / MODAL IMAGEN
+//VARIABLE: MODAL EDIT (por ID)
 const profilePopup = document.getElementById("profilePopup"); //buscar modal EDIT
 
-
 //VARIABLE: MOSTRAR NOMBRE DE INPUTS EN PERFIL (a traves de su name)
-//const profileForm = document.forms["edit-profile"]; // buscar el formulario (su ID)
 const popuProfileForm = new PopupWithForm(profilePopup, handleProfileFormSubmit);
 
+
+//VARIABLE: MOSTRAR URL DE INPUTS EN AVATAR (a traves de su name)
+const popupProfileAvatar = new PopupWithForm(popupAvatar, handleProfileFormSubmit);
 
 
 
@@ -146,11 +148,15 @@ api.getInitialCards().then(json => {
   console.log('API JSON', json);
 })
 
-//Info del usuario (name, about, avatar, _id) ??
+
+
+//Info del usuario (name, about, avatar, _id) 
+const userInfo = new UserInfo(textTitle, textSubTitle, profileAvatar)
+
 api.getProfileInfo().then(json => {
-  const userInfo = new UserInfo(textTitle, textSubTitle)
-  userInfo.setUserInfo(json.name, json.about, json.avatar);
   console.log('API JSON', json);
+  userInfo.setUserInfo(json._id, json.name, json.about, json.avatar);
+
 })
 
 //ANTERIOR: llamada a UserInfo (name, about, avatar _id)
@@ -161,15 +167,6 @@ api.getProfileInfo().then(json => {
 
 
 
-// api.getProfileInfo()
-// .then(json => {
-//   userInfo.setUserInfo(json);
-//   userInfo.setAvatar(json);
-//   console.log('API JSON', json);
-// })
-// .catch((err) => {
-//   console.log(err);
-// });
 
 
 

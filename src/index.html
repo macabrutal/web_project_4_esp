@@ -13,6 +13,26 @@
 
 <body class="root">
   <div class="page">
+       <!-- popup AVATAR-->
+       <div id="popupAvatar" class="popup-container">
+        <button id="close" class="popup-container__close-popup"></button>
+        <form id="formAvatar" action="" class="popup" name="edit-avatar" novalidate>
+          <h4 class="popup__title-popup">Cambiar foto de perfil</h4>
+          <fieldset class="popup__fieldset">
+            <div class="popup__field">
+              <input id="profileAvatar" class="popup__input-popup" type="url" placeholder="Enlace a tu avatar" name="avatar"
+                required   />
+              <!-- span del mensaje de error con su name -->
+              <span class="popup__error popup__error_about"></span>
+            </div>
+            <button id="save" type="submit" class="popup__button-popup">
+              Guardar
+            </button>
+          </fieldset>
+        </form>
+      </div>
+      <!-- FIN popup AVATAR-->
+
     <!-- popup edit-->
     <div id="profilePopup" class="popup-container">
       <button id="close" class="popup-container__close-popup"></button>
@@ -94,11 +114,7 @@
             <div class="profile__avatar-opacity">
               <button class="profile__avatar-edit"></button> 
             </div>
-            
-          </div>
-          
-          
-
+          </div>        
           <div class="profile__intro">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button id="open-edit-button" class="profile__edit-button"></button>
