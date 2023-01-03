@@ -12,12 +12,13 @@ export default class PopupWithQuestion extends Popup {
         this._cardId = cardId;
         this._popupDelete = popupDelete;
         this.removeButtons = removeButtons;
+        deleteHandler = deleteHandler;
     }
 
     setEventListeners() {
         super.setEventListeners();
-        this._popupSelector.addEventListener("submit", () => {
-            //evt.preventDefault();
+        this._popupSelector.addEventListener("submit", (evt) => {
+            evt.preventDefault();
         this._handleFormSubmit(this._cardId);
         })
     }

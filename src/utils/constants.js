@@ -101,7 +101,4 @@ export const initialCards = [{
 
 
 
-// FUNCIÓN: DELETE
-export function deleteHandler() {
-  console.log("modal DELETE")
-}
+

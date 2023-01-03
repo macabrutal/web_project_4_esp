@@ -3,9 +3,11 @@
 import {
   popupImage,
   popupDelete,
-  deleteHandler
+
 } from "../utils/constants.js";
 //import { openPopup } from "../utils/utils.js";
+
+
 
 
 import PopupWithImage from "./PopupWithImage.js";
@@ -54,9 +56,7 @@ export default class Card {
     this._element
       .querySelector(".card__delete-button")
       .addEventListener("click", () => {
-        const popupRemove = new PopupWithQuestion(popupDelete, deleteHandler);
-        popupRemove.open();
-        //this._deleteCard();
+        this._deleteCard();
       });
   }
 

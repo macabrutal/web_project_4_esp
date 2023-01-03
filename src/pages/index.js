@@ -60,14 +60,6 @@ openEditButton.addEventListener("click", () => {
 });
 
 
-const popupImageObject = new PopupWithImage(popupImage);
-
-function handleCardClick(event) {
-  //const popup = new PopupWithImage(popupImage);
-  popupImageObject.open(this._name, this._link);
-}
-
-
 //HABILITAR EL FormValidator
 export function enableAllValidations() {
   forms.forEach((item) => {
@@ -126,13 +118,25 @@ function handleAvatarFormSubmit(data) {
 
 // }
 
+const popupImageObject = new PopupWithImage(popupImage);
+
+function handleCardClick(event) {
+  //const popup = new PopupWithImage(popupImage);
+  popupImageObject.open(this._name, this._link);
+}
+
+// FUNCIÓN: DELETE
+function deleteHandler() {
+  console.log("DELETE")
+  cardsContainer.delete()
+}
 
 //llamada a Section
 const sectionCard = new Section({
   data: initialCards,
   renderer: (item) => {
 
-    const nuevaCard = new Card(item, configCardSelectors.template, handleCardClick);
+    const nuevaCard = new Card(item, configCardSelectors.template, handleCardClick, deleteHandler);
     cardsContainer.prepend(nuevaCard.generateCard());
 
   }
