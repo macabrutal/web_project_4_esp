@@ -22,6 +22,7 @@ export const configCardSelectors = {
   //  imagePopupImage = "#addImage",  //URL de IMAGEN
 };
 
+
 //VARIABLES TITULO y URL de IMAGEN
 export const imagePopupTitle = document.getElementById("addTitle");
 export const imagePopupImage = document.getElementById("addImage");
@@ -50,11 +51,25 @@ export const inputSubtitle = document.getElementById("profileSubtitle"); //busca
 export const textTitle = document.querySelector(".profile__title"); //buscar texto del título en profile
 export const textSubTitle = document.querySelector(".profile__subtitle"); //buscar texto del Subtítulo en profile
 
+//VARIABLE: MODAL EDIT (por ID)
+export const profilePopup = document.getElementById("profilePopup"); //buscar modal EDIT
+
 //VARIABLE AVATAR DEL PERFIL
 export const profileAvatar = document.querySelector(".profile__avatar");
 
 //VARIABLES: MODAL AVATAR (por ID)
-export const popupAvatar = document.getElementById("popupAvatar"); 
+export const popupAvatar = document.getElementById("popupAvatar"); //popup avatar
+
+export const avatarEditButton = document.querySelector('.profile__avatar-edit'); //botón avatar
+
+
+
+//VARIABLE: POP UP DELETE CARD
+export const popupDelete = document.getElementById("popupDelete");
+
+export const removeButtons = document.querySelectorAll(configCardSelectors.removeButton);
+
+
 
 //VARIABLE: TEXTO Y LINK DE LAS CARDS
 export const initialCards = [{
@@ -82,3 +97,11 @@ export const initialCards = [{
     link: "https://code.s3.yandex.net/web-code/lago.jpg",
   },
 ];
+
+
+
+
+// FUNCIÓN: DELETE
+export function deleteHandler() {
+  console.log("modal DELETE")
+}

@@ -48,6 +48,8 @@
 @import url(../blocks/image-container/__text-image/image-container__text-image.css);
 @import url(../blocks/popup-container/_show/popup-container_show.css);
 @import url(../blocks/popup/__field/popup__field.css);
+@import url(../blocks/popup/_avatar/popup_avatar.css);
+@import url(../blocks/popup/_question/popup_question.js);
 
 /* ERROR en input EDIT */
 @import url(../blocks/popup/__error/popup__error.css);

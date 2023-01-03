@@ -1,11 +1,17 @@
 //CARD : crea 1 tarjeta con texto y un enlace de imagen
 
 import {
-  popupImage
+  popupImage,
+  popupDelete,
+  deleteHandler
 } from "../utils/constants.js";
 //import { openPopup } from "../utils/utils.js";
 
+
 import PopupWithImage from "./PopupWithImage.js";
+import PopupWithQuestion from "./PopupWithQuestion.js";
+
+
 
 export default class Card {
   constructor(data, cardSelector, handleCardClick) {
@@ -48,7 +54,9 @@ export default class Card {
     this._element
       .querySelector(".card__delete-button")
       .addEventListener("click", () => {
-        this._deleteCard();
+        const popupRemove = new PopupWithQuestion(popupDelete, deleteHandler);
+        popupRemove.open();
+        //this._deleteCard();
       });
   }
 

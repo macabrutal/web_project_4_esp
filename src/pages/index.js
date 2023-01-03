@@ -15,7 +15,11 @@ import {
   textTitle,
   textSubTitle,
   profileAvatar,
-  popupAvatar
+  profilePopup,
+  popupAvatar,
+  popupDelete,
+  avatarEditButton,
+  removeButtons
 } from "../utils/constants.js";
 
 
@@ -23,6 +27,7 @@ import FormValidator from "../components/FormValidator.js";
 
 import Section from "../components/Section.js";
 
+//import PopupWithQuestion from "../components/PopupWithQuestion.js"
 import PopupWithForm from "../components/PopupWithForm.js"
 import PopupWithImage from "../components/PopupWithImage.js"
 
@@ -35,19 +40,21 @@ import Api from "../components/Api.js"
 const openEditButton = document.getElementById("open-edit-button"); //seleciono botón edit con ID
 // const openAddButton = document.getElementById("open-add-button"); //seleciono botón + con ID
 
-//VARIABLE: MODAL EDIT (por ID)
-const profilePopup = document.getElementById("profilePopup"); //buscar modal EDIT
 
 //VARIABLE: MOSTRAR NOMBRE DE INPUTS EN PERFIL (a traves de su name)
 const popuProfileForm = new PopupWithForm(profilePopup, handleProfileFormSubmit);
 
 
 //VARIABLE: MOSTRAR URL DE INPUTS EN AVATAR (a traves de su name)
-const popupProfileAvatar = new PopupWithForm(popupAvatar, handleProfileFormSubmit);
+const popupProfileAvatar = new PopupWithForm(popupAvatar, handleAvatarFormSubmit);
+
+//EVENTO: ABRIR la MODAL AVATAR
+avatarEditButton.addEventListener('click', () => {
+  popupProfileAvatar.open();
+})
 
 
-
-//EVENTO: ABRIR la MODAL EDIT 
+ //EVENTO: ABRIR la MODAL EDIT
 openEditButton.addEventListener("click", () => {
   popuProfileForm.open()
 });
@@ -84,19 +91,47 @@ function editClick() {
 }
 
 
-// FUNCIÓN: MOSTRAR NOMBRE DE INPUTS EN PERFIL
+// FUNCIÓN: MOSTRAR NOMBRE DE INPUTS EN PERFIL / name: edit-profile
 function handleProfileFormSubmit(data) {
   console.log("agrego texto a form edit");
-  userInfo.setUserInfo(data.name, data.about, data.id, data.avatar);
-
-  popuProfileForm.close(); // Al guardar se CIERRA la modal
+  document.forms['edit-profile'].querySelector('button[type="submit"]').textContent = 'Guardando...'
+  api.editProfile(data.name, data.about).then(userData => {
+    userInfo.setUserInfo(userData);
+  }).finally(() => {
+    document.forms['edit-profile'].querySelector('button[type="submit"]').textContent = 'Guardar'
+    popuProfileForm.close(); // Al guardar se CIERRA la modal
+  })
 }
+
+// FUNCIÓN: MOSTRAR NUEVO AVATAR EN PERFIL / name: edit-avatar
+function handleAvatarFormSubmit(data) {
+  console.log("agrego NUEVO AVATAR");
+  document.forms['edit-avatar'].querySelector('button[type="submit"]').textContent = 'Guardando...'
+  api.newAvatar(data.avatar).then(userData => {
+    userInfo.setUserInfo(userData);
+  }).finally(() => {
+    document.forms['edit-avatar'].querySelector('button[type="submit"]').textContent = 'Guardar'
+    popuProfileForm.close(); // Al guardar se CIERRA la modal
+  })
+}
+
+//ELIMINO CARD
+// function handleDeleteFormSubmit(data) {
+//   console.log("elimino card");
+
+//   api.deleteCard(data).then(json => {
+//     console.log('API JSON', json);
+//     sectionCard.remove();
+//   })
+
+// }
 
 
 //llamada a Section
 const sectionCard = new Section({
   data: initialCards,
   renderer: (item) => {
+
     const nuevaCard = new Card(item, configCardSelectors.template, handleCardClick);
     cardsContainer.prepend(nuevaCard.generateCard());
 
@@ -132,7 +167,7 @@ function handleClickAddCard() {
 // 8b2ceff6-74bf-49b9-905f-d5ac7225877b
 //https://around.nomoreparties.co/v1/web_es_cohort_02
 
-const api = new Api({
+export const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/web_es_cohort_02",
   headers: {
     authorization: "8b2ceff6-74bf-49b9-905f-d5ac7225877b",
@@ -150,12 +185,12 @@ api.getInitialCards().then(json => {
 
 
 
-//Info del usuario (name, about, avatar, _id) 
+//Info del usuario (name, about, avatar, _id)
 const userInfo = new UserInfo(textTitle, textSubTitle, profileAvatar)
 
 api.getProfileInfo().then(json => {
   console.log('API JSON', json);
-  userInfo.setUserInfo(json._id, json.name, json.about, json.avatar);
+  userInfo.setUserInfo({...json, job : json.about});
 
 })
 
@@ -168,7 +203,4 @@ api.getProfileInfo().then(json => {
 
 
 
-
-
-
-
+  

@@ -101,13 +101,14 @@ export default class Api {
   //El cardId en la URL debe ser sustituido por _id de la tarjeta a eliminar. 
   //DELETE https://around.nomoreparties.co/v1/groupId/cards/5d1f0611d321eb4bdcd707dd 
 
-  deleteCard() {
+  deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: {
         authorization: this._authorization,
       },
     })
+    .then(res => res.json())
   }
 
   //8. AÑADIR y ELIMINAR "LIKES"
