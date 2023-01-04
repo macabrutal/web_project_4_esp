@@ -27,7 +27,7 @@ import FormValidator from "../components/FormValidator.js";
 
 import Section from "../components/Section.js";
 
-import PopupWithQuestion from "../components/PopupWithQuestion.js"
+//import PopupWithQuestion from "../components/PopupWithQuestion.js"
 import PopupWithForm from "../components/PopupWithForm.js"
 import PopupWithImage from "../components/PopupWithImage.js"
 
@@ -47,12 +47,7 @@ const popuProfileForm = new PopupWithForm(profilePopup, handleProfileFormSubmit)
 
 //VARIABLE: MOSTRAR URL DE INPUTS EN AVATAR (a traves de su name)
 const popupProfileAvatar = new PopupWithForm(popupAvatar, handleAvatarFormSubmit);
-
-//VARIABLE: MODAL PARA ELIMINAR ¿ESTÁS SEGURO?
-const popupRemove = new PopupWithQuestion(popupDelete, handleDeleteCard);
-  
-
- 
+const popupConfirmDelete = new PopupWithForm(popupDelete, handleDeleteCard);
 
 //EVENTO: ABRIR la MODAL AVATAR
 avatarEditButton.addEventListener('click', () => {
@@ -122,20 +117,29 @@ function handleCardClick(event) {
 }
 
 
+// FUNCIÓN: DELETE
+function handleDeleteCard(data) {
+  console.log(data);
+  api.deleteCardLike(data.card_id).then(() => {
+    getCards();
+  })
+}
 
+//Info del usuario (name, about, avatar, _id)
+const userInfo = new UserInfo(textTitle, textSubTitle, profileAvatar)
 
 //llamada a Section
 const sectionCard = new Section({
   data: initialCards,
   renderer: (item) => {
-
-    const nuevaCard = new Card(item, configCardSelectors.template, handleCardClick, handleDeleteCard);
+    item.me = userInfo.getUserInfo();
+    const nuevaCard = new Card(item, configCardSelectors.template, handleCardClick, popupConfirmDelete);
     cardsContainer.prepend(nuevaCard.generateCard());
 
   }
 }, cardsContainer);
 
-sectionCard.renderItems();
+//sectionCard.renderItems();
 
 
 //Evento: ABRE el BOTÓN de AGREGAR CARDS
@@ -173,17 +177,16 @@ export const api = new Api({
 });
 
 //leer las cards de api y ponerlas en la pagina
-api.getInitialCards().then(json => {
-  sectionCard.clear();
-  sectionCard.setItems(json);
-  sectionCard.renderItems();
-  console.log('API JSON', json);
-})
+function getCards() {
+  api.getInitialCards().then(json => {
+    sectionCard.clear();
+    sectionCard.setItems(json);
+    sectionCard.renderItems();
+    console.log('API JSON', json);
+  })
+}
 
-
-
-//Info del usuario (name, about, avatar, _id)
-const userInfo = new UserInfo(textTitle, textSubTitle, profileAvatar)
+getCards();
 
 api.getProfileInfo().then(json => {
   console.log('API JSON', json);
@@ -198,18 +201,6 @@ api.getProfileInfo().then(json => {
 
 
 
- //EVENTO: ABRIR MODAL PARA ELIMINAR ¿ESTÁS SEGURO?
- removeButtons.addEventListener('click', () => {
-  popupRemove.open();
-})
 
-// FUNCIÓN: DELETE CARD
-function handleDeleteCard(data) {
-  if( data._id === getCardId){
-    sectionCard.remove();
-  } 
-  
-  console.log("DELETE CARD");
-}
 
-  
+

@@ -38,6 +38,7 @@
         <button id="closeDelete" class="popup-container__close-popup"></button>
         <form id="formDelete" action="" class="popup popup_question" name="delete-card" novalidate>
           <h4 class="popup__title-popup">¿Estás seguro?</h4>
+          <input type="hidden" name="card_id" class="popup__input-popup popup__hidden">
           <fieldset class="popup__fieldset">
             <button id="saveDelete" type="submit" class="popup__button-popup">
               Si
@@ -157,7 +158,7 @@
           <button class="card__card-like"></button>
         <p class="card__like-counter"></p>
         </div>
-        
+
       </div>
     </div>
   </template>

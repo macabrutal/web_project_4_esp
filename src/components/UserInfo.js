@@ -21,7 +21,7 @@ export default class UserInfo {
 
     
 
-    setUUserInfo({_id, name, about, avatar}) {
+    setUserInfo({_id, name, about, avatar}) {
         if(name){
             this._nameUser.textContent = name;
         }
