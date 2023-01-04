@@ -115,9 +115,10 @@ function handleCardClick(event) {
   popupImageObject.open(this._name, this._link);
 }
 
-// FUNCIÓN: DELETE
+
+// FUNCIÓN: DELETE 
 function handleDeleteCard(data) {
-  if( data === this._id){
+  if( data._id === getCardId){
     sectionCard.remove();
   } 
   
