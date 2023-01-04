@@ -107,16 +107,6 @@ function handleAvatarFormSubmit(data) {
   })
 }
 
-//ELIMINO CARD
-// function handleDeleteFormSubmit(data) {
-//   console.log("elimino card");
-
-//   api.deleteCard(data).then(json => {
-//     console.log('API JSON', json);
-//     sectionCard.remove();
-//   })
-
-// }
 
 const popupImageObject = new PopupWithImage(popupImage);
 
@@ -126,9 +116,12 @@ function handleCardClick(event) {
 }
 
 // FUNCIÓN: DELETE
-function deleteHandler() {
-  console.log("DELETE")
-  cardsContainer.delete()
+function handleDeleteCard(data) {
+  if( data === this._id){
+    sectionCard.remove();
+  } 
+  
+  console.log("DELETE CARD");
 }
 
 //llamada a Section
@@ -136,7 +129,7 @@ const sectionCard = new Section({
   data: initialCards,
   renderer: (item) => {
 
-    const nuevaCard = new Card(item, configCardSelectors.template, handleCardClick, deleteHandler);
+    const nuevaCard = new Card(item, configCardSelectors.template, handleCardClick, handleDeleteCard);
     cardsContainer.prepend(nuevaCard.generateCard());
 
   }

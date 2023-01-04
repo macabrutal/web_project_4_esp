@@ -2,17 +2,12 @@
 
 import {
   popupImage,
-  popupDelete,
-
 } from "../utils/constants.js";
 //import { openPopup } from "../utils/utils.js";
 
 
 
-
 import PopupWithImage from "./PopupWithImage.js";
-import PopupWithQuestion from "./PopupWithQuestion.js";
-
 
 
 export default class Card {
@@ -20,6 +15,7 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._name = data.name;
     this._link = data.link;
+    this._id = data.id;
     this._handleCardClick = handleCardClick.bind(this);
   }
 
@@ -39,6 +35,10 @@ export default class Card {
     this._element.querySelector(".card__card-title").textContent = this._name;
     this._element.querySelector(".card__img-card").src = this._link;
     return this._element;
+  }
+
+  getCardId() {
+    return this._id;
   }
 
   _setEventListeners() {

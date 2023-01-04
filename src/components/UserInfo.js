@@ -14,7 +14,7 @@ export default class UserInfo {
         return {
             name: this._nameUser.textContent,
             about: this._jobUser.textContent,
-            // id: this._idUse,
+            //id: this._idUse,
 
         }
     }
