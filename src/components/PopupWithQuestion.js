@@ -5,14 +5,14 @@ import {
     removeButtons
 } from "../utils/constants.js"
 
-export default class PopupWithQuestion extends Popup {
-    constructor(popupSelector, cardId, handleFormSubmit) {
+export default class    extends Popup {
+    constructor(popupSelector, cardId, handleDeleteCard) {
         super(popupSelector);
-        this._handleFormSubmit = handleFormSubmit;
+        this._handleDeleteCard = handleDeleteCard;
         this._cardId = cardId;
         this._popupDelete = popupDelete;
         this.removeButtons = removeButtons;
-        deleteHandler = deleteHandler;
+        
     }
 
     setEventListeners() {

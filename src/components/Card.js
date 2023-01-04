@@ -2,6 +2,7 @@
 
 import {
   popupImage,
+  likeCounter
 } from "../utils/constants.js";
 //import { openPopup } from "../utils/utils.js";
 
@@ -17,6 +18,11 @@ export default class Card {
     this._link = data.link;
     this._id = data.id;
     this._handleCardClick = handleCardClick.bind(this);
+    this._likes = data.likes;
+    this._likeCounter = data.likeCounter;
+    //this._likeCounter.textContent = this._likes.length;
+
+
   }
 
   _getTemplate() {
@@ -39,6 +45,10 @@ export default class Card {
 
   getCardId() {
     return this._id;
+  }
+
+  setLikes(likes) {
+    this._likeCounter.textContent = likes.length;
   }
 
   _setEventListeners() {

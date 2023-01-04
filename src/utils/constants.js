@@ -63,13 +63,14 @@ export const popupAvatar = document.getElementById("popupAvatar"); //popup avata
 export const avatarEditButton = document.querySelector('.profile__avatar-edit'); //botón avatar
 
 
-
 //VARIABLE: POP UP DELETE CARD
 export const popupDelete = document.getElementById("popupDelete");
 
 export const removeButtons = document.querySelectorAll(configCardSelectors.removeButton);
 
 
+//VARIABLE CONTADOR DE LIKES: card__like-counter
+export const likeCounter = document.querySelector(".card__like-counter");
 
 //VARIABLE: TEXTO Y LINK DE LAS CARDS
 export const initialCards = [{

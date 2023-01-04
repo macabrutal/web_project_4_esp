@@ -27,7 +27,7 @@ import FormValidator from "../components/FormValidator.js";
 
 import Section from "../components/Section.js";
 
-//import PopupWithQuestion from "../components/PopupWithQuestion.js"
+import PopupWithQuestion from "../components/PopupWithQuestion.js"
 import PopupWithForm from "../components/PopupWithForm.js"
 import PopupWithImage from "../components/PopupWithImage.js"
 
@@ -47,6 +47,12 @@ const popuProfileForm = new PopupWithForm(profilePopup, handleProfileFormSubmit)
 
 //VARIABLE: MOSTRAR URL DE INPUTS EN AVATAR (a traves de su name)
 const popupProfileAvatar = new PopupWithForm(popupAvatar, handleAvatarFormSubmit);
+
+//VARIABLE: MODAL PARA ELIMINAR ¿ESTÁS SEGURO?
+const popupRemove = new PopupWithQuestion(popupDelete, handleDeleteCard);
+  
+
+ 
 
 //EVENTO: ABRIR la MODAL AVATAR
 avatarEditButton.addEventListener('click', () => {
@@ -116,14 +122,7 @@ function handleCardClick(event) {
 }
 
 
-// FUNCIÓN: DELETE 
-function handleDeleteCard(data) {
-  if( data._id === getCardId){
-    sectionCard.remove();
-  } 
-  
-  console.log("DELETE CARD");
-}
+
 
 //llamada a Section
 const sectionCard = new Section({
@@ -199,6 +198,18 @@ api.getProfileInfo().then(json => {
 
 
 
+ //EVENTO: ABRIR MODAL PARA ELIMINAR ¿ESTÁS SEGURO?
+ removeButtons.addEventListener('click', () => {
+  popupRemove .open();
+})
 
+// FUNCIÓN: DELETE CARD
+function handleDeleteCard(data) {
+  if( data._id === getCardId){
+    sectionCard.remove();
+  } 
+  
+  console.log("DELETE CARD");
+}
 
   
