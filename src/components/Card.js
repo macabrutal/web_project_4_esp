@@ -4,7 +4,7 @@ import {
   popupImage,
   popupDelete
 } from "../utils/constants.js";
-//import { openPopup } from "../utils/utils.js";
+
 
 
 
@@ -21,6 +21,9 @@ export default class Card {
     this._owner = data.owner;
     this._handleCardClick = handleCardClick.bind(this);
     this._popupDeleteConfirm = popupDeleteConfirm;
+    this._likes = data.likes;
+    this._likeCounter = data.likeCounter;
+    this._handleLike = data.handleLike;
   }
 
   _getTemplate() {
@@ -38,11 +41,14 @@ export default class Card {
 
     this._element.querySelector(".card__card-title").textContent = this._name;
     this._element.querySelector(".card__img-card").src = this._link;
+    this._element.querySelector(".card__like-counter").textContent= this._likes;
     if(this._owner._id !== this._me.id){
       this._element.querySelector('.card__delete-button').style.display = 'none';
     }
+   
     return this._element;
   }
+
 
   getCardId() {
     return this._id;
@@ -60,10 +66,15 @@ export default class Card {
         this._toggleLikeButton();
       });
 
+      this._element
+      .querySelector(".card__like-counter")
+      .addEventListener("click", () => {
+        this._handleLike();
+      });
+
     this._element
       .querySelector(".card__delete-button")
       .addEventListener("click", () => {
-        //this._deleteCard();
         popupDelete.querySelector('.popup__input-popup[name="card_id"]').value = this._id;
         this._popupDeleteConfirm.open();
       });

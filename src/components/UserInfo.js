@@ -14,24 +14,28 @@ export default class UserInfo {
         return {
             name: this._nameUser.textContent,
             about: this._jobUser.textContent,
-            //id: this._idUse,
-
+            id: this._idUser,
         }
     }
 
-    
 
-    setUserInfo({_id, name, about, avatar}) {
-        if(name){
+
+    setUserInfo({
+        _id,
+        name,
+        about,
+        avatar
+    }) {
+        if (name) {
             this._nameUser.textContent = name;
         }
-        if(about){
+        if (about) {
             this._jobUser.textContent = about;
         }
-        if(avatar){
+        if (avatar) {
             this._avatar.src = avatar;
         }
-        if(_id){
+        if (_id) {
             this._idUser = _id;
         }
     }
@@ -52,5 +56,5 @@ export default class UserInfo {
     //     }
     // }
 
-   
+
 }

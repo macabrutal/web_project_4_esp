@@ -19,7 +19,9 @@ import {
   popupAvatar,
   popupDelete,
   avatarEditButton,
-  removeButtons
+  removeButtons,
+  likeButton,
+  likeCounter
 } from "../utils/constants.js";
 
 
@@ -55,7 +57,7 @@ avatarEditButton.addEventListener('click', () => {
 })
 
 
- //EVENTO: ABRIR la MODAL EDIT
+//EVENTO: ABRIR la MODAL EDIT
 openEditButton.addEventListener("click", () => {
   popuProfileForm.open()
 });
@@ -108,6 +110,27 @@ function handleAvatarFormSubmit(data) {
   })
 }
 
+// LIKES DE CARDS:
+
+// FUNCIÓN: MOSTRAR LIKE EN CARD (Botón:likeButton  / contador:likeCounter)
+export function handleLike(data) {
+  console.log(data);
+
+  api.addCardLike(data.likes).then(() => {
+    getLike();
+  }) 
+}
+
+export function getLike(){
+  let counter = 0;
+  counter++;
+  console.log("CLIK EN LIKE");
+  //likeCounter.textContent = counter; //HELP!
+}
+
+getLike();
+
+// --- fin LIKES DE CARDS
 
 const popupImageObject = new PopupWithImage(popupImage);
 
@@ -120,10 +143,11 @@ function handleCardClick(event) {
 // FUNCIÓN: DELETE
 function handleDeleteCard(data) {
   console.log(data);
-  api.deleteCardLike(data.card_id).then(() => {
+  api.deleteCard(data.card_id).then(() => {
     getCards();
   })
 }
+
 
 //Info del usuario (name, about, avatar, _id)
 const userInfo = new UserInfo(textTitle, textSubTitle, profileAvatar)
@@ -139,28 +163,30 @@ const sectionCard = new Section({
   }
 }, cardsContainer);
 
-//sectionCard.renderItems();
 
 
-//Evento: ABRE el BOTÓN de AGREGAR CARDS
+//Evento: BOTÓN ABRE MODAL AGREGAR CARDS
 openAddButton.addEventListener("click", handleClickAddCard);
-const popupAddCardObject = new PopupWithForm(
-  popupAddContainer,
-  (formValues) => {
-    const nuevaCard = new Card({
-        name: formValues.title,
-        link: formValues.image
-      },
-      configCardSelectors.template,
-      handleCardClick
-    );
-    cardsContainer.prepend(nuevaCard.generateCard())
-  });
 
 // handler que instancia el modal de CREAR CARDS
 function handleClickAddCard() {
   popupAddCardObject.open();
 }
+
+//AGREGAR CARD con API
+const popupAddCardObject = new PopupWithForm(
+  popupAddContainer,
+  (formValues) => {
+
+    api.addNewCard(formValues.title, formValues.image).then(card => {
+      card.me = userInfo.getUserInfo();
+      const nuevaCard = new Card(card,
+        configCardSelectors.template,
+        handleCardClick, popupConfirmDelete
+      );
+      cardsContainer.prepend(nuevaCard.generateCard())
+    })
+  });
 
 
 //API
@@ -190,17 +216,9 @@ getCards();
 
 api.getProfileInfo().then(json => {
   console.log('API JSON', json);
-  userInfo.setUserInfo({...json, job : json.about});
+  userInfo.setUserInfo({
+    ...json,
+    job: json.about
+  });
 
 })
-
-//ANTERIOR: llamada a UserInfo (name, about, avatar _id)
-// const userInfo = new UserInfo(textTitle, textSubTitle)
-// userInfo.setUserInfo('Jacques Cousteau', 'Explorador');
-// console.log("nuevo nombre y Job");
-
-
-
-
-
-

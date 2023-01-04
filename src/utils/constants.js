@@ -17,11 +17,16 @@ export const configCardSelectors = {
   imageSelector: ".card__img-card", //IMAGEN DE CARD
   popupImageSelector: ".image-container__image-popup", //IMAGEN DEL POPUP
   likeButton: ".card__card-like", //LIKE BUTTON
-  removeButton: ".card__delete-button", //DELETE BUTTON
+  likeCounter: document.getElementById("countLikes"), //CONTADOR DE LIKES
+  //removeButton: ".card__delete-button", //DELETE BUTTON
+
   //  imagePopupTitle = "#addTitle",  //TITULO IMAGEN
   //  imagePopupImage = "#addImage",  //URL de IMAGEN
 };
 
+//VARIABLES PARA LIKES:
+export const likeButton = document.querySelector(".card__card-like"); //LIKE BUTTON
+export const likeCounter = document.getElementById("countLikes"); //CONTADOR DE LIKES
 
 //VARIABLES TITULO y URL de IMAGEN
 export const imagePopupTitle = document.getElementById("addTitle");
@@ -69,8 +74,7 @@ export const popupDelete = document.getElementById("popupDelete");
 export const removeButtons = document.querySelectorAll(configCardSelectors.removeButton);
 
 
-//VARIABLE CONTADOR DE LIKES: card__like-counter
-export const likeCounter = document.querySelector(".card__like-counter");
+
 
 //VARIABLE: TEXTO Y LINK DE LAS CARDS
 export const initialCards = [{
@@ -98,8 +102,3 @@ export const initialCards = [{
     link: "https://code.s3.yandex.net/web-code/lago.jpg",
   },
 ];
-
-
-
-
-

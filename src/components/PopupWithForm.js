@@ -22,7 +22,7 @@ export default class PopupWithForm extends Popup {
         this._inputList = this._popupSelector.querySelectorAll(configFormSelector.inputSelector); // 1.Obtiene los elementos de todos los campos
         const formValues = {}; // 2.Crea un objeto vacío
 
-    // 3.Agrega los valores de los campos a este objeto
+        // 3.Agrega los valores de los campos a este objeto
         this._inputList.forEach(input => {
             formValues[input.name] = input.value;
         });
