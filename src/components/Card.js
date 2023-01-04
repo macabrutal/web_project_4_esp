@@ -22,7 +22,6 @@ export default class Card {
     this._likeCounter = data.likeCounter;
     //this._likeCounter.textContent = this._likes.length;
 
-
   }
 
   _getTemplate() {

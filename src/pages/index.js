@@ -200,7 +200,7 @@ api.getProfileInfo().then(json => {
 
  //EVENTO: ABRIR MODAL PARA ELIMINAR ¿ESTÁS SEGURO?
  removeButtons.addEventListener('click', () => {
-  popupRemove .open();
+  popupRemove.open();
 })
 
 // FUNCIÓN: DELETE CARD
