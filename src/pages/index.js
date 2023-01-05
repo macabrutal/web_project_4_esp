@@ -128,7 +128,7 @@ function handleDeleteCard(data) {
 }
 
 
-// FUNCIÓN: MOSTRAR LIKE EN CARD (Botón:likeButton  / contador:likeCounter)
+// FUNCIÓN: MOSTRAR LIKE EN CARD 
 function handleLike() {
   const LikesUser = this._likes.filter(user => user._id === this._me.id)
   if (LikesUser.length > 0) {
