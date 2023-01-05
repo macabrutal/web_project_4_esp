@@ -19,7 +19,6 @@ export default class UserInfo {
     }
 
 
-
     setUserInfo({
         _id,
         name,
@@ -39,22 +38,5 @@ export default class UserInfo {
             this._idUser = _id;
         }
     }
-
-
-    // setUserInfo({idUser, name, about, avatar}) {
-    //     if(name){
-    //         this._nameUser.textContent = name;
-    //     }
-    //     if(about){
-    //         this._jobUser.textContent = about;
-    //     }
-    //     if(avatar){
-    //         this._avatar.src = avatar;
-    //     }
-    //     if(idUser){
-    //         this._idUser = idUser;
-    //     }
-    // }
-
 
 }

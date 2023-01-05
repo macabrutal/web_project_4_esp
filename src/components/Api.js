@@ -5,7 +5,8 @@
 
 export default class Api {
   constructor({
-    baseUrl,headers
+    baseUrl,
+    headers
   }) {
     this._baseUrl = baseUrl;
     this.headers = headers;
@@ -17,18 +18,18 @@ export default class Api {
   //propiedades: name, about, avatar _id
   getProfileInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
-      method: "GET",
-      headers: {
-        authorization: this._authorization,
-      },
-    })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      // si el servidor devuelve un error, rechaza el promise
-      return Promise.reject(`Error: ${res.status}`);
-    });
+        method: "GET",
+        headers: {
+          authorization: this._authorization,
+        },
+      })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        // si el servidor devuelve un error, rechaza el promise
+        return Promise.reject(`Error: ${res.status}`);
+      });
   }
 
   //2.CARGAR CARDS
@@ -67,7 +68,13 @@ export default class Api {
           about: about
         })
       })
-      .then(res => res.json())
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        // si el servidor devuelve un error, rechaza el promise
+        return Promise.reject(`Error: ${res.status}`);
+      });
   }
 
   //4.AÑADIR UNA NUEVA CARD
@@ -86,7 +93,13 @@ export default class Api {
           link: link
         })
       })
-      .then(res => res.json())
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        // si el servidor devuelve un error, rechaza el promise
+        return Promise.reject(`Error: ${res.status}`);
+      });
   }
 
 
@@ -103,12 +116,18 @@ export default class Api {
 
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
-      method: "DELETE",
-      headers: {
-        authorization: this._authorization,
-      },
-    })
-    .then(res => res.json())
+        method: "DELETE",
+        headers: {
+          authorization: this._authorization,
+        },
+      })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        // si el servidor devuelve un error, rechaza el promise
+        return Promise.reject(`Error: ${res.status}`);
+      });
   }
 
   //8. AÑADIR y ELIMINAR "LIKES"
@@ -120,20 +139,34 @@ export default class Api {
 
   addCardLike(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      method: "PUT",
-      headers: {
-        authorization: this._authorization,
-      },
-    })
+        method: "PUT",
+        headers: {
+          authorization: this._authorization,
+        },
+      })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        // si el servidor devuelve un error, rechaza el promise
+        return Promise.reject(`Error: ${res.status}`);
+      });
   }
 
   deleteCardLike(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      method: "DELETE",
-      headers: {
-        authorization: this._authorization,
-      },
-    })
+        method: "DELETE",
+        headers: {
+          authorization: this._authorization,
+        },
+      })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        // si el servidor devuelve un error, rechaza el promise
+        return Promise.reject(`Error: ${res.status}`);
+      });
   }
 
   //9.Actualizar la foto de perfil
@@ -142,14 +175,22 @@ export default class Api {
 
   newAvatar(link) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: "PATCH",
-      headers: {
-        authorization: this._authorization,
-      },
-      body: JSON.stringify({
-        avatar: link
+        method: "PATCH",
+        headers: {
+          authorization: this._authorization,
+        },
+        body: JSON.stringify({
+           avatar: link
+          
+        })
       })
-    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        // si el servidor devuelve un error, rechaza el promise
+        return Promise.reject(`Error: ${res.status}`);
+      });
   }
 
 

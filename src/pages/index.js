@@ -18,10 +18,10 @@ import {
   profilePopup,
   popupAvatar,
   popupDelete,
-  avatarEditButton,
-  removeButtons,
-  likeButton,
-  likeCounter
+  avatarEditButton
+  // removeButtons,
+  // likeButton,
+  // likeCounter
 } from "../utils/constants.js";
 
 
@@ -110,27 +110,6 @@ function handleAvatarFormSubmit(data) {
   })
 }
 
-// LIKES DE CARDS:
-
-// FUNCIÓN: MOSTRAR LIKE EN CARD (Botón:likeButton  / contador:likeCounter)
-export function handleLike(data) {
-  console.log(data);
-
-  api.addCardLike(data.likes).then(() => {
-    getLike();
-  }) 
-}
-
-export function getLike(){
-  let counter = 0;
-  counter++;
-  console.log("CLIK EN LIKE");
-  //likeCounter.textContent = counter; //HELP!
-}
-
-getLike();
-
-// --- fin LIKES DE CARDS
 
 const popupImageObject = new PopupWithImage(popupImage);
 
@@ -149,6 +128,26 @@ function handleDeleteCard(data) {
 }
 
 
+// FUNCIÓN: MOSTRAR LIKE EN CARD (Botón:likeButton  / contador:likeCounter)
+function handleLike() {
+  const LikesUser = this._likes.filter(user => user._id === this._me.id)
+  if (LikesUser.length > 0) {
+    api.deleteCardLike(this._id).then(data => {
+      this._likes = data.likes;
+      this._likeCounter = data.likes.length;
+      this._element.querySelector(".card__like-counter").textContent = data.likes.length;
+    })
+
+  } else {
+    api.addCardLike(this._id).then(data => {
+      this._likes = data.likes;
+      this._likeCounter = data.likes.length;
+      this._element.querySelector(".card__like-counter").textContent = data.likes.length;
+    })
+  }
+}
+
+
 //Info del usuario (name, about, avatar, _id)
 const userInfo = new UserInfo(textTitle, textSubTitle, profileAvatar)
 
@@ -157,12 +156,10 @@ const sectionCard = new Section({
   data: initialCards,
   renderer: (item) => {
     item.me = userInfo.getUserInfo();
-    const nuevaCard = new Card(item, configCardSelectors.template, handleCardClick, popupConfirmDelete);
+    const nuevaCard = new Card(item, configCardSelectors.template, handleCardClick, popupConfirmDelete, handleLike);
     cardsContainer.prepend(nuevaCard.generateCard());
-
   }
 }, cardsContainer);
-
 
 
 //Evento: BOTÓN ABRE MODAL AGREGAR CARDS
@@ -213,6 +210,7 @@ function getCards() {
 }
 
 getCards();
+
 
 api.getProfileInfo().then(json => {
   console.log('API JSON', json);
