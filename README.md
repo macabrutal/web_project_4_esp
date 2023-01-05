@@ -30,9 +30,11 @@ El proyecto contiene:
 
 **2.Directorios de:**
 
-- /blocks. (con hojas de estilo) > con estructura de archivos BEM
+- /src (con carpetas: blocks, components, images, pages, utils, vendor)
+- /blocks (con hojas de estilo) > con estructura de archivos BEM
 - /images (con archivos de imagen)
-- /scripts (con archivos de Js)
+- /components (con archivos de Js)
+- /pages(con archivos index.css / index.js)
 - /vendor (con fonts y normalize.css)
 
 ## Tecnologías utilizadas:
@@ -40,6 +42,7 @@ El proyecto contiene:
 - HTML
 - CSS
 - Javascript
+- API
 
 ## Anchos de pantalla:
 
@@ -57,4 +60,4 @@ El proyecto contiene:
 
 ## Versión:
 
-- 8
+- 9
