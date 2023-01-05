@@ -1,5 +1,5 @@
 .profile__avatar-edit {
-    Width: 26px;
+    width: 26px;
     height: 26px;
     background-image: url(../../../images/editAvatar.png);
     object-fit: contain;
