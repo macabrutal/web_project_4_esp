@@ -80,7 +80,6 @@ export function newFormValidation(configForm, formElement) {
 
 // FUNCIÓN: MOSTRAR TITULO Y SUBTITULO DEL PERFIL DENTRO DE LOS INPUTS DE LA MODAL:
 function editClick() {
-  console.log("clic en botón edit");
   inputTitle.value = textTitle.textContent; //valor del título es= texto título
   inputSubtitle.value = textSubTitle.textContent; //valor del subtítulo es= texto subtítulo
 }
@@ -88,7 +87,6 @@ function editClick() {
 
 // FUNCIÓN: MOSTRAR NOMBRE DE INPUTS EN PERFIL / name: edit-profile
 function handleProfileFormSubmit(data) {
-  console.log("agrego texto a form edit");
   document.forms['edit-profile'].querySelector('button[type="submit"]').textContent = 'Guardando...'
   api.editProfile(data.name, data.about).then(userData => {
     userInfo.setUserInfo(userData);
@@ -100,7 +98,6 @@ function handleProfileFormSubmit(data) {
 
 // FUNCIÓN: MOSTRAR NUEVO AVATAR EN PERFIL / name: edit-avatar
 function handleAvatarFormSubmit(data) {
-  console.log("agrego NUEVO AVATAR");
   document.forms['edit-avatar'].querySelector('button[type="submit"]').textContent = 'Guardando...'
   api.newAvatar(data.avatar).then(userData => {
     userInfo.setUserInfo(userData);
@@ -121,7 +118,6 @@ function handleCardClick(event) {
 
 // FUNCIÓN: DELETE
 function handleDeleteCard(data) {
-  console.log(data);
   api.deleteCard(data.card_id).then(() => {
     getCards();
   })
@@ -205,7 +201,6 @@ function getCards() {
     sectionCard.clear();
     sectionCard.setItems(json);
     sectionCard.renderItems();
-    console.log('API JSON', json);
   })
 }
 
@@ -213,7 +208,6 @@ getCards();
 
 
 api.getProfileInfo().then(json => {
-  console.log('API JSON', json);
   userInfo.setUserInfo({
     ...json,
     job: json.about
